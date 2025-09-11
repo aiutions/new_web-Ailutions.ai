@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from './ui/card';
 import { Button } from './ui/button';
 import { Progress } from './ui/progress';
-import { ArrowRight, Download, Calculator, BookOpen, FileText, TrendingUp } from 'lucide-react';
+import { ArrowRight, Download, Calculator, BookOpen, FileText, TrendingUp, BarChart3 } from 'lucide-react';
 
 export const LeadMagnetSection = () => {
   const [currentMagnet, setCurrentMagnet] = useState(0);
