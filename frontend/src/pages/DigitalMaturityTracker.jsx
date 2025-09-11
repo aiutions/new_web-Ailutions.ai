@@ -730,13 +730,13 @@ export default function DigitalMaturityTracker() {
                   onClick={() => handleAnswer(option.score)}
                   variant="outline"
                   size="lg"
-                  className={`w-full p-6 text-left justify-start hover:scale-105 transition-all duration-300 border-2 border-gray-200 hover:border-transparent hover:shadow-xl bg-gradient-to-r hover:${option.color} hover:text-white group`}
+                  className={`w-full p-4 sm:p-6 text-left justify-start hover:scale-105 transition-all duration-300 border-2 border-gray-200 hover:border-transparent hover:shadow-xl bg-gradient-to-r hover:${option.color} hover:text-white group`}
                 >
-                  <div className="flex items-center space-x-4">
-                    <div className={`w-8 h-8 rounded-full bg-gradient-to-r ${option.color} text-white flex items-center justify-center font-bold text-sm group-hover:scale-110 transition-transform duration-300`}>
+                  <div className="flex items-center space-x-3 sm:space-x-4">
+                    <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-r ${option.color} text-white flex items-center justify-center font-bold text-xs sm:text-sm group-hover:scale-110 transition-transform duration-300`}>
                       {option.score}
                     </div>
-                    <span className="font-medium">{option.label}</span>
+                    <span className="font-medium text-sm sm:text-base">{option.label}</span>
                   </div>
                 </Button>
               ))}
