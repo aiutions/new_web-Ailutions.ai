@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
-import { Progress } from '../components/ui/progress';
 import { Badge } from '../components/ui/badge';
 import { ArrowLeft, Plus, Trash2, Download, Calendar, BarChart3, Clock, Users, Target, CheckCircle, TrendingUp, AlertTriangle } from 'lucide-react';
 import jsPDF from 'jspdf';
@@ -62,7 +61,6 @@ export default function AutomationReadinessAssessment() {
     setTasks(tasks.map(task => {
       if (task.id === id) {
         const updatedTask = { ...task, [field]: value };
-        // Recalculate score
         updatedTask.score = calculateTaskScore(updatedTask);
         return updatedTask;
       }
@@ -76,19 +74,13 @@ export default function AutomationReadinessAssessment() {
     const frequency = frequencyValues[task.frequency];
     const timeSpent = parseFloat(task.timeSpent) || 0;
     
-    // Base score: frequency multiplier × time spent
     const baseScore = frequency.multiplier * timeSpent;
     
-    // Bonus factors
     let bonusMultiplier = 1;
-    
-    // Repetitive tasks get higher scores
-    if (frequency.multiplier >= 365) bonusMultiplier += 0.5; // Daily tasks
-    if (frequency.multiplier >= 52) bonusMultiplier += 0.3;  // Weekly tasks
-    
-    // Time-intensive tasks get higher scores
-    if (timeSpent >= 60) bonusMultiplier += 0.4; // >1 hour
-    if (timeSpent >= 30) bonusMultiplier += 0.2; // >30 mins
+    if (frequency.multiplier >= 365) bonusMultiplier += 0.5;
+    if (frequency.multiplier >= 52) bonusMultiplier += 0.3;
+    if (timeSpent >= 60) bonusMultiplier += 0.4;
+    if (timeSpent >= 30) bonusMultiplier += 0.2;
     
     return Math.round(baseScore * bonusMultiplier);
   };
@@ -100,7 +92,6 @@ export default function AutomationReadinessAssessment() {
 
     if (completeTasks.length === 0) return;
 
-    // Calculate scores and sort by automation potential
     const sortedTasks = completeTasks
       .map(task => ({
         ...task,
@@ -109,21 +100,18 @@ export default function AutomationReadinessAssessment() {
       }))
       .sort((a, b) => b.score - a.score);
 
-    // Calculate total metrics
     const totalAnnualHours = sortedTasks.reduce((sum, task) => sum + task.annualHours, 0);
     const totalTasks = sortedTasks.length;
     const highPriorityTasks = sortedTasks.filter(task => task.priority === 'high').length;
     
-    // Automation readiness score (0-100)
     let readinessScore = 0;
-    if (totalTasks >= 3) readinessScore += 20; // Has multiple tasks
-    if (highPriorityTasks >= 2) readinessScore += 30; // Has frequent tasks
-    if (totalAnnualHours >= 100) readinessScore += 25; // Significant time investment
-    if (sortedTasks[0]?.score >= 500) readinessScore += 25; // Has high-impact task
+    if (totalTasks >= 3) readinessScore += 20;
+    if (highPriorityTasks >= 2) readinessScore += 30;
+    if (totalAnnualHours >= 100) readinessScore += 25;
+    if (sortedTasks[0]?.score >= 500) readinessScore += 25;
     
     readinessScore = Math.min(readinessScore, 100);
 
-    // Categorize readiness level
     let readinessLevel = '';
     let readinessColor = '';
     if (readinessScore >= 80) {
@@ -149,7 +137,7 @@ export default function AutomationReadinessAssessment() {
       readinessLevel,
       readinessColor,
       topAutomationCandidates: sortedTasks.slice(0, 3),
-      estimatedSavings: Math.round(totalAnnualHours * 35), // $35/hour avg
+      estimatedSavings: Math.round(totalAnnualHours * 35),
       timestamp: new Date().toISOString()
     };
 
@@ -161,7 +149,6 @@ export default function AutomationReadinessAssessment() {
     e.preventDefault();
     setShowEmailCapture(false);
     
-    // Save to localStorage
     const assessments = JSON.parse(localStorage.getItem('automationAssessments') || '[]');
     assessments.push({
       ...results,
@@ -175,18 +162,17 @@ export default function AutomationReadinessAssessment() {
     if (!results) return;
 
     const pdf = new jsPDF();
-    const pageWidth = pdf.internal.pageSize.width;
     const margin = 20;
 
     // Header
-    pdf.setFillColor(59, 130, 246);
-    pdf.rect(0, 0, pageWidth, 40, 'F');
+    pdf.setFillColor(147, 51, 234);
+    pdf.rect(0, 0, pdf.internal.pageSize.width, 40, 'F');
     
     pdf.setFontSize(22);
     pdf.setTextColor(255, 255, 255);
     pdf.text('Automation Readiness Assessment', margin, 25);
     
-    // User info
+    // User info and score
     let yPos = 55;
     pdf.setFontSize(12);
     pdf.setTextColor(0, 0, 0);
@@ -194,111 +180,36 @@ export default function AutomationReadinessAssessment() {
     if (userInfo.name) {
       pdf.text(`Name: ${userInfo.name}`, margin, yPos);
       pdf.text(`Company: ${userInfo.company}`, margin, yPos + 10);
-      pdf.text(`Role: ${userInfo.role}`, margin, yPos + 20);
-      yPos += 35;
+      yPos += 25;
     }
     
-    pdf.text(`Assessment Date: ${new Date().toLocaleDateString()}`, margin, yPos);
-    yPos += 20;
-
-    // Overall Score
     pdf.setFontSize(18);
-    pdf.setTextColor(34, 197, 94);
-    pdf.text('Automation Readiness Score', margin, yPos);
-    yPos += 15;
-
-    pdf.setFontSize(28);
-    pdf.setTextColor(59, 130, 246);
-    pdf.text(`${results.readinessScore}%`, margin, yPos);
-    
-    pdf.setFontSize(14);
-    pdf.setTextColor(0, 0, 0);
-    pdf.text(`Level: ${results.readinessLevel}`, margin + 60, yPos - 8);
+    pdf.setTextColor(147, 51, 234);
+    pdf.text(`Readiness Score: ${results.readinessScore}% (${results.readinessLevel})`, margin, yPos);
     yPos += 20;
 
-    // Key Metrics
-    pdf.setFontSize(16);
-    pdf.setTextColor(147, 51, 234);
-    pdf.text('Key Insights:', margin, yPos);
-    yPos += 15;
+    // Key metrics
+    pdf.setFontSize(14);
+    pdf.text(`• Total Tasks: ${results.totalTasks}`, margin, yPos);
+    pdf.text(`• Annual Hours: ${results.totalAnnualHours}`, margin, yPos + 12);
+    pdf.text(`• Estimated Cost: $${results.estimatedSavings.toLocaleString()}`, margin, yPos + 24);
+    yPos += 45;
 
-    pdf.setFontSize(11);
+    // Top tasks
+    pdf.setFontSize(16);
     pdf.setTextColor(0, 0, 0);
-    pdf.text(`• Total Tasks Analyzed: ${results.totalTasks}`, margin + 5, yPos);
-    pdf.text(`• Annual Hours Spent: ${results.totalAnnualHours} hours`, margin + 5, yPos + 12);
-    pdf.text(`• Estimated Annual Cost: $${results.estimatedSavings.toLocaleString()}`, margin + 5, yPos + 24);
-    pdf.text(`• High-Frequency Tasks: ${results.highPriorityTasks}`, margin + 5, yPos + 36);
-    yPos += 55;
-
-    // Top Automation Candidates
-    pdf.setFontSize(16);
-    pdf.setTextColor(249, 115, 22);
     pdf.text('Top Automation Candidates:', margin, yPos);
     yPos += 15;
 
-    pdf.setFontSize(11);
-    pdf.setTextColor(0, 0, 0);
-    
     results.topAutomationCandidates.forEach((task, index) => {
-      if (yPos > pdf.internal.pageSize.height - 60) {
-        pdf.addPage();
-        yPos = 30;
-      }
-      
       pdf.setFontSize(12);
-      pdf.setTextColor(59, 130, 246);
-      pdf.text(`${index + 1}. ${task.taskName}`, margin + 5, yPos);
-      yPos += 12;
-      
+      pdf.text(`${index + 1}. ${task.taskName}`, margin, yPos);
       pdf.setFontSize(10);
-      pdf.setTextColor(0, 0, 0);
-      pdf.text(`   • Frequency: ${frequencyValues[task.frequency]?.label}`, margin + 5, yPos);
-      pdf.text(`   • Time per instance: ${task.timeSpent} minutes`, margin + 5, yPos + 10);
-      pdf.text(`   • Annual impact: ${Math.round(task.annualHours)} hours`, margin + 5, yPos + 20);
-      pdf.text(`   • Automation score: ${task.score} points`, margin + 5, yPos + 30);
-      yPos += 45;
+      pdf.text(`   Score: ${task.score} | ${frequencyValues[task.frequency]?.label} | ${task.timeSpent}min`, margin, yPos + 10);
+      yPos += 25;
     });
 
-    // Recommendations
-    yPos += 10;
-    if (yPos > pdf.internal.pageSize.height - 100) {
-      pdf.addPage();
-      yPos = 30;
-    }
-
-    pdf.setFontSize(16);
-    pdf.setTextColor(220, 38, 127);
-    pdf.text('Recommended Next Steps:', margin, yPos);
-    yPos += 15;
-
-    const recommendations = [
-      'Start with your highest-scoring task for maximum impact',
-      'Look for tasks that follow clear, predictable rules',
-      'Consider tasks that involve data entry or file processing',
-      'Evaluate integration opportunities between your current tools',
-      'Calculate ROI potential for each automation project'
-    ];
-
-    pdf.setFontSize(11);
-    pdf.setTextColor(0, 0, 0);
-    
-    recommendations.forEach((rec, index) => {
-      const lines = pdf.splitTextToSize(`${index + 1}. ${rec}`, pageWidth - 2 * margin);
-      lines.forEach(line => {
-        pdf.text(line, margin + 5, yPos);
-        yPos += 12;
-      });
-      yPos += 3;
-    });
-
-    // Footer
-    pdf.setFontSize(10);
-    pdf.setTextColor(107, 114, 128);
-    const footerY = pdf.internal.pageSize.height - 20;
-    pdf.text('Generated by Ailutions Automation Readiness Assessment', margin, footerY);
-    pdf.text('Contact: hello@ailutions.com | Book your automation strategy call', margin, footerY + 8);
-
-    const fileName = `Automation-Readiness-Report-${userInfo.company || 'Assessment'}-${new Date().toISOString().split('T')[0]}.pdf`;
+    const fileName = `Automation-Assessment-${userInfo.company || 'Report'}-${new Date().toISOString().split('T')[0]}.pdf`;
     pdf.save(fileName);
   };
 
@@ -306,7 +217,7 @@ export default function AutomationReadinessAssessment() {
     return tasks.some(task => task.taskName && task.frequency && task.timeSpent);
   };
 
-  // Email capture modal
+  // Email capture
   if (showEmailCapture && !userInfo.email) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50/30">
@@ -329,7 +240,7 @@ export default function AutomationReadinessAssessment() {
                   Get Your Custom Automation Roadmap
                 </h2>
                 <p className="text-lg text-gray-600">
-                  Enter your details to receive your detailed automation analysis with prioritized recommendations and next steps.
+                  Enter your details to receive your detailed automation analysis with prioritized recommendations.
                 </p>
               </div>
 
@@ -418,7 +329,6 @@ export default function AutomationReadinessAssessment() {
   if (showResults && results && userInfo.email) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-purple-50/30">
-        {/* Header */}
         <header className="bg-white/90 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50 shadow-sm">
           <div className="max-w-6xl mx-auto px-6 py-4">
             <div className="flex items-center justify-between">
@@ -600,9 +510,9 @@ export default function AutomationReadinessAssessment() {
     );
   }
 
+  // Main assessment form
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50/30">
-      {/* Header */}
       <header className="bg-white/80 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
@@ -777,7 +687,6 @@ export default function AutomationReadinessAssessment() {
                 className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold px-10 py-4 rounded-xl text-lg hover:scale-105 transition-all duration-300"
               >
                 Get My Full Automation Roadmap
-                <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </CardContent>
           </Card>
