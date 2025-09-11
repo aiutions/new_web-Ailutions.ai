@@ -92,6 +92,28 @@ button, [role="button"] {
     .space-y-8 > * + * {
         margin-top: 1.5rem;
     }
+    
+    /* Mobile-specific grid improvements */
+    .grid-cols-1 {
+        gap: 1rem;
+    }
+    
+    /* Ensure full width on mobile */
+    .w-full {
+        width: 100%;
+    }
+    
+    /* Better mobile card spacing */
+    .card-mobile {
+        margin: 0.5rem;
+        padding: 1rem;
+    }
+    
+    /* Mobile text overflow handling */
+    .text-mobile {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
 }
 
 /* Custom animations */
