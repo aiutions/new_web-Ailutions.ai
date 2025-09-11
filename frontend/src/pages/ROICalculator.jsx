@@ -578,7 +578,7 @@ export default function ROICalculator() {
         </div>
 
         <Card className="border-0 shadow-2xl bg-white/90 backdrop-blur-sm">
-          <CardContent className="p-10">
+          <CardContent className="p-4 sm:p-6 lg:p-10">
             <form onSubmit={(e) => { e.preventDefault(); calculateROI(); }}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Number of Employees */}
