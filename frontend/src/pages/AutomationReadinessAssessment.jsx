@@ -279,6 +279,8 @@ export default function AutomationReadinessAssessment() {
     
     return suggestions[0]; // Return the first/best match
   };
+
+  const downloadPDF = async () => {
     if (!results) return;
 
     const pdf = new jsPDF();
