@@ -1,4 +1,19 @@
 {
   "buildCommand": "./build.sh",
-  "outputDirectory": "build"
+  "outputDirectory": "build",
+  "functions": {
+    "backend/server.py": {
+      "runtime": "python3.9"
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "backend/server.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ]
 }
