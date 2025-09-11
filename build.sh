@@ -1,8 +1,6 @@
 #!/bin/bash
 echo "Starting build process..."
 echo "Current directory: $(pwd)"
-echo "Directory contents:"
-ls -la
 
 echo "Building frontend..."
 if [ -d "frontend" ]; then
@@ -12,9 +10,15 @@ if [ -d "frontend" ]; then
     echo "Building frontend application..."
     yarn build
     echo "Build completed successfully!"
-    echo "Build output created at: $(pwd)/build"
+    
+    # Move build output to root level for Vercel
+    echo "Moving build output to root level..."
+    cd ..
+    rm -rf build 2>/dev/null || true
+    cp -r frontend/build ./build
+    echo "Build output moved to: $(pwd)/build"
     ls -la build/
-    echo "Contents verified!"
+    echo "Deployment ready!"
 else
     echo "ERROR: frontend directory not found"
     echo "Available directories:"
