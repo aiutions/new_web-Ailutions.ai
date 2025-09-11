@@ -102,68 +102,240 @@ export default function ROICalculator() {
 
     const pdf = new jsPDF();
     const pageWidth = pdf.internal.pageSize.width;
+    const pageHeight = pdf.internal.pageSize.height;
     const margin = 20;
+    const contentWidth = pageWidth - 2 * margin;
 
-    // Header
+    // Professional header
+    pdf.setFillColor(34, 197, 94); // Green
+    pdf.rect(0, 0, pageWidth, 50, 'F');
+    
     pdf.setFontSize(24);
-    pdf.setTextColor(59, 130, 246); // Blue color
-    pdf.text('AI Automation ROI Report', margin, 30);
+    pdf.setTextColor(255, 255, 255);
+    pdf.text('Ailutions', margin, 25);
     
+    pdf.setFontSize(18);
+    pdf.text('AI Automation ROI Analysis Report', margin, 40);
+    
+    // Document info
+    let yPos = 70;
     pdf.setFontSize(12);
-    pdf.setTextColor(107, 114, 128); // Gray color
-    pdf.text(`Generated on ${new Date().toLocaleDateString()}`, margin, 40);
-    pdf.text(`Industry: ${results.industry}`, margin, 50);
-
-    // Input Summary
-    pdf.setFontSize(16);
-    pdf.setTextColor(0, 0, 0);
-    pdf.text('Input Parameters:', margin, 70);
+    pdf.setTextColor(100, 100, 100);
+    pdf.text(`Generated on: ${new Date().toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    })}`, margin, yPos);
     
+    yPos += 25;
+    pdf.setFontSize(14);
+    pdf.setTextColor(0, 0, 0);
+    pdf.text('Analysis Parameters:', margin, yPos);
+    
+    yPos += 15;
     pdf.setFontSize(11);
-    let yPosition = 85;
-    pdf.text(`• Number of Employees: ${inputs.employees}`, margin + 5, yPosition);
-    pdf.text(`• Average Annual Salary: $${parseInt(inputs.avgSalary).toLocaleString()}`, margin + 5, yPosition + 10);
-    pdf.text(`• Manual Hours per Day: ${inputs.hoursPerDay}`, margin + 5, yPosition + 20);
-    pdf.text(`• Automation Potential: ${inputs.automationPercentage}%`, margin + 5, yPosition + 30);
-    pdf.text(`• Implementation Cost: $${parseInt(inputs.implementationCost).toLocaleString()}`, margin + 5, yPosition + 40);
+    pdf.setTextColor(60, 60, 60);
+    
+    const parameters = [
+      ['Number of Employees:', inputs.employees],
+      ['Average Annual Salary:', `$${parseInt(inputs.avgSalary).toLocaleString()}`],
+      ['Manual Hours per Day:', inputs.hoursPerDay],
+      ['Automation Potential:', `${inputs.automationPercentage}%`],
+      ['Implementation Cost:', `$${parseInt(inputs.implementationCost).toLocaleString()}`],
+      ['Industry:', industries.find(ind => ind.value === inputs.industry)?.label || 'Other']
+    ];
+    
+    parameters.forEach(([label, value]) => {
+      pdf.text(label, margin, yPos);
+      pdf.text(value, margin + 80, yPos);
+      yPos += 12;
+    });
 
-    // Results
+    // ROI Summary Box
+    yPos += 15;
+    pdf.setFillColor(240, 253, 244); // Light green background
+    pdf.setDrawColor(34, 197, 94); // Green border
+    pdf.setLineWidth(2);
+    pdf.rect(margin - 5, yPos - 10, contentWidth + 10, 80, 'FD');
+    
     pdf.setFontSize(16);
-    pdf.setTextColor(34, 197, 94); // Green color
-    pdf.text('Projected Savings:', margin, yPosition + 65);
+    pdf.setTextColor(34, 197, 94);
+    pdf.text('ROI Summary', margin + 5, yPos + 5);
     
-    pdf.setFontSize(12);
-    pdf.setTextColor(0, 0, 0);
-    yPosition += 80;
-    
-    pdf.text(`Daily Savings: $${results.dailySavings.toLocaleString()}`, margin + 5, yPosition);
-    pdf.text(`Monthly Savings: $${results.monthlySavings.toLocaleString()}`, margin + 5, yPosition + 12);
-    pdf.text(`Annual Savings: $${results.yearlySavings.toLocaleString()}`, margin + 5, yPosition + 24);
+    // Key metrics display
+    pdf.setFontSize(36);
+    pdf.setTextColor(59, 130, 246); // Blue
+    pdf.text(`${results.roiPercentage}%`, margin + 5, yPos + 35);
     
     pdf.setFontSize(14);
-    pdf.setTextColor(59, 130, 246);
-    pdf.text(`3-Year Total Savings: $${results.threeYearSavings.toLocaleString()}`, margin + 5, yPosition + 40);
-    pdf.text(`Net ROI: ${results.roiPercentage}%`, margin + 5, yPosition + 55);
-    pdf.text(`Payback Period: ${results.paybackMonths} months`, margin + 5, yPosition + 70);
-
-    // Additional Benefits
-    pdf.setFontSize(16);
-    pdf.setTextColor(147, 51, 234); // Purple color
-    pdf.text('Additional Benefits:', margin, yPosition + 95);
+    pdf.setTextColor(34, 197, 94);
+    pdf.text('3-Year ROI', margin + 5, yPos + 48);
     
-    pdf.setFontSize(11);
+    pdf.setFontSize(12);
+    pdf.setTextColor(60, 60, 60);
+    pdf.text(`Payback Period: ${results.paybackMonths} months`, margin + 100, yPos + 20);
+    pdf.text(`Annual Savings: $${results.yearlySavings.toLocaleString()}`, margin + 100, yPos + 32);
+    pdf.text(`Hours Automated: ${results.hoursAutomatedPerDay}/day`, margin + 100, yPos + 44);
+    pdf.text(`3-Year Net Benefit: $${results.netROI.toLocaleString()}`, margin + 100, yPos + 56);
+    
+    yPos += 95;
+
+    // Detailed Financial Analysis
+    if (yPos > pageHeight - 150) {
+      pdf.addPage();
+      yPos = 30;
+    }
+    
+    pdf.setFontSize(16);
+    pdf.setTextColor(59, 130, 246);
+    pdf.text('Financial Impact Analysis', margin, yPos);
+    yPos += 20;
+
+    // Savings breakdown table
+    const savingsData = [
+      ['Daily Savings:', `$${results.dailySavings.toLocaleString()}`],
+      ['Monthly Savings:', `$${results.monthlySavings.toLocaleString()}`],
+      ['Annual Savings:', `$${results.yearlySavings.toLocaleString()}`],
+      ['3-Year Total Savings:', `$${results.threeYearSavings.toLocaleString()}`],
+      ['Less: Implementation Cost:', `-$${parseInt(inputs.implementationCost).toLocaleString()}`],
+      ['Net 3-Year Benefit:', `$${results.netROI.toLocaleString()}`]
+    ];
+
+    // Table header
+    pdf.setFillColor(248, 250, 252);
+    pdf.rect(margin - 5, yPos - 5, contentWidth + 10, 15, 'F');
+    pdf.setFontSize(12);
     pdf.setTextColor(0, 0, 0);
-    pdf.text(`• Error Reduction Savings: $${results.errorReduction.toLocaleString()}/year`, margin + 5, yPosition + 110);
-    pdf.text(`• Productivity Increase: $${results.productivityIncrease.toLocaleString()}/year`, margin + 5, yPosition + 122);
-    pdf.text(`• Total Annual Benefit: $${results.totalAnnualBenefit.toLocaleString()}`, margin + 5, yPosition + 134);
+    pdf.text('Savings Breakdown', margin, yPos + 5);
+    yPos += 20;
+
+    savingsData.forEach(([label, value], index) => {
+      if (index === savingsData.length - 1) {
+        // Highlight net benefit
+        pdf.setFillColor(240, 253, 244);
+        pdf.rect(margin - 5, yPos - 3, contentWidth + 10, 15, 'F');
+        pdf.setFontSize(11);
+        pdf.setTextColor(34, 197, 94);
+      } else {
+        pdf.setFontSize(10);
+        pdf.setTextColor(60, 60, 60);
+      }
+      
+      pdf.text(label, margin, yPos);
+      pdf.text(value, pageWidth - margin - 80, yPos);
+      yPos += 15;
+    });
+
+    // Additional Benefits Section
+    yPos += 10;
+    pdf.setFillColor(249, 250, 251);
+    pdf.setDrawColor(156, 163, 175);
+    pdf.rect(margin - 5, yPos - 5, contentWidth + 10, 60, 'FD');
+    
+    pdf.setFontSize(14);
+    pdf.setTextColor(147, 51, 234);
+    pdf.text('Additional Benefits Beyond Direct Savings', margin, yPos + 10);
+    
+    pdf.setFontSize(10);
+    pdf.setTextColor(60, 60, 60);
+    const benefits = [
+      `Error Reduction Value: $${results.errorReduction.toLocaleString()}/year`,
+      `Productivity Increase: $${results.productivityIncrease.toLocaleString()}/year`,
+      `Total Annual Benefit: $${results.totalAnnualBenefit.toLocaleString()}`
+    ];
+    
+    benefits.forEach((benefit, index) => {
+      pdf.text(`• ${benefit}`, margin + 5, yPos + 25 + (index * 12));
+    });
+    
+    yPos += 75;
+
+    // Implementation Roadmap
+    pdf.addPage();
+    yPos = 30;
+    
+    pdf.setFillColor(59, 130, 246);
+    pdf.rect(0, yPos - 10, pageWidth, 30, 'F');
+    
+    pdf.setFontSize(16);
+    pdf.setTextColor(255, 255, 255);
+    pdf.text('Implementation Roadmap', margin, yPos + 10);
+    
+    yPos += 40;
+
+    const roadmapPhases = [
+      {
+        phase: 'Phase 1: Assessment & Planning',
+        timeline: 'Weeks 1-2',
+        activities: [
+          'Detailed process mapping and analysis',
+          'Technology stack evaluation',
+          'ROI validation and business case development',
+          'Implementation team formation'
+        ]
+      },
+      {
+        phase: 'Phase 2: Design & Development', 
+        timeline: 'Weeks 3-8',
+        activities: [
+          'Automation workflow design',
+          'System integration planning',
+          'Pilot program development',
+          'Testing and quality assurance'
+        ]
+      },
+      {
+        phase: 'Phase 3: Deployment & Training',
+        timeline: 'Weeks 9-12', 
+        activities: [
+          'Production deployment',
+          'Team training and change management',
+          'Performance monitoring setup',
+          'Success metrics tracking'
+        ]
+      }
+    ];
+
+    roadmapPhases.forEach((phase, index) => {
+      // Phase header
+      pdf.setFillColor(index === 0 ? 239 : index === 1 ? 34 : 59, 
+                       index === 0 ? 68 : index === 1 ? 197 : 130, 
+                       index === 0 ? 68 : index === 1 ? 94 : 246);
+      pdf.rect(margin - 5, yPos - 5, contentWidth + 10, 20, 'F');
+      
+      pdf.setFontSize(12);
+      pdf.setTextColor(255, 255, 255);
+      pdf.text(phase.phase, margin, yPos + 5);
+      pdf.text(phase.timeline, pageWidth - margin - 50, yPos + 5);
+      
+      yPos += 25;
+      
+      // Activities
+      pdf.setFontSize(10);
+      pdf.setTextColor(60, 60, 60);
+      phase.activities.forEach(activity => {
+        pdf.text(`• ${activity}`, margin + 5, yPos);
+        yPos += 12;
+      });
+      
+      yPos += 10;
+    });
 
     // Footer
+    yPos = pageHeight - 40;
+    pdf.setFillColor(31, 41, 55);
+    pdf.rect(0, yPos, pageWidth, 40, 'F');
+    
     pdf.setFontSize(10);
-    pdf.setTextColor(107, 114, 128);
-    pdf.text('Generated by Ailutions AI ROI Calculator', margin, pdf.internal.pageSize.height - 20);
-    pdf.text('Contact: hello@ailutions.com | Book a call to discuss your automation journey', margin, pdf.internal.pageSize.height - 10);
+    pdf.setTextColor(255, 255, 255);
+    pdf.text('Ready to achieve these results?', margin, yPos + 15);
+    pdf.text('📞 Book your free strategy call: calendly.com/ailutions', margin, yPos + 25);
+    pdf.text('📧 Questions? Contact us: hello@ailutions.com', margin, yPos + 35);
+    
+    pdf.setTextColor(34, 197, 94);
+    pdf.text('Ailutions - AI that powers your business', pageWidth - margin - 80, yPos + 25);
 
-    pdf.save(`AI-ROI-Report-${new Date().toISOString().split('T')[0]}.pdf`);
+    pdf.save(`AI-ROI-Analysis-${new Date().toISOString().split('T')[0]}.pdf`);
   };
 
   const handleInputChange = (field, value) => {
