@@ -11,16 +11,18 @@ import uuid
 from datetime import datetime
 
 
-ROOT_DIR = Path(__file__).parent
-load_dotenv(ROOT_DIR / '.env')
+# Load environment variables
+load_dotenv()
 
-# MongoDB connection
-mongo_url = os.environ['MONGO_URL']
+# MongoDB connection - use environment variable
+mongo_url = os.environ.get('MONGO_URL', 'mongodb://localhost:27017')
+db_name = os.environ.get('DB_NAME', 'ailutions_db')
+
 client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+db = client[db_name]
 
-# Create the main app without a prefix
-app = FastAPI()
+# Create the main app
+app = FastAPI(title="Ailutions API", version="1.0.0")
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
@@ -38,7 +40,11 @@ class StatusCheckCreate(BaseModel):
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {"message": "Ailutions API - Ready for automation!"}
+
+@api_router.get("/health")
+async def health_check():
+    return {"status": "healthy", "service": "ailutions-api"}
 
 @api_router.post("/status", response_model=StatusCheck)
 async def create_status_check(input: StatusCheckCreate):
@@ -58,7 +64,7 @@ app.include_router(api_router)
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
-    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
+    allow_origins=["*"],  # In production, specify your domain
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -73,3 +79,7 @@ logger = logging.getLogger(__name__)
 @app.on_event("shutdown")
 async def shutdown_db_client():
     client.close()
+
+# Vercel serverless function handler
+def handler(request):
+    return app(request)
