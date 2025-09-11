@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "yarn workspace frontend build",
+  "buildCommand": "./build.sh",
   "outputDirectory": "frontend/build",
   "installCommand": "yarn install --frozen-lockfile",
   "builds": [
