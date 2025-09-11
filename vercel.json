@@ -1,11 +1,18 @@
 {
-  "buildCommand": "./build.sh",
-  "outputDirectory": "build",
-  "functions": {
-    "backend/server.py": {
-      "runtime": "python3.9"
+  "version": 2,
+  "builds": [
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    },
+    {
+      "src": "backend/server.py",
+      "use": "@vercel/python"
     }
-  },
+  ],
   "routes": [
     {
       "src": "/api/(.*)",
@@ -13,7 +20,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/$1"
+      "dest": "frontend/$1"
     }
   ]
 }
