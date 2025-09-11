@@ -12,6 +12,9 @@ if [ -d "frontend" ]; then
     echo "Building frontend application..."
     yarn build
     echo "Build completed successfully!"
+    echo "Build output created at: $(pwd)/build"
+    ls -la build/
+    echo "Contents verified!"
 else
     echo "ERROR: frontend directory not found"
     echo "Available directories:"
