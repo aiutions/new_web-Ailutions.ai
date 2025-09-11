@@ -20,13 +20,13 @@ export const LeadMagnetSection = () => {
       color: "from-blue-500 to-green-500"
     },
     {
-      title: "Automation Playbook",
-      subtitle: "10 Processes You Can Automate This Month",
-      icon: BookOpen,
-      description: "Step-by-step guide to identifying and automating your biggest time-wasters",
-      features: ["Process audit checklist", "ROI calculation templates", "Implementation timeline"],
-      cta: "Download Free",
-      href: "/automation-playbook",
+      title: "Automation Readiness Assessment",
+      subtitle: "Spot What's Slowing Your Team Down",
+      icon: BarChart3,
+      description: "Interactive worksheet to identify your most time-consuming repetitive tasks",
+      features: ["Task impact scoring", "Visual automation roadmap", "Priority ranking system"],
+      cta: "Analyze Tasks",
+      href: "/automation-assessment",
       color: "from-purple-500 to-pink-500"
     },
     {
