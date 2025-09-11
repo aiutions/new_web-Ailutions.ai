@@ -24,6 +24,7 @@ Thumbs.db
 
 # Build
 frontend/build/
+build/
 dist/
 
 # Tests
