@@ -24,11 +24,13 @@ export default function Homepage() {
       <header className="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex items-center justify-between">
-            <div className="text-xl sm:text-2xl font-bold">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-black via-blue-600 to-green-600">
-                Ailutions
-              </span>
-            </div>
+            <a href="/" className="flex items-center">
+              <img 
+                src="https://i.postimg.cc/VvHqqQpF/ailutions-logo.png" 
+                alt="Ailutions Logo" 
+                className="h-8 sm:h-10 w-auto hover:scale-105 transition-transform duration-200"
+              />
+            </a>
             
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
