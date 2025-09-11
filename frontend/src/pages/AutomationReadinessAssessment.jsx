@@ -158,7 +158,127 @@ export default function AutomationReadinessAssessment() {
     localStorage.setItem('automationAssessments', JSON.stringify(assessments));
   };
 
-  const downloadPDF = async () => {
+  const getAutomationSuggestions = (task) => {
+    const taskName = task.taskName.toLowerCase();
+    const tools = task.toolsUsed.toLowerCase();
+    
+    // Pattern matching for common automation scenarios
+    const suggestions = [];
+    
+    // Email-related tasks
+    if (taskName.includes('email') || tools.includes('email') || tools.includes('outlook')) {
+      suggestions.push({
+        title: "Email Automation Setup",
+        steps: [
+          "Set up email filters and rules in Outlook/Gmail",
+          "Create email templates for common responses",
+          "Use Zapier to connect email to CRM/spreadsheets",
+          "Implement auto-forwarding for specific email types"
+        ],
+        tools: ["Zapier", "Microsoft Power Automate", "Gmail Rules", "Outlook Rules"],
+        timeToImplement: "1-2 weeks",
+        difficulty: "Easy"
+      });
+    }
+    
+    // Data entry tasks
+    if (taskName.includes('data entry') || taskName.includes('entry') || taskName.includes('input')) {
+      suggestions.push({
+        title: "Automated Data Entry Solution",
+        steps: [
+          "Use OCR tools to extract text from documents",
+          "Set up form automation with auto-fill capabilities",
+          "Create API connections between systems",
+          "Implement validation rules to prevent errors"
+        ],
+        tools: ["Zapier", "Microsoft Power Platform", "UiPath", "Automation Anywhere"],
+        timeToImplement: "2-4 weeks",
+        difficulty: "Medium"
+      });
+    }
+    
+    // Report generation
+    if (taskName.includes('report') || taskName.includes('reporting')) {
+      suggestions.push({
+        title: "Automated Report Generation",
+        steps: [
+          "Connect data sources to reporting dashboard",
+          "Create scheduled report templates",
+          "Set up automatic email distribution",
+          "Add real-time data refresh capabilities"
+        ],
+        tools: ["Power BI", "Tableau", "Google Data Studio", "Excel Macros"],
+        timeToImplement: "2-3 weeks",
+        difficulty: "Medium"
+      });
+    }
+    
+    // Invoice/Financial tasks
+    if (taskName.includes('invoice') || taskName.includes('payment') || taskName.includes('billing')) {
+      suggestions.push({
+        title: "Invoice & Payment Automation",
+        steps: [
+          "Set up automatic invoice generation",
+          "Create approval workflows",
+          "Connect to payment processing systems",
+          "Implement late payment reminders"
+        ],
+        tools: ["QuickBooks", "Stripe", "PayPal", "FreshBooks"],
+        timeToImplement: "3-4 weeks",
+        difficulty: "Medium"
+      });
+    }
+    
+    // CRM/Customer tasks
+    if (tools.includes('crm') || taskName.includes('customer') || taskName.includes('lead')) {
+      suggestions.push({
+        title: "CRM Workflow Automation",
+        steps: [
+          "Create lead scoring and assignment rules",
+          "Set up automated follow-up sequences",
+          "Integrate with marketing automation tools",
+          "Configure pipeline stage automation"
+        ],
+        tools: ["HubSpot", "Salesforce", "Pipedrive", "ActiveCampaign"],
+        timeToImplement: "2-4 weeks",
+        difficulty: "Medium"
+      });
+    }
+    
+    // Scheduling tasks
+    if (taskName.includes('schedul') || taskName.includes('calendar') || taskName.includes('appointment')) {
+      suggestions.push({
+        title: "Scheduling Automation",
+        steps: [
+          "Set up online booking system",
+          "Create automatic confirmation emails",
+          "Add calendar integration",
+          "Implement reminder notifications"
+        ],
+        tools: ["Calendly", "Acuity Scheduling", "Microsoft Bookings", "Zapier"],
+        timeToImplement: "1-2 weeks",
+        difficulty: "Easy"
+      });
+    }
+    
+    // Default suggestion for any task
+    if (suggestions.length === 0) {
+      suggestions.push({
+        title: "Custom Automation Solution",
+        steps: [
+          "Map out current process step-by-step",
+          "Identify decision points and rules",
+          "Choose appropriate automation platform",
+          "Create and test automated workflow"
+        ],
+        tools: ["Zapier", "Microsoft Power Automate", "Custom Software"],
+        timeToImplement: "3-6 weeks",
+        difficulty: "Medium-Hard"
+      });
+    }
+    
+    return suggestions[0]; // Return the first/best match
+  };
     if (!results) return;
 
     const pdf = new jsPDF();
