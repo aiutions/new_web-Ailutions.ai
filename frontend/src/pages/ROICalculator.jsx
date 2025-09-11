@@ -557,7 +557,13 @@ export default function ROICalculator() {
               <span className="hidden sm:inline">Back to Home</span>
               <span className="sm:hidden">Back</span>
             </Button>
-            <h1 className="text-lg sm:text-xl font-semibold text-gray-900">AI ROI Calculator</h1>
+            <a href="/" className="flex items-center">
+              <img 
+                src="https://i.postimg.cc/VvHqqQpF/ailutions-logo.png" 
+                alt="Ailutions Logo" 
+                className="h-6 sm:h-8 w-auto hover:scale-105 transition-transform duration-200"
+              />
+            </a>
             <div className="w-16 sm:w-20"></div>
           </div>
         </div>
