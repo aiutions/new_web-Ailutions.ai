@@ -1,13 +1,9 @@
 {
   "version": 2,
+  "buildCommand": "yarn workspace frontend build",
+  "outputDirectory": "frontend/build",
+  "installCommand": "yarn install --frozen-lockfile",
   "builds": [
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "build"
-      }
-    },
     {
       "src": "backend/server.py",
       "use": "@vercel/python"
@@ -20,7 +16,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "frontend/$1"
+      "dest": "frontend/build/$1"
     }
   ]
 }
