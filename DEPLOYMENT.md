@@ -1,128 +1,68 @@
 # Ailutions - Vercel Deployment Guide
 
-## 🚀 Quick Deployment Steps
+## 🚀 Quick Fix for Build Error
 
-### 1. Prerequisites
-- GitHub/GitLab account with your code
-- Vercel account (free tier available)
-- MongoDB Atlas account (free tier available)
+### Current Build Error Solution:
+The build is failing because of the monorepo structure. Here's how to fix it:
 
-### 2. Database Setup (MongoDB Atlas)
-1. Go to [mongodb.com/atlas](https://www.mongodb.com/atlas)
-2. Create a new cluster (free tier)
-3. Create database user with username/password
-4. Whitelist IP: `0.0.0.0/0` (for Vercel)
-5. Get connection string: `mongodb+srv://username:password@cluster.mongodb.net/ailutions_db`
+### 1. Vercel Dashboard Settings
+When deploying in Vercel dashboard, use these **exact settings**:
 
-### 3. Deploy to Vercel
+**Framework Preset**: Other
+**Root Directory**: `frontend`
+**Build Command**: `npm run build`
+**Output Directory**: `build`
+**Install Command**: `npm install`
 
-#### Option A: Vercel Dashboard (Recommended)
-1. Go to [vercel.com](https://vercel.com) and sign up
-2. Click "New Project"
-3. Import your GitHub repository
-4. Set **Root Directory** to: `./`
-5. **Build Command**: `cd frontend && npm run build`
-6. **Output Directory**: `frontend/build`
-7. **Install Command**: `cd frontend && npm install`
+### 2. Alternative: Deploy Frontend Only First
+Since you're getting build errors with the full-stack setup, let's deploy the frontend first:
 
-#### Option B: Vercel CLI
-```bash
-# Install Vercel CLI
-npm i -g vercel
+1. In Vercel Dashboard → Settings → General
+2. Change **Root Directory** to: `frontend`
+3. This will deploy only the React app initially
+4. You can add the backend API later
 
-# In your project directory
-vercel
-
-# Follow the prompts:
-# - Link to existing project? No
-# - Project name: ailutions
-# - Directory: ./
-# - Override settings? Yes
-# - Build Command: cd frontend && npm run build
-# - Output Directory: frontend/build
-# - Dev Command: cd frontend && npm start
-```
-
-### 4. Environment Variables
+### 3. Environment Variables (After Frontend Deployment)
 In Vercel Dashboard → Your Project → Settings → Environment Variables:
 
-**Add these variables:**
-```
-MONGO_URL=mongodb+srv://username:password@cluster.mongodb.net/ailutions_db
-DB_NAME=ailutions_db
-CORS_ORIGINS=https://your-app-name.vercel.app
-```
-
-### 5. Update Frontend URL
-After deployment, update your frontend `.env`:
 ```
 REACT_APP_BACKEND_URL=https://your-app-name.vercel.app
 ```
 
-Then redeploy or use the Vercel dashboard to set this as an environment variable.
+### 4. For API Routes (Later Setup)
+Once frontend is working, you can add API routes by:
+1. Creating a separate Vercel project for the backend, OR
+2. Using Vercel's API routes feature
 
-### 6. Custom Domain (Optional)
-1. In Vercel Dashboard → Your Project → Settings → Domains
-2. Add your custom domain
-3. Update DNS records as instructed
-4. Update `CORS_ORIGINS` environment variable
+## 🔄 Quick Deploy Steps (Frontend Only)
 
-## 🔧 Project Structure for Vercel
-```
-/app/
-├── vercel.json          # Vercel configuration
-├── frontend/            # React app
-│   ├── package.json
-│   ├── build/          # Generated on deployment
-│   └── src/
-├── backend/            # FastAPI serverless functions
-│   ├── server.py
-│   └── requirements.txt
-└── README.md
-```
+1. **Update Vercel Settings**:
+   - Root Directory: `frontend`
+   - Build Command: `npm run build`
+   - Output Directory: `build`
 
-## 🐛 Troubleshooting
+2. **Redeploy**: This should fix the `craco: command not found` error
 
-### Build Fails?
-- Check build logs in Vercel dashboard
-- Ensure all dependencies are in `package.json`
-- Verify Python requirements in `requirements.txt`
+3. **Test**: Your Ailutions website should be live with all three assessment tools
 
-### API Routes Not Working?
-- Check `vercel.json` routing configuration
-- Verify `/api/*` routes are properly configured
-- Check Vercel function logs
+## 🐛 Current Error Fix
+The error `craco: command not found` happens because Vercel isn't finding the right directory structure. By setting **Root Directory** to `frontend`, it will:
+- Install dependencies from `frontend/package.json`
+- Run build commands in the right context
+- Find the `craco` command properly
 
-### Database Connection Issues?
-- Verify MongoDB Atlas connection string
-- Check network access settings (whitelist `0.0.0.0/0`)
-- Ensure database user has proper permissions
+## ✅ After This Fix
+Your website will be live at `https://your-app-name.vercel.app` with:
+- Homepage with Hormozi-style conversion optimization
+- ROI Calculator with PDF generation
+- Digital Maturity Tracker with PDF reports
+- Automation Readiness Assessment with implementation guides
+- All lead capture forms (saving to localStorage initially)
 
-### CORS Errors?
-- Update `CORS_ORIGINS` environment variable
-- Check if frontend URL matches backend CORS settings
+## 🚀 Next Steps (Optional)
+Once the frontend is deployed successfully:
+1. Set up MongoDB Atlas for data persistence
+2. Deploy backend API separately if needed
+3. Update environment variables to connect to real database
 
-## 📝 Post-Deployment Checklist
-- [ ] All three assessment tools working
-- [ ] PDF generation functional  
-- [ ] Database connections successful
-- [ ] Contact forms saving data
-- [ ] All pages loading correctly
-- [ ] Mobile responsive design working
-- [ ] Analytics tracking setup (optional)
-
-## 🔄 Continuous Deployment
-Vercel automatically redeploys when you push to your main branch. For manual deployments:
-
-```bash
-vercel --prod
-```
-
-## 📞 Support
-If you encounter issues:
-1. Check Vercel deployment logs
-2. Verify environment variables
-3. Test API endpoints using `/api/health`
-4. Check MongoDB Atlas connection
-
-Your Ailutions website will be live at: `https://your-app-name.vercel.app`
+**Try the deployment again with Root Directory set to `frontend` - this should resolve the build error!**
