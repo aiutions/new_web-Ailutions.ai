@@ -97,127 +97,279 @@ export default function DigitalMaturityTracker() {
 
     const pdf = new jsPDF();
     const pageWidth = pdf.internal.pageSize.width;
+    const pageHeight = pdf.internal.pageSize.height;
     const margin = 20;
+    const contentWidth = pageWidth - 2 * margin;
 
-    // Header with branding
-    pdf.setFillColor(59, 130, 246); // Blue background
-    pdf.rect(0, 0, pageWidth, 40, 'F');
+    // Professional header
+    pdf.setFillColor(59, 130, 246); // Blue
+    pdf.rect(0, 0, pageWidth, 50, 'F');
     
     pdf.setFontSize(24);
     pdf.setTextColor(255, 255, 255);
-    pdf.text('Digital Maturity Assessment Report', margin, 25);
+    pdf.text('Ailutions', margin, 25);
     
-    // User info
+    pdf.setFontSize(18);
+    pdf.text('Digital Maturity Assessment Report', margin, 40);
+    
+    // Document info
+    let yPos = 70;
     pdf.setFontSize(12);
-    pdf.setTextColor(0, 0, 0);
-    let yPos = 55;
+    pdf.setTextColor(100, 100, 100);
+    pdf.text(`Generated on: ${new Date(results.timestamp).toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    })}`, margin, yPos);
     
     if (results.userInfo) {
-      pdf.text(`Name: ${results.userInfo.name}`, margin, yPos);
-      pdf.text(`Company: ${results.userInfo.company}`, margin, yPos + 10);
-      pdf.text(`Role: ${results.userInfo.role}`, margin, yPos + 20);
-      yPos += 35;
-    }
-    
-    pdf.text(`Assessment Date: ${new Date(results.timestamp).toLocaleDateString()}`, margin, yPos);
-    yPos += 20;
-
-    // Overall Score
-    pdf.setFontSize(18);
-    pdf.setTextColor(34, 197, 94); // Green
-    pdf.text('Overall Digital Maturity Score', margin, yPos);
-    yPos += 15;
-
-    pdf.setFontSize(32);
-    pdf.setTextColor(59, 130, 246); // Blue
-    pdf.text(`${results.overallScore}%`, margin, yPos);
-    
-    pdf.setFontSize(16);
-    pdf.setTextColor(0, 0, 0);
-    pdf.text(`Level: ${results.level.name}`, margin + 60, yPos - 8);
-    pdf.setFontSize(12);
-    pdf.text(results.level.description, margin + 60, yPos + 5);
-    yPos += 30;
-
-    // Section Breakdown
-    pdf.setFontSize(16);
-    pdf.setTextColor(147, 51, 234); // Purple
-    pdf.text('Category Breakdown:', margin, yPos);
-    yPos += 15;
-
-    pdf.setFontSize(11);
-    pdf.setTextColor(0, 0, 0);
-    
-    results.sectionScores.forEach((section, index) => {
-      pdf.text(`• ${section.name}:`, margin + 5, yPos);
-      pdf.text(`${section.score}%`, margin + 100, yPos);
-      yPos += 12;
-    });
-
-    yPos += 10;
-
-    // Recommendations
-    pdf.setFontSize(16);
-    pdf.setTextColor(249, 115, 22); // Orange
-    pdf.text('Recommended Next Steps:', margin, yPos);
-    yPos += 15;
-
-    pdf.setFontSize(11);
-    pdf.setTextColor(0, 0, 0);
-    
-    results.level.recommendations.forEach((recommendation, index) => {
-      // Wrap long text
-      const lines = pdf.splitTextToSize(`${index + 1}. ${recommendation}`, pageWidth - 2 * margin);
-      lines.forEach(line => {
-        if (yPos > pdf.internal.pageSize.height - 30) {
-          pdf.addPage();
-          yPos = 30;
-        }
-        pdf.text(line, margin + 5, yPos);
+      yPos += 25;
+      pdf.setFontSize(14);
+      pdf.setTextColor(0, 0, 0);
+      pdf.text('Assessment Details:', margin, yPos);
+      
+      yPos += 15;
+      pdf.setFontSize(11);
+      pdf.setTextColor(60, 60, 60);
+      
+      const userDetails = [
+        ['Name:', results.userInfo.name],
+        ['Company:', results.userInfo.company],
+        ['Role:', results.userInfo.role || 'Not specified'],
+        ['Email:', results.userInfo.email]
+      ];
+      
+      userDetails.forEach(([label, value]) => {
+        pdf.text(label, margin, yPos);
+        pdf.text(value, margin + 50, yPos);
         yPos += 12;
       });
-      yPos += 5;
+    }
+
+    // Maturity Score Summary Box
+    yPos += 15;
+    pdf.setFillColor(239, 246, 255); // Light blue background
+    pdf.setDrawColor(59, 130, 246); // Blue border
+    pdf.setLineWidth(2);
+    pdf.rect(margin - 5, yPos - 10, contentWidth + 10, 80, 'FD');
+    
+    pdf.setFontSize(16);
+    pdf.setTextColor(59, 130, 246);
+    pdf.text('Digital Maturity Assessment Summary', margin + 5, yPos + 5);
+    
+    // Score display
+    pdf.setFontSize(48);
+    pdf.setTextColor(34, 197, 94); // Green
+    pdf.text(`${results.overallScore}%`, margin + 5, yPos + 35);
+    
+    pdf.setFontSize(14);
+    pdf.setTextColor(59, 130, 246);
+    pdf.text(`${results.level.name} Level`, margin + 5, yPos + 48);
+    
+    pdf.setFontSize(10);
+    pdf.setTextColor(60, 60, 60);
+    const description = pdf.splitTextToSize(results.level.description, 100);
+    description.forEach((line, index) => {
+      pdf.text(line, margin + 80, yPos + 20 + (index * 10));
+    });
+    
+    yPos += 95;
+
+    // Category Breakdown Section
+    if (yPos > pageHeight - 150) {
+      pdf.addPage();
+      yPos = 30;
+    }
+    
+    pdf.setFontSize(16);
+    pdf.setTextColor(59, 130, 246);
+    pdf.text('Category Performance Analysis', margin, yPos);
+    yPos += 20;
+
+    // Create category performance boxes
+    results.sectionScores.forEach((section, index) => {
+      if (yPos > pageHeight - 40) {
+        pdf.addPage();
+        yPos = 30;
+      }
+
+      // Category header
+      const scoreColor = section.score >= 75 ? [34, 197, 94] : section.score >= 50 ? [249, 115, 22] : [239, 68, 68];
+      pdf.setFillColor(scoreColor[0], scoreColor[1], scoreColor[2]);
+      pdf.rect(margin - 5, yPos - 5, contentWidth + 10, 20, 'F');
+      
+      pdf.setFontSize(12);
+      pdf.setTextColor(255, 255, 255);
+      pdf.text(section.name, margin, yPos + 5);
+      pdf.text(`${section.score}%`, pageWidth - margin - 30, yPos + 5);
+      
+      // Progress bar representation
+      yPos += 25;
+      pdf.setFillColor(229, 231, 235); // Gray background
+      pdf.rect(margin + 5, yPos - 3, contentWidth - 10, 8, 'F');
+      
+      pdf.setFillColor(scoreColor[0], scoreColor[1], scoreColor[2]);
+      pdf.rect(margin + 5, yPos - 3, (contentWidth - 10) * (section.score / 100), 8, 'F');
+      
+      yPos += 20;
     });
 
-    // Action Items
-    yPos += 15;
-    if (yPos > pdf.internal.pageSize.height - 80) {
+    // Recommendations Section
+    pdf.addPage();
+    yPos = 30;
+    
+    pdf.setFillColor(147, 51, 234); // Purple
+    pdf.rect(0, yPos - 10, pageWidth, 30, 'F');
+    
+    pdf.setFontSize(16);
+    pdf.setTextColor(255, 255, 255);
+    pdf.text('Personalized Recommendations', margin, yPos + 10);
+    
+    yPos += 40;
+
+    pdf.setFontSize(12);
+    pdf.setTextColor(0, 0, 0);
+    pdf.text(`Based on your ${results.level.name} maturity level:`, margin, yPos);
+    yPos += 20;
+
+    results.level.recommendations.forEach((recommendation, index) => {
+      if (yPos > pageHeight - 40) {
+        pdf.addPage();
+        yPos = 30;
+      }
+
+      // Recommendation box
+      pdf.setFillColor(249, 250, 251); // Light gray background
+      pdf.setDrawColor(156, 163, 175); // Gray border
+      pdf.rect(margin - 5, yPos - 5, contentWidth + 10, 25, 'FD');
+      
+      pdf.setFontSize(10);
+      pdf.setTextColor(147, 51, 234);
+      pdf.text(`${index + 1}.`, margin, yPos + 5);
+      
+      pdf.setTextColor(60, 60, 60);
+      const recLines = pdf.splitTextToSize(recommendation, contentWidth - 15);
+      recLines.forEach((line, lineIndex) => {
+        pdf.text(line, margin + 10, yPos + 5 + (lineIndex * 10));
+      });
+      
+      yPos += Math.max(25, recLines.length * 10 + 10);
+    });
+
+    // Action Plan Section
+    yPos += 20;
+    if (yPos > pageHeight - 120) {
       pdf.addPage();
       yPos = 30;
     }
 
-    pdf.setFontSize(16);
-    pdf.setTextColor(220, 38, 127); // Pink
-    pdf.text('Immediate Action Items:', margin, yPos);
-    yPos += 15;
-
-    pdf.setFontSize(11);
-    pdf.setTextColor(0, 0, 0);
+    pdf.setFillColor(34, 197, 94); // Green
+    pdf.rect(margin - 5, yPos - 5, contentWidth + 10, 20, 'F');
     
-    const actionItems = [
-      'Schedule a free strategy call to discuss your results',
-      'Identify the top 3 processes that can be automated first',
-      'Assess your current technology stack for AI integration opportunities',
-      'Create a digital transformation roadmap with clear milestones'
+    pdf.setFontSize(14);
+    pdf.setTextColor(255, 255, 255);
+    pdf.text('90-Day Action Plan', margin, yPos + 10);
+    
+    yPos += 30;
+
+    const actionPlan = [
+      {
+        timeframe: 'Days 1-30: Foundation',
+        actions: [
+          'Complete digital strategy documentation',
+          'Audit current technology stack',
+          'Identify quick wins for automation'
+        ]
+      },
+      {
+        timeframe: 'Days 31-60: Implementation',
+        actions: [
+          'Begin process standardization initiatives',
+          'Implement basic automation tools',
+          'Start team digital skills training'
+        ]
+      },
+      {
+        timeframe: 'Days 61-90: Optimization',
+        actions: [
+          'Measure and analyze initial results', 
+          'Scale successful automation projects',
+          'Plan advanced digital transformation phases'
+        ]
+      }
     ];
 
-    actionItems.forEach((item, index) => {
-      const lines = pdf.splitTextToSize(`□ ${item}`, pageWidth - 2 * margin);
-      lines.forEach(line => {
-        pdf.text(line, margin + 5, yPos);
+    actionPlan.forEach((phase, index) => {
+      if (yPos > pageHeight - 80) {
+        pdf.addPage();
+        yPos = 30;
+      }
+
+      // Phase header
+      const phaseColor = index === 0 ? [239, 68, 68] : index === 1 ? [249, 115, 22] : [34, 197, 94];
+      pdf.setFillColor(phaseColor[0], phaseColor[1], phaseColor[2]);
+      pdf.rect(margin - 5, yPos - 5, contentWidth + 10, 15, 'F');
+      
+      pdf.setFontSize(12);
+      pdf.setTextColor(255, 255, 255);
+      pdf.text(phase.timeframe, margin, yPos + 5);
+      
+      yPos += 20;
+      
+      // Actions
+      pdf.setFontSize(10);
+      pdf.setTextColor(60, 60, 60);
+      phase.actions.forEach(action => {
+        pdf.text(`• ${action}`, margin + 5, yPos);
         yPos += 12;
       });
-      yPos += 3;
+      
+      yPos += 10;
+    });
+
+    // Resources Section
+    yPos += 15;
+    if (yPos > pageHeight - 80) {
+      pdf.addPage();
+      yPos = 30;
+    }
+
+    pdf.setFillColor(249, 250, 251); // Light gray
+    pdf.setDrawColor(156, 163, 175); // Gray border
+    pdf.rect(margin - 5, yPos - 5, contentWidth + 10, 60, 'FD');
+    
+    pdf.setFontSize(14);
+    pdf.setTextColor(147, 51, 234);
+    pdf.text('Additional Resources Available', margin, yPos + 10);
+    
+    pdf.setFontSize(10);
+    pdf.setTextColor(60, 60, 60);
+    const resources = [
+      '📊 Take our ROI Calculator to quantify potential savings',
+      '🔧 Use our Automation Readiness Assessment for specific tasks',
+      '📞 Book a free strategy call for personalized guidance',
+      '📧 Join our digital transformation newsletter'
+    ];
+    
+    resources.forEach((resource, index) => {
+      pdf.text(resource, margin + 5, yPos + 25 + (index * 12));
     });
 
     // Footer
+    yPos = pageHeight - 40;
+    pdf.setFillColor(31, 41, 55); // Dark background
+    pdf.rect(0, yPos, pageWidth, 40, 'F');
+    
     pdf.setFontSize(10);
-    pdf.setTextColor(107, 114, 128);
-    const footerY = pdf.internal.pageSize.height - 20;
-    pdf.text('Generated by Ailutions Digital Maturity Tracker', margin, footerY);
-    pdf.text('Contact: hello@ailutions.com | Book your free strategy call at calendly.com/ailutions', margin, footerY + 8);
+    pdf.setTextColor(255, 255, 255);
+    pdf.text('Ready to accelerate your digital transformation?', margin, yPos + 15);
+    pdf.text('📞 Book your free strategy call: calendly.com/ailutions-strategy', margin, yPos + 25);
+    pdf.text('📧 Questions? Contact us: hello@ailutions.com', margin, yPos + 35);
+    
+    pdf.setTextColor(59, 130, 246);
+    pdf.text('Ailutions - AI that powers your business', pageWidth - margin - 80, yPos + 25);
 
-    // Save the PDF
+    // Save with descriptive filename
     const fileName = `Digital-Maturity-Report-${results.userInfo?.company || 'Assessment'}-${new Date().toISOString().split('T')[0]}.pdf`;
     pdf.save(fileName);
   };
