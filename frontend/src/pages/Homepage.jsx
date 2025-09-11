@@ -22,26 +22,47 @@ export default function Homepage() {
     <div className="min-h-screen">
       {/* Header */}
       <header className="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 py-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex items-center justify-between">
-            <div className="text-2xl font-bold">
+            <div className="text-xl sm:text-2xl font-bold">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-black via-blue-600 to-green-600">
                 Ailutions
               </span>
             </div>
-            <nav className="hidden md:flex items-center space-x-8">
-              <a href="#problem" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">Problems We Solve</a>
-              <a href="#services" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">How It Works</a>
-              <a href="#case-studies" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">Results</a>
-              <a href="/digital-maturity-tracker" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">Free Assessment</a>
+            
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+              <a href="#problem" className="text-gray-600 hover:text-blue-600 transition-colors font-medium text-sm xl:text-base">Problems We Solve</a>
+              <a href="#services" className="text-gray-600 hover:text-blue-600 transition-colors font-medium text-sm xl:text-base">How It Works</a>
+              <a href="#case-studies" className="text-gray-600 hover:text-blue-600 transition-colors font-medium text-sm xl:text-base">Results</a>
+              <a href="/digital-maturity-tracker" className="text-gray-600 hover:text-blue-600 transition-colors font-medium text-sm xl:text-base">Free Assessment</a>
               <Button 
                 onClick={scrollToContact}
                 size="sm" 
-                className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white rounded-full px-6 hover:scale-105 transition-all duration-300"
+                className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white rounded-full px-4 xl:px-6 text-sm hover:scale-105 transition-all duration-300"
               >
                 Get Started
               </Button>
             </nav>
+
+            {/* Mobile Navigation Button */}
+            <div className="lg:hidden flex items-center space-x-2">
+              <Button 
+                onClick={() => window.location.href = '/digital-maturity-tracker'}
+                size="sm" 
+                className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white rounded-full px-3 py-1 text-xs font-medium"
+              >
+                Assessment
+              </Button>
+              <Button 
+                onClick={scrollToContact}
+                variant="outline"
+                size="sm" 
+                className="border border-blue-600 text-blue-600 hover:bg-blue-50 rounded-full px-3 py-1 text-xs font-medium"
+              >
+                Contact
+              </Button>
+            </div>
           </div>
         </div>
       </header>
