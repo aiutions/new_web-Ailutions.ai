@@ -186,7 +186,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "ROI Calculator and Automation Assessment routing issues"
+    - "Vercel deployment readiness confirmed"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
