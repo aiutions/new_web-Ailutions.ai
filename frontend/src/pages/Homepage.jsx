@@ -68,17 +68,18 @@ export default function Homepage() {
       </header>
 
       {/* Hormozi-Style Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20">
         <AnimatedHeroBackground />
         
-        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
-          <div className="space-y-8">
-            <div className="inline-flex items-center space-x-2 bg-green-100 text-green-700 rounded-full px-6 py-3 shadow-lg font-semibold">
-              <Target className="w-5 h-5" />
-              <span>Proven Results • No Fluff • Outcome-Driven</span>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
+          <div className="space-y-6 sm:space-y-8">
+            <div className="inline-flex items-center space-x-2 bg-green-100 text-green-700 rounded-full px-4 sm:px-6 py-2 sm:py-3 shadow-lg font-semibold text-sm sm:text-base">
+              <Target className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="hidden sm:inline">Proven Results • No Fluff • Outcome-Driven</span>
+              <span className="sm:hidden">Proven Results • Outcome-Driven</span>
             </div>
             
-            <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold text-gray-900 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-900 leading-tight">
               We help businesses 
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-green-600 block">
                 automate operations
@@ -86,35 +87,37 @@ export default function Homepage() {
               & scale faster with AI
             </h1>
             
-            <p className="text-2xl md:text-3xl text-gray-700 max-w-5xl mx-auto leading-relaxed font-medium">
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-700 max-w-5xl mx-auto leading-relaxed font-medium px-4">
               <strong>Without expensive IT projects or wasted effort.</strong>
             </p>
             
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-4">
               Ailutions builds custom AI tools, integrates AI into your existing systems, automates sales & operations, and implements ERPNext tailored to your business.
             </p>
             
-            <div className="flex flex-col sm:flex-row items-center justify-center space-y-6 sm:space-y-0 sm:space-x-8">
+            <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 lg:space-x-8 px-4">
               <Button 
                 onClick={() => window.location.href = '/digital-maturity-tracker'}
                 size="lg" 
-                className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white font-bold px-12 py-6 rounded-2xl text-xl hover:scale-110 transition-all duration-300 hover:shadow-2xl btn-pulse"
+                className="w-full sm:w-auto bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white font-bold px-6 sm:px-8 lg:px-12 py-4 sm:py-5 lg:py-6 rounded-xl sm:rounded-2xl text-base sm:text-lg lg:text-xl hover:scale-105 transition-all duration-300 hover:shadow-2xl btn-pulse"
               >
-                Start Free Digital Maturity Assessment
-                <ArrowRight className="w-6 h-6 ml-3" />
+                <span className="hidden sm:inline">Start Free Digital Maturity Assessment</span>
+                <span className="sm:hidden">Free Assessment</span>
+                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 ml-2 sm:ml-3" />
               </Button>
               
               <Button 
                 onClick={scrollToContact}
                 variant="outline" 
                 size="lg"
-                className="border-2 border-gray-300 hover:border-blue-500 text-gray-700 hover:text-blue-600 font-bold px-12 py-6 rounded-2xl text-xl hover:scale-110 transition-all duration-300 bg-white/80 backdrop-blur-sm hover:shadow-xl"
+                className="w-full sm:w-auto border-2 border-gray-300 hover:border-blue-500 text-gray-700 hover:text-blue-600 font-bold px-6 sm:px-8 lg:px-12 py-4 sm:py-5 lg:py-6 rounded-xl sm:rounded-2xl text-base sm:text-lg lg:text-xl hover:scale-105 transition-all duration-300 bg-white/80 backdrop-blur-sm hover:shadow-xl"
               >
-                Book a Free Strategy Call
+                <span className="hidden sm:inline">Book a Free Strategy Call</span>
+                <span className="sm:hidden">Book Call</span>
               </Button>
             </div>
             
-            <p className="text-lg text-gray-600 font-medium">
+            <p className="text-sm sm:text-base lg:text-lg text-gray-600 font-medium px-4">
               ⚡ <strong>FREE assessment</strong> • 3 minutes • Instant results • No strings attached
             </p>
           </div>
