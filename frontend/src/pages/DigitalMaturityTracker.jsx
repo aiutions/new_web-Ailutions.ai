@@ -750,17 +750,18 @@ export default function DigitalMaturityTracker() {
             onClick={goBack}
             variant="outline"
             disabled={currentSection === 0 && currentQuestion === 0}
-            className="border-2 border-gray-200 hover:border-gray-400 text-gray-600 hover:text-gray-800 font-semibold px-6 py-3 rounded-xl transition-all duration-300"
+            className="border-2 border-gray-200 hover:border-gray-400 text-gray-600 hover:text-gray-800 font-semibold px-3 sm:px-6 py-2 sm:py-3 rounded-xl transition-all duration-300 text-sm sm:text-base"
           >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Previous
+            <ArrowLeft className="w-4 h-4 mr-1 sm:mr-2" />
+            <span className="hidden sm:inline">Previous</span>
+            <span className="sm:hidden">Back</span>
           </Button>
           
-          <div className="text-sm text-gray-500">
+          <div className="text-xs sm:text-sm text-gray-500 text-center">
             Section {currentSection + 1} of {digitalMaturitySections.length}
           </div>
           
-          <div className="w-24"></div> {/* Spacer for layout balance */}
+          <div className="w-16 sm:w-24"></div> {/* Spacer for layout balance */}
         </div>
       </div>
     </div>
