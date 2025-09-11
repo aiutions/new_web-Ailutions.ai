@@ -546,32 +546,33 @@ export default function ROICalculator() {
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-red-50/30">
       {/* Header */}
       <header className="bg-white/80 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
-        <div className="max-w-4xl mx-auto px-6 py-4">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex items-center justify-between">
             <Button 
               variant="ghost" 
               onClick={() => window.location.href = '/'}
-              className="text-gray-600 hover:text-gray-900"
+              className="text-gray-600 hover:text-gray-900 text-sm sm:text-base"
             >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Home
+              <ArrowLeft className="w-4 h-4 mr-1 sm:mr-2" />
+              <span className="hidden sm:inline">Back to Home</span>
+              <span className="sm:hidden">Back</span>
             </Button>
-            <h1 className="text-xl font-semibold text-gray-900">AI ROI Calculator</h1>
-            <div></div>
+            <h1 className="text-lg sm:text-xl font-semibold text-gray-900">AI ROI Calculator</h1>
+            <div className="w-16 sm:w-20"></div>
           </div>
         </div>
       </header>
 
-      <div className="max-w-4xl mx-auto px-6 py-12">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center space-x-2 bg-orange-100 text-orange-700 rounded-full px-6 py-3 mb-6">
-            <Calculator className="w-5 h-5" />
-            <span className="font-semibold">ROI Calculator</span>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-12">
+        <div className="text-center mb-8 sm:mb-12">
+          <div className="inline-flex items-center space-x-2 bg-orange-100 text-orange-700 rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-4 sm:mb-6">
+            <Calculator className="w-4 h-4 sm:w-5 sm:h-5" />
+            <span className="font-semibold text-sm sm:text-base">ROI Calculator</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
             Calculate Your AI Automation ROI
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-4">
             Discover how much time and money you could save with AI automation. Get your personalized ROI report in minutes.
           </p>
         </div>
