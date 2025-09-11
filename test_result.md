@@ -183,8 +183,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Fix date-fns dependency conflict"
-    - "PDF generation functionality"
+    - "ROI Calculator and Automation Assessment routing issues"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
