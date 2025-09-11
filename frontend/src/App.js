@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import DigitalMaturityTracker from "./pages/DigitalMaturityTracker";
 import ROICalculator from "./pages/ROICalculator";
+import AutomationReadinessAssessment from "./pages/AutomationReadinessAssessment";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/digital-maturity-tracker" element={<DigitalMaturityTracker />} />
           <Route path="/roi-calculator" element={<ROICalculator />} />
+          <Route path="/automation-assessment" element={<AutomationReadinessAssessment />} />
         </Routes>
       </BrowserRouter>
     </div>
