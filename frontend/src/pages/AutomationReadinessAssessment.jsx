@@ -284,17 +284,18 @@ export default function AutomationReadinessAssessment() {
     if (!results) return;
 
     const pdf = new jsPDF();
+    const pageWidth = pdf.internal.pageSize.width;
     const margin = 20;
 
-    // Header
-    pdf.setFillColor(147, 51, 234);
-    pdf.rect(0, 0, pdf.internal.pageSize.width, 40, 'F');
+    // Header with gradient-style background
+    pdf.setFillColor(147, 51, 234); // Purple gradient start
+    pdf.rect(0, 0, pageWidth, 40, 'F');
     
     pdf.setFontSize(22);
     pdf.setTextColor(255, 255, 255);
-    pdf.text('Automation Readiness Assessment', margin, 25);
+    pdf.text('Automation Readiness Assessment Report', margin, 25);
     
-    // User info and score
+    // User info
     let yPos = 55;
     pdf.setFontSize(12);
     pdf.setTextColor(0, 0, 0);
@@ -302,36 +303,179 @@ export default function AutomationReadinessAssessment() {
     if (userInfo.name) {
       pdf.text(`Name: ${userInfo.name}`, margin, yPos);
       pdf.text(`Company: ${userInfo.company}`, margin, yPos + 10);
-      yPos += 25;
+      pdf.text(`Role: ${userInfo.role}`, margin, yPos + 20);
+      yPos += 35;
     }
+    
+    pdf.text(`Assessment Date: ${new Date().toLocaleDateString()}`, margin, yPos);
+    yPos += 25;
+
+    // Overall Score Section (matching UI design)
+    pdf.setFillColor(248, 250, 252); // Light background
+    pdf.rect(margin - 10, yPos - 10, pageWidth - 2 * margin + 20, 50, 'F');
     
     pdf.setFontSize(18);
     pdf.setTextColor(147, 51, 234);
-    pdf.text(`Readiness Score: ${results.readinessScore}% (${results.readinessLevel})`, margin, yPos);
-    yPos += 20;
-
-    // Key metrics
+    pdf.text('Automation Readiness Score', margin, yPos + 5);
+    
+    pdf.setFontSize(36);
+    pdf.setTextColor(219, 39, 119); // Pink color from gradient
+    pdf.text(`${results.readinessScore}%`, margin, yPos + 25);
+    
     pdf.setFontSize(14);
-    pdf.text(`• Total Tasks: ${results.totalTasks}`, margin, yPos);
-    pdf.text(`• Annual Hours: ${results.totalAnnualHours}`, margin, yPos + 12);
-    pdf.text(`• Estimated Cost: $${results.estimatedSavings.toLocaleString()}`, margin, yPos + 24);
-    yPos += 45;
+    pdf.setTextColor(34, 197, 94); // Green for level
+    pdf.text(`${results.readinessLevel} Readiness`, margin + 80, yPos + 25);
+    yPos += 60;
 
-    // Top tasks
+    // Key Metrics Section (4 boxes like in UI)
     pdf.setFontSize(16);
     pdf.setTextColor(0, 0, 0);
+    pdf.text('Key Insights:', margin, yPos);
+    yPos += 15;
+
+    // Create 4 metric boxes
+    const boxWidth = (pageWidth - 2 * margin - 30) / 4;
+    const metrics = [
+      { label: 'Tasks Analyzed', value: results.totalTasks, color: [147, 51, 234] },
+      { label: 'Hours/Year', value: results.totalAnnualHours, color: [59, 130, 246] },
+      { label: 'Annual Cost', value: `$${results.estimatedSavings.toLocaleString()}`, color: [34, 197, 94] },
+      { label: 'High-Priority', value: results.highPriorityTasks, color: [249, 115, 22] }
+    ];
+
+    metrics.forEach((metric, index) => {
+      const xPos = margin + (boxWidth + 10) * index;
+      
+      // Box background
+      pdf.setFillColor(metric.color[0], metric.color[1], metric.color[2]);
+      pdf.rect(xPos, yPos, boxWidth, 35, 'F');
+      
+      // Value
+      pdf.setFontSize(16);
+      pdf.setTextColor(255, 255, 255);
+      pdf.text(String(metric.value), xPos + 5, yPos + 15);
+      
+      // Label
+      pdf.setFontSize(8);
+      pdf.text(metric.label, xPos + 5, yPos + 28);
+    });
+    yPos += 50;
+
+    // Top Automation Candidates
+    pdf.setFontSize(16);
+    pdf.setTextColor(147, 51, 234);
     pdf.text('Top Automation Candidates:', margin, yPos);
     yPos += 15;
 
     results.topAutomationCandidates.forEach((task, index) => {
+      if (yPos > pdf.internal.pageSize.height - 100) {
+        pdf.addPage();
+        yPos = 30;
+      }
+
+      // Task header with gradient background
+      pdf.setFillColor(250, 245, 255); // Very light purple
+      pdf.rect(margin - 5, yPos - 5, pageWidth - 2 * margin + 10, 25, 'F');
+      
       pdf.setFontSize(12);
-      pdf.text(`${index + 1}. ${task.taskName}`, margin, yPos);
+      pdf.setTextColor(147, 51, 234);
+      pdf.text(`#${index + 1} ${task.taskName}`, margin, yPos + 5);
+      
       pdf.setFontSize(10);
-      pdf.text(`   Score: ${task.score} | ${frequencyValues[task.frequency]?.label} | ${task.timeSpent}min`, margin, yPos + 10);
-      yPos += 25;
+      pdf.setTextColor(219, 39, 119);
+      pdf.text(`Score: ${task.score}`, pageWidth - margin - 40, yPos + 5);
+      yPos += 30;
+      
+      // Task details
+      pdf.setFontSize(9);
+      pdf.setTextColor(0, 0, 0);
+      pdf.text(`Handled by: ${task.whoHandles}`, margin + 5, yPos);
+      pdf.text(`Frequency: ${frequencyValues[task.frequency]?.label}`, margin + 5, yPos + 8);
+      pdf.text(`Time per instance: ${task.timeSpent} minutes`, margin + 5, yPos + 16);
+      pdf.text(`Annual impact: ${Math.round(task.annualHours)} hours`, margin + 5, yPos + 24);
+      if (task.toolsUsed) {
+        pdf.text(`Current tools: ${task.toolsUsed}`, margin + 5, yPos + 32);
+        yPos += 40;
+      } else {
+        yPos += 32;
+      }
+
+      // Automation Guide Section
+      const automationGuide = getAutomationSuggestions(task);
+      
+      // Guide header
+      pdf.setFillColor(34, 197, 94); // Green background
+      pdf.rect(margin - 5, yPos, pageWidth - 2 * margin + 10, 15, 'F');
+      
+      pdf.setFontSize(10);
+      pdf.setTextColor(255, 255, 255);
+      pdf.text(`🛠️ How to Automate: ${automationGuide.title}`, margin, yPos + 10);
+      yPos += 20;
+
+      // Implementation steps
+      pdf.setFontSize(9);
+      pdf.setTextColor(0, 0, 0);
+      pdf.text('Implementation Steps:', margin + 5, yPos);
+      yPos += 8;
+
+      automationGuide.steps.forEach((step, stepIndex) => {
+        const stepText = `${stepIndex + 1}. ${step}`;
+        const lines = pdf.splitTextToSize(stepText, pageWidth - 2 * margin - 20);
+        lines.forEach(line => {
+          pdf.text(line, margin + 10, yPos);
+          yPos += 7;
+        });
+      });
+
+      // Tools and timeline
+      pdf.setFontSize(8);
+      pdf.setTextColor(59, 130, 246); // Blue
+      pdf.text(`Recommended Tools: ${automationGuide.tools.join(', ')}`, margin + 5, yPos + 5);
+      pdf.text(`Time to Implement: ${automationGuide.timeToImplement}`, margin + 5, yPos + 12);
+      pdf.text(`Difficulty: ${automationGuide.difficulty}`, margin + 5, yPos + 19);
+      yPos += 35;
     });
 
-    const fileName = `Automation-Assessment-${userInfo.company || 'Report'}-${new Date().toISOString().split('T')[0]}.pdf`;
+    // Next Steps Section
+    if (yPos > pdf.internal.pageSize.height - 80) {
+      pdf.addPage();
+      yPos = 30;
+    }
+
+    pdf.setFontSize(16);
+    pdf.setTextColor(220, 38, 127);
+    pdf.text('Immediate Action Plan:', margin, yPos);
+    yPos += 15;
+
+    const actionPlan = [
+      `Start with "${results.topAutomationCandidates[0]?.taskName}" - your highest impact task`,
+      'Schedule a free strategy call to discuss implementation roadmap',
+      'Identify integration opportunities between your current tools',
+      'Calculate specific ROI for each automation project',
+      'Create a 90-day automation implementation timeline'
+    ];
+
+    pdf.setFontSize(10);
+    pdf.setTextColor(0, 0, 0);
+    
+    actionPlan.forEach((action, index) => {
+      const actionText = `□ ${action}`;
+      const lines = pdf.splitTextToSize(actionText, pageWidth - 2 * margin - 10);
+      lines.forEach(line => {
+        pdf.text(line, margin + 5, yPos);
+        yPos += 10;
+      });
+      yPos += 3;
+    });
+
+    // Footer matching brand
+    pdf.setFontSize(10);
+    pdf.setTextColor(107, 114, 128);
+    const footerY = pdf.internal.pageSize.height - 20;
+    pdf.text('Generated by Ailutions Automation Readiness Assessment', margin, footerY);
+    pdf.text('📞 Book your free strategy call: calendly.com/ailutions | 📧 hello@ailutions.com', margin, footerY + 8);
+
+    // Save with descriptive filename
+    const fileName = `Automation-Roadmap-${userInfo.company || 'Assessment'}-${new Date().toISOString().split('T')[0]}.pdf`;
     pdf.save(fileName);
   };
 
