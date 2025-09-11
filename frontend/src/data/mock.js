@@ -12,22 +12,26 @@ export const servicesData = {
     { 
       title: "Custom AI Tools & Systems", 
       icon: "Cpu", 
-      desc: "ERP, dashboards & workflows built from scratch." 
+      desc: "ERP, dashboards & workflows built from scratch.",
+      slug: "custom-ai-tools"
     },
     { 
       title: "AI Integration", 
       icon: "Bot", 
-      desc: "Add AI to your ERP, CRM, or HR without rebuilding." 
+      desc: "Add AI to your ERP, CRM, or HR without rebuilding.",
+      slug: "ai-integration"
     },
     { 
       title: "Automations", 
       icon: "Workflow", 
-      desc: "Sales, operations, and support on autopilot." 
+      desc: "Sales, operations, and support on autopilot.",
+      slug: "automations"
     },
     { 
       title: "ERPNext Implementation", 
       icon: "Settings2", 
-      desc: "Tailored ERPNext setup with training and support." 
+      desc: "Tailored ERPNext setup with training and support.",
+      slug: "erpnext-implementation"
     }
   ]
 };
@@ -35,9 +39,30 @@ export const servicesData = {
 export const caseStudiesData = {
   headline: "Proven Outcomes",
   cards: [
-    { title: "AI Finance OS", metric: "−28% invoice time" },
-    { title: "WhatsApp Agent", metric: "60% fewer no-shows" },
-    { title: "ERP HR & Payroll", metric: "90% automated payroll" }
+    { 
+      title: "AI Finance OS", 
+      metric: "−28% invoice time",
+      problem: "Manual invoice processing taking 4+ hours daily",
+      solution: "AI-powered document extraction and automated approval workflows",
+      outcome: "Reduced invoice processing from 4 hours to 45 minutes per day",
+      details: "Complete case study with technical implementation details"
+    },
+    { 
+      title: "WhatsApp Agent", 
+      metric: "60% fewer no-shows",
+      problem: "High appointment no-show rates affecting revenue",
+      solution: "AI WhatsApp agent for automated reminders and rescheduling",
+      outcome: "Appointment attendance improved from 40% to 85%",
+      details: "Implementation guide and ROI breakdown"
+    },
+    { 
+      title: "ERP HR & Payroll", 
+      metric: "90% automated payroll",
+      problem: "Manual payroll processing prone to errors and delays",
+      solution: "Integrated ERPNext with automated payroll calculations",
+      outcome: "99.5% accuracy with same-day payroll processing",
+      details: "Technical architecture and compliance details"
+    }
   ]
 };
 
@@ -51,6 +76,63 @@ export const contactData = {
   headline: "Let's Talk",
   form: ["Name", "Email", "Company", "Message"]
 };
+
+export const processSteps = [
+  {
+    step: "01",
+    title: "Assess & Strategize",
+    description: "We analyze your current systems and identify automation opportunities",
+    icon: "Search"
+  },
+  {
+    step: "02", 
+    title: "Design & Plan",
+    description: "Create detailed implementation roadmap with clear milestones",
+    icon: "PenTool"
+  },
+  {
+    step: "03",
+    title: "Build & Integrate", 
+    description: "Develop custom AI tools and seamlessly integrate with existing systems",
+    icon: "Code"
+  },
+  {
+    step: "04",
+    title: "Test & Optimize",
+    description: "Rigorous testing and performance optimization for maximum efficiency",
+    icon: "TestTube"
+  },
+  {
+    step: "05",
+    title: "Deploy & Support",
+    description: "Go live with ongoing support and continuous improvement",
+    icon: "Rocket"
+  }
+];
+
+export const blogPreviews = [
+  {
+    title: "5 Signs Your Business Needs AI Automation",
+    excerpt: "Discover the key indicators that show your company is ready for AI-powered automation.",
+    readTime: "4 min read",
+    category: "Strategy",
+    slug: "signs-business-needs-ai-automation"
+  },
+  {
+    title: "ERPNext vs Custom ERP: Making the Right Choice",
+    excerpt: "Compare the benefits of ERPNext implementation versus building a custom ERP system.",
+    readTime: "6 min read", 
+    category: "Technology",
+    slug: "erpnext-vs-custom-erp"
+  },
+  {
+    title: "ROI Calculator: Measuring AI Automation Success",
+    excerpt: "Learn how to calculate and track the return on investment for your AI initiatives.",
+    readTime: "5 min read",
+    category: "Business",
+    slug: "roi-calculator-ai-automation"
+  }
+];
 
 export const digitalMaturitySections = [
   {
