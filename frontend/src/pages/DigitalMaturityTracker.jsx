@@ -410,9 +410,25 @@ export default function DigitalMaturityTracker() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50/30">
         <header className="bg-white/80 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
-          <div className="max-w-4xl mx-auto px-6 py-4">
-            <div className="text-center">
-              <h1 className="text-xl font-semibold text-gray-900">Almost Done! 🎉</h1>
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
+            <div className="flex items-center justify-between">
+              <Button 
+                variant="ghost" 
+                onClick={() => window.location.href = '/'}
+                className="text-gray-600 hover:text-gray-900 text-sm sm:text-base"
+              >
+                <ArrowLeft className="w-4 h-4 mr-1 sm:mr-2" />
+                <span className="hidden sm:inline">Back to Home</span>
+                <span className="sm:hidden">Back</span>
+              </Button>
+              <a href="/" className="flex items-center">
+                <img 
+                  src="https://i.postimg.cc/VvHqqQpF/ailutions-logo.png" 
+                  alt="Ailutions Logo" 
+                  className="h-6 sm:h-8 w-auto hover:scale-105 transition-transform duration-200"
+                />
+              </a>
+              <div className="text-center text-sm sm:text-base font-semibold text-gray-900">Almost Done! 🎉</div>
             </div>
           </div>
         </header>
