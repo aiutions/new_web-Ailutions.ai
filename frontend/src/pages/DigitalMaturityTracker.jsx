@@ -676,25 +676,26 @@ export default function DigitalMaturityTracker() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30">
       {/* Header */}
       <header className="bg-white/80 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
-        <div className="max-w-4xl mx-auto px-6 py-4">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex items-center justify-between">
             <Button 
               variant="ghost" 
               onClick={() => window.location.href = '/'}
-              className="text-gray-600 hover:text-gray-900"
+              className="text-gray-600 hover:text-gray-900 text-sm sm:text-base"
             >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Home
+              <ArrowLeft className="w-4 h-4 mr-1 sm:mr-2" />
+              <span className="hidden sm:inline">Back to Home</span>
+              <span className="sm:hidden">Back</span>
             </Button>
-            <h1 className="text-xl font-semibold text-gray-900">Digital Maturity Tracker</h1>
-            <div className="text-sm text-gray-500">
+            <h1 className="text-base sm:text-lg lg:text-xl font-semibold text-gray-900 text-center">Digital Maturity Tracker</h1>
+            <div className="text-xs sm:text-sm text-gray-500 text-right">
               {currentQuestionNumber} of {totalQuestions}
             </div>
           </div>
         </div>
       </header>
 
-      <div className="max-w-4xl mx-auto px-6 py-12">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-12">
         {/* Progress */}
         <div className="mb-12">
           <div className="flex items-center justify-between mb-2">
