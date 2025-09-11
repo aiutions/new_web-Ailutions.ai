@@ -665,47 +665,121 @@ export default function AutomationReadinessAssessment() {
             </Card>
           </div>
 
-          {/* Top Automation Candidates */}
+          {/* Top Automation Candidates with Guides */}
           <Card className="mb-8 border-0 shadow-xl bg-white/90 backdrop-blur-sm">
             <CardContent className="p-8">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-6">Top Automation Candidates</h2>
-              <div className="space-y-6">
-                {results.topAutomationCandidates.map((task, index) => (
-                  <div key={task.id} className="p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl">
-                    <div className="flex items-start justify-between mb-4">
-                      <h3 className="text-xl font-bold text-gray-900">
-                        #{index + 1} {task.taskName}
-                      </h3>
-                      <Badge className="bg-gradient-to-r from-purple-600 to-pink-600 text-white">
-                        Score: {task.score}
-                      </Badge>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-6">Top Automation Candidates & Implementation Guides</h2>
+              <div className="space-y-8">
+                {results.topAutomationCandidates.map((task, index) => {
+                  const automationGuide = getAutomationSuggestions(task);
+                  return (
+                    <div key={task.id} className="border border-gray-100 rounded-xl overflow-hidden">
+                      {/* Task Header */}
+                      <div className="p-6 bg-gradient-to-r from-purple-50 to-pink-50">
+                        <div className="flex items-start justify-between mb-4">
+                          <h3 className="text-xl font-bold text-gray-900">
+                            #{index + 1} {task.taskName}
+                          </h3>
+                          <Badge className="bg-gradient-to-r from-purple-600 to-pink-600 text-white">
+                            Score: {task.score}
+                          </Badge>
+                        </div>
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                          <div>
+                            <span className="font-semibold text-gray-700">Handled by:</span>
+                            <p className="text-gray-600">{task.whoHandles}</p>
+                          </div>
+                          <div>
+                            <span className="font-semibold text-gray-700">Frequency:</span>
+                            <p className="text-gray-600">{frequencyValues[task.frequency]?.label}</p>
+                          </div>
+                          <div>
+                            <span className="font-semibold text-gray-700">Time per instance:</span>
+                            <p className="text-gray-600">{task.timeSpent} minutes</p>
+                          </div>
+                          <div>
+                            <span className="font-semibold text-gray-700">Annual impact:</span>
+                            <p className="text-gray-600">{Math.round(task.annualHours)} hours</p>
+                          </div>
+                        </div>
+                        {task.toolsUsed && (
+                          <div className="mt-3">
+                            <span className="font-semibold text-gray-700">Current tools:</span>
+                            <p className="text-gray-600">{task.toolsUsed}</p>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Automation Guide */}
+                      <div className="p-6 bg-gradient-to-r from-green-50 to-blue-50">
+                        <div className="flex items-center space-x-2 mb-4">
+                          <div className="w-8 h-8 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center">
+                            <span className="text-white text-sm font-bold">🛠️</span>
+                          </div>
+                          <h4 className="text-lg font-bold text-gray-900">
+                            How to Automate: {automationGuide.title}
+                          </h4>
+                        </div>
+
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                          {/* Implementation Steps */}
+                          <div className="lg:col-span-2">
+                            <h5 className="font-semibold text-gray-800 mb-3">Implementation Steps:</h5>
+                            <div className="space-y-2">
+                              {automationGuide.steps.map((step, stepIndex) => (
+                                <div key={stepIndex} className="flex items-start space-x-3">
+                                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-r from-green-500 to-blue-500 text-white flex items-center justify-center text-xs font-bold">
+                                    {stepIndex + 1}
+                                  </div>
+                                  <p className="text-gray-700 text-sm">{step}</p>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Implementation Details */}
+                          <div className="space-y-4">
+                            <div>
+                              <h5 className="font-semibold text-gray-800 mb-2">Recommended Tools:</h5>
+                              <div className="flex flex-wrap gap-2">
+                                {automationGuide.tools.map((tool, toolIndex) => (
+                                  <Badge key={toolIndex} className="bg-blue-100 text-blue-700 text-xs">
+                                    {tool}
+                                  </Badge>
+                                ))}
+                              </div>
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-4 text-sm">
+                              <div>
+                                <span className="font-semibold text-gray-700 block">Timeline:</span>
+                                <span className="text-green-600 font-medium">{automationGuide.timeToImplement}</span>
+                              </div>
+                              <div>
+                                <span className="font-semibold text-gray-700 block">Difficulty:</span>
+                                <span className={`font-medium ${
+                                  automationGuide.difficulty === 'Easy' ? 'text-green-600' :
+                                  automationGuide.difficulty === 'Medium' ? 'text-yellow-600' :
+                                  'text-red-600'
+                                }`}>
+                                  {automationGuide.difficulty}
+                                </span>
+                              </div>
+                            </div>
+
+                            <Button
+                              onClick={() => window.open('https://calendly.com/ailutions-automation-strategy', '_blank')}
+                              size="sm"
+                              className="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white text-sm"
+                            >
+                              Get Implementation Help
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-                      <div>
-                        <span className="font-semibold text-gray-700">Handled by:</span>
-                        <p className="text-gray-600">{task.whoHandles}</p>
-                      </div>
-                      <div>
-                        <span className="font-semibold text-gray-700">Frequency:</span>
-                        <p className="text-gray-600">{frequencyValues[task.frequency]?.label}</p>
-                      </div>
-                      <div>
-                        <span className="font-semibold text-gray-700">Time per instance:</span>
-                        <p className="text-gray-600">{task.timeSpent} minutes</p>
-                      </div>
-                      <div>
-                        <span className="font-semibold text-gray-700">Annual impact:</span>
-                        <p className="text-gray-600">{Math.round(task.annualHours)} hours</p>
-                      </div>
-                    </div>
-                    {task.toolsUsed && (
-                      <div className="mt-3">
-                        <span className="font-semibold text-gray-700">Current tools:</span>
-                        <p className="text-gray-600">{task.toolsUsed}</p>
-                      </div>
-                    )}
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </CardContent>
           </Card>
