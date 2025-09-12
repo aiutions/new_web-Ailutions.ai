@@ -5,7 +5,7 @@ import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
 import { Progress } from '../components/ui/progress';
-import { ArrowLeft, Calculator, Download, Calendar, TrendingUp, DollarSign, Clock, Users } from 'lucide-react';
+import { ArrowLeft, Calculator, Download, Calendar, TrendingUp, DollarSign, Clock, Users, BarChart3 } from 'lucide-react';
 import jsPDF from 'jspdf';
 
 export default function ROICalculator() {
