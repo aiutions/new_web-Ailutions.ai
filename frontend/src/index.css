@@ -170,6 +170,14 @@ body {
     background: linear-gradient(135deg, var(--gradient-ai-start) 0%, var(--gradient-ai-end) 100%);
 }
 
+/* AI Gradient Text */
+.gradient-ai-text {
+    background: linear-gradient(135deg, var(--gradient-ai-start) 0%, var(--gradient-ai-end) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 /* CTA Gradient Elements */
 .gradient-cta {
     background: linear-gradient(135deg, var(--gradient-cta-start) 0%, var(--gradient-cta-end) 100%);
