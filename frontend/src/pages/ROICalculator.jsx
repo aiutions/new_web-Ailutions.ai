@@ -490,29 +490,32 @@ export default function ROICalculator() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <button
               onClick={downloadPDF}
-              className="btn-primary btn-large text-lg px-8 py-6"
-              style={{borderRadius: '20px'}}
+              className="btn-primary btn-large w-full sm:w-auto btn-wrap"
+              style={{borderRadius: '16px'}}
             >
-              <Download className="w-5 h-5 mr-2" />
-              Download PDF Report
+              <Download className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+              <span className="hidden sm:inline">Download PDF Report</span>
+              <span className="sm:hidden">Download PDF</span>
             </button>
             
             <button
               onClick={() => window.open('https://calendly.com/ailutions-strategy-call', '_blank')}
-              className="btn-accent btn-large text-lg px-8 py-6"
-              style={{borderRadius: '20px'}}
+              className="btn-accent btn-large w-full sm:w-auto btn-wrap"
+              style={{borderRadius: '16px'}}
             >
-              <Calendar className="w-5 h-5 mr-2" />
-              Book Strategy Call
+              <Calendar className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+              <span className="hidden sm:inline">Book Strategy Call</span>
+              <span className="sm:hidden">Book Call</span>
             </button>
 
             <button
               onClick={() => window.location.href = '/digital-maturity-tracker'}
-              className="btn-secondary btn-large text-lg px-8 py-6"
-              style={{borderRadius: '20px'}}
+              className="btn-secondary btn-large w-full sm:w-auto btn-wrap"
+              style={{borderRadius: '16px'}}
             >
-              <BarChart3 className="w-5 h-5 mr-2" />
-              Take Assessment
+              <BarChart3 className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+              <span className="hidden sm:inline">Take Assessment</span>
+              <span className="sm:hidden">Assessment</span>
             </button>
           </div>
 
