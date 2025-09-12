@@ -71,22 +71,24 @@ export const CTABanner = () => {
           </div>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center space-y-6 sm:space-y-0 sm:space-x-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 px-4 max-w-3xl mx-auto flex-mobile-stack">
             <button
               onClick={() => window.location.href = '/digital-maturity-tracker'}
-              className="btn-primary btn-large text-xl px-12 py-6"
-              style={{borderRadius: '20px', fontSize: '20px'}}
+              className="btn-primary btn-large w-full sm:w-auto btn-wrap"
+              style={{borderRadius: '16px'}}
             >
-              Launch Free Assessment
-              <ArrowRight className="w-6 h-6 ml-3" />
+              <span className="hidden sm:inline">Launch Free Assessment</span>
+              <span className="sm:hidden">Free Assessment</span>
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
             </button>
             
             <button
               onClick={scrollToContact}
-              className="btn-accent btn-large text-xl px-12 py-6"
-              style={{borderRadius: '20px', fontSize: '20px'}}
+              className="btn-accent btn-large w-full sm:w-auto btn-wrap"
+              style={{borderRadius: '16px'}}
             >
-              Talk to an Expert
+              <span className="hidden sm:inline">Talk to an Expert</span>
+              <span className="sm:hidden">Talk to Expert</span>
             </button>
           </div>
 
