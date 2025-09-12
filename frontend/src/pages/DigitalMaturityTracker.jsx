@@ -409,7 +409,7 @@ export default function DigitalMaturityTracker() {
   if (showUserForm && !isComplete) {
     return (
       <div className="min-h-screen bg-luxury-bg-primary">
-        <header className="bg-white/80 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
+        <header className="bg-luxury-bg-primary/95 backdrop-blur-sm border-b border-luxury-grid-divider sticky top-0 z-50">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
             <div className="flex items-center justify-between">
               <Button 
