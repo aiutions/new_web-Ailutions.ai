@@ -101,7 +101,7 @@ export default function Homepage() {
               <Button 
                 onClick={() => window.location.href = '/digital-maturity-tracker'}
                 size="lg" 
-                className="w-full sm:w-auto bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white font-bold px-6 sm:px-8 lg:px-12 py-4 sm:py-5 lg:py-6 rounded-xl sm:rounded-2xl text-base sm:text-lg lg:text-xl hover:scale-105 transition-all duration-300 hover:shadow-2xl btn-pulse"
+                className="w-full sm:w-auto gradient-cta text-white font-bold px-6 sm:px-8 lg:px-12 py-4 sm:py-5 lg:py-6 rounded-xl sm:rounded-2xl text-base sm:text-lg lg:text-xl hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
                 <span className="hidden sm:inline">Start Free Digital Maturity Assessment</span>
                 <span className="sm:hidden">Free Assessment</span>
@@ -112,7 +112,7 @@ export default function Homepage() {
                 onClick={scrollToContact}
                 variant="outline" 
                 size="lg"
-                className="w-full sm:w-auto border-2 border-gray-300 hover:border-blue-500 text-gray-700 hover:text-blue-600 font-bold px-6 sm:px-8 lg:px-12 py-4 sm:py-5 lg:py-6 rounded-xl sm:rounded-2xl text-base sm:text-lg lg:text-xl hover:scale-105 transition-all duration-300 bg-white/80 backdrop-blur-sm hover:shadow-xl"
+                className="w-full sm:w-auto border-2 border-luxury-grid-divider hover:border-luxury-ai-start text-luxury-text-heading hover:text-luxury-ai-start font-bold px-6 sm:px-8 lg:px-12 py-4 sm:py-5 lg:py-6 rounded-xl sm:rounded-2xl text-base sm:text-lg lg:text-xl hover:scale-105 transition-all duration-300 bg-luxury-bg-primary luxury-card"
               >
                 <span className="hidden sm:inline">Book a Free Strategy Call</span>
                 <span className="sm:hidden">Book Call</span>
