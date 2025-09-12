@@ -28,19 +28,19 @@ export const AboutSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50/30">
+    <section className="py-20 bg-luxury-bg-primary grid-section border-t border-luxury-grid-divider">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-8 leading-tight">
+          <h2 className="text-4xl md:text-6xl font-bold text-luxury-text-heading mb-8 leading-tight">
             Why Businesses Choose 
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-green-600 block">
+            <span className="gradient-ai-text block">
               Ailutions
             </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-luxury-text-body max-w-3xl mx-auto">
             We're not just another AI consultancy. Here's what makes us different:
           </p>
-          <div className="w-32 h-2 bg-gradient-to-r from-blue-600 to-green-600 mx-auto rounded-full mt-6"></div>
+          <div className="w-32 h-2 gradient-ai mx-auto rounded-full mt-6"></div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
