@@ -162,14 +162,13 @@ export default function Homepage() {
           </div>
           
           <div className="text-center">
-            <Button
+            <button
               onClick={() => alert('Navigate to full case studies page')}
-              size="lg"
-              className="gradient-ai text-white font-semibold px-10 py-4 rounded-2xl text-lg hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="btn-secondary btn-large"
             >
               View More Case Studies
               <ArrowRight className="w-5 h-5 ml-2" />
-            </Button>
+            </button>
           </div>
         </div>
       </section>
