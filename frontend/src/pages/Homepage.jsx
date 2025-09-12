@@ -34,14 +34,14 @@ export default function Homepage() {
             
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
-              <a href="#problem" className="text-gray-600 hover:text-blue-600 transition-colors font-medium text-sm xl:text-base">Problems We Solve</a>
-              <a href="#services" className="text-gray-600 hover:text-blue-600 transition-colors font-medium text-sm xl:text-base">How It Works</a>
-              <a href="#case-studies" className="text-gray-600 hover:text-blue-600 transition-colors font-medium text-sm xl:text-base">Results</a>
-              <a href="/digital-maturity-tracker" className="text-gray-600 hover:text-blue-600 transition-colors font-medium text-sm xl:text-base">Free Assessment</a>
+              <a href="#problem" className="text-luxury-text-body hover:text-luxury-ai-start transition-colors font-medium text-sm xl:text-base">Problems We Solve</a>
+              <a href="#services" className="text-luxury-text-body hover:text-luxury-ai-start transition-colors font-medium text-sm xl:text-base">How It Works</a>
+              <a href="#case-studies" className="text-luxury-text-body hover:text-luxury-ai-start transition-colors font-medium text-sm xl:text-base">Results</a>
+              <a href="/digital-maturity-tracker" className="text-luxury-text-body hover:text-luxury-ai-start transition-colors font-medium text-sm xl:text-base">Free Assessment</a>
               <Button 
                 onClick={scrollToContact}
                 size="sm" 
-                className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white rounded-full px-4 xl:px-6 text-sm hover:scale-105 transition-all duration-300"
+                className="gradient-ai text-white rounded-full px-4 xl:px-6 text-sm hover:scale-105 transition-all duration-300 shadow-sm"
               >
                 Get Started
               </Button>
