@@ -524,13 +524,13 @@ export default function ROICalculator() {
                 These numbers represent just the beginning. Let's discuss how to make this ROI a reality for your business.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-                <Button
+                <button
                   onClick={() => window.open('https://calendly.com/ailutions-strategy-call', '_blank')}
-                  size="lg"
-                  className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white font-bold px-8 py-4 rounded-xl text-lg hover:scale-105 transition-all duration-300"
+                  className="btn-accent btn-large text-lg px-8 py-4"
                 >
                   Book Free Strategy Call
-                </Button>
+                  <Calendar className="w-5 h-5 ml-2" />
+                </button>
                 <p className="text-gray-500">
                   ⚡ 15-minute call • Free consultation • Custom roadmap
                 </p>
