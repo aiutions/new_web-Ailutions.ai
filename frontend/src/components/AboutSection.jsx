@@ -47,7 +47,7 @@ export const AboutSection = () => {
           {principles.map((principle, index) => {
             const IconComponent = principle.icon;
             return (
-              <Card key={index} className="group relative overflow-hidden hover:scale-105 transition-all duration-500 border-0 bg-white/90 backdrop-blur-sm hover:shadow-2xl">
+              <Card key={index} className="group relative overflow-hidden hover:scale-105 transition-all duration-500 border-0 bg-luxury-bg-primary luxury-card">
                 {/* Gradient overlay on hover */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${principle.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
                 
