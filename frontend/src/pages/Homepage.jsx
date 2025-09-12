@@ -48,21 +48,18 @@ export default function Homepage() {
 
             {/* Mobile Navigation Button */}
             <div className="lg:hidden flex items-center space-x-2">
-              <Button 
+              <button 
                 onClick={() => window.location.href = '/digital-maturity-tracker'}
-                size="sm" 
-                className="gradient-ai text-white rounded-full px-3 py-1 text-xs font-medium shadow-sm"
+                className="btn-primary btn-small rounded-full text-xs"
               >
                 Assessment
-              </Button>
-              <Button 
+              </button>
+              <button 
                 onClick={scrollToContact}
-                variant="outline"
-                size="sm" 
-                className="border border-luxury-ai-start text-luxury-ai-start hover:bg-luxury-hover-tint rounded-full px-3 py-1 text-xs font-medium"
+                className="btn-secondary btn-small rounded-full text-xs"
               >
                 Contact
-              </Button>
+              </button>
             </div>
           </div>
         </div>
