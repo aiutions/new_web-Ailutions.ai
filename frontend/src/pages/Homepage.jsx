@@ -188,14 +188,14 @@ export default function Homepage() {
       <CTABanner />
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50/30">
+      <section id="contact" className="py-20 bg-luxury-bg-primary grid-section border-t border-luxury-grid-divider">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-6xl font-bold text-luxury-text-heading mb-6">
               {contactData.headline}
             </h2>
-            <div className="w-32 h-2 bg-gradient-to-r from-blue-600 to-green-600 mx-auto rounded-full"></div>
-            <p className="text-xl text-gray-600 mt-6 max-w-2xl mx-auto">
+            <div className="w-32 h-2 gradient-ai mx-auto rounded-full"></div>
+            <p className="text-xl text-luxury-text-body mt-6 max-w-2xl mx-auto">
               Ready to automate your business and scale faster? Let's start the conversation.
             </p>
           </div>
