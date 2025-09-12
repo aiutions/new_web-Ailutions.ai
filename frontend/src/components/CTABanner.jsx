@@ -72,23 +72,22 @@ export const CTABanner = () => {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-6 sm:space-y-0 sm:space-x-8">
-            <Button
+            <button
               onClick={() => window.location.href = '/digital-maturity-tracker'}
-              size="lg"
-              className="gradient-cta text-white font-bold px-12 py-6 rounded-2xl text-xl hover:scale-110 transition-all duration-300 shadow-xl hover:shadow-2xl"
+              className="btn-primary btn-large text-xl px-12 py-6"
+              style={{borderRadius: '20px', fontSize: '20px'}}
             >
               Launch Free Assessment
               <ArrowRight className="w-6 h-6 ml-3" />
-            </Button>
+            </button>
             
-            <Button
+            <button
               onClick={scrollToContact}
-              variant="outline"
-              size="lg"
-              className="border-2 border-luxury-ai-start text-luxury-ai-start hover:bg-luxury-ai-start hover:text-white font-bold px-12 py-6 rounded-2xl text-xl hover:scale-110 transition-all duration-300 bg-luxury-bg-primary"
+              className="btn-accent btn-large text-xl px-12 py-6"
+              style={{borderRadius: '20px', fontSize: '20px'}}
             >
               Talk to an Expert
-            </Button>
+            </button>
           </div>
 
           <div className="space-y-2">
