@@ -63,20 +63,20 @@ export const OfferSection = () => {
             <h3 className="text-3xl font-bold mb-8">Here's Everything You Get:</h3>
             
             {valueStack.map((item, index) => (
-              <Card key={index} className="group bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105">
+              <Card key={index} className="group bg-luxury-bg-secondary luxury-card transition-all duration-300 hover:scale-105">
                 <CardContent className="p-6">
                   <div className="flex items-center space-x-4">
                     <div className="flex-shrink-0">
-                      <CheckCircle className="w-8 h-8 text-green-400 group-hover:scale-110 transition-transform duration-300" />
+                      <CheckCircle className="w-8 h-8 text-luxury-success group-hover:scale-110 transition-transform duration-300" />
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center justify-between mb-2">
-                        <h4 className="text-xl font-bold text-white">{item.item}</h4>
-                        <Badge className="bg-yellow-400 text-yellow-900 font-bold">
+                        <h4 className="text-xl font-bold text-luxury-text-heading">{item.item}</h4>
+                        <Badge className="bg-luxury-warning text-luxury-text-heading font-bold shadow-sm">
                           {item.value}
                         </Badge>
                       </div>
-                      <p className="text-gray-300">{item.desc}</p>
+                      <p className="text-luxury-text-secondary">{item.desc}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -84,7 +84,7 @@ export const OfferSection = () => {
             ))}
 
             {/* Total Value */}
-            <Card className="bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 border-0 shadow-2xl">
+            <Card className="gradient-cta text-white border-0 shadow-2xl">
               <CardContent className="p-8 text-center">
                 <h4 className="text-2xl font-bold mb-2">Total Value:</h4>
                 <div className="text-5xl font-bold mb-2">${totalValue.toLocaleString()}</div>
