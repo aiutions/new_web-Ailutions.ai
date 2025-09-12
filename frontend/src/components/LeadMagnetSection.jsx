@@ -120,13 +120,13 @@ export const LeadMagnetSection = () => {
                   ))}
                 </div>
 
-                <Button
+                <button
                   onClick={() => window.location.href = currentLead.href}
-                  className={`w-full bg-gradient-to-r ${currentLead.color} hover:opacity-90 text-white font-semibold py-4 rounded-xl text-lg hover:scale-105 transition-all duration-300 hover:shadow-xl`}
+                  className="btn-primary w-full text-lg py-4"
                 >
                   {currentLead.cta}
                   <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
+                </button>
               </div>
             </CardContent>
           </Card>
