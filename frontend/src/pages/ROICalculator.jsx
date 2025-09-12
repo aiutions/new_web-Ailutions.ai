@@ -571,14 +571,14 @@ export default function ROICalculator() {
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-12">
         <div className="text-center mb-8 sm:mb-12">
-          <div className="inline-flex items-center space-x-2 bg-orange-100 text-orange-700 rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-4 sm:mb-6">
+          <div className="inline-flex items-center space-x-2 bg-luxury-bg-secondary border border-luxury-grid-divider text-luxury-ai-start rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-4 sm:mb-6 luxury-card">
             <Calculator className="w-4 h-4 sm:w-5 sm:h-5" />
             <span className="font-semibold text-sm sm:text-base">ROI Calculator</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-luxury-text-heading mb-4 sm:mb-6 leading-tight">
             Calculate Your AI Automation ROI
           </h1>
-          <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-4">
+          <p className="text-base sm:text-lg lg:text-xl text-luxury-text-body max-w-3xl mx-auto px-4">
             Discover how much time and money you could save with AI automation. Get your personalized ROI report in minutes.
           </p>
         </div>
