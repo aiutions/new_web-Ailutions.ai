@@ -232,9 +232,9 @@ export default function Homepage() {
             <div>
               <a href="/" className="inline-block mb-4">
                 <img 
-                  src="https://customer-assets.emergentagent.com/job_ai-lead-toolkit/artifacts/lr58t0dk_ailutions.%20logo.svg" 
+                  src="https://customer-assets.emergentagent.com/job_ai-lead-toolkit/artifacts/o5yg4xd7_ailutions%20logo%20white.svg" 
                   alt="Ailutions Logo" 
-                  className="h-8 w-auto hover:scale-105 transition-transform duration-200 filter brightness-0 invert"
+                  className="h-8 w-auto hover:scale-105 transition-transform duration-200"
                 />
               </a>
               <p className="text-gray-300 mb-4">
