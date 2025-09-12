@@ -51,22 +51,22 @@ export const CTABanner = () => {
           </p>
 
           {/* Stats bar */}
-          <div className="flex flex-wrap justify-center items-center gap-8 py-8 border-y border-white/20">
+          <div className="flex flex-wrap justify-center items-center gap-8 py-8 border-y border-luxury-grid-divider">
             <div className="text-center">
-              <div className="text-3xl font-bold text-yellow-400">3 min</div>
-              <div className="text-sm opacity-80">Assessment Time</div>
+              <div className="text-3xl font-bold text-luxury-ai-start">3 min</div>
+              <div className="text-sm text-luxury-text-secondary">Assessment Time</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-yellow-400">50+</div>
-              <div className="text-sm opacity-80">Businesses Automated</div>
+              <div className="text-3xl font-bold text-luxury-ai-start">50+</div>
+              <div className="text-sm text-luxury-text-secondary">Businesses Automated</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-yellow-400">90%</div>
-              <div className="text-sm opacity-80">Time Savings Avg</div>
+              <div className="text-3xl font-bold text-luxury-ai-start">90%</div>
+              <div className="text-sm text-luxury-text-secondary">Time Savings Avg</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-yellow-400">$0</div>
-              <div className="text-sm opacity-80">Until Results</div>
+              <div className="text-3xl font-bold text-luxury-ai-start">$0</div>
+              <div className="text-sm text-luxury-text-secondary">Until Results</div>
             </div>
           </div>
 
@@ -75,7 +75,7 @@ export const CTABanner = () => {
             <Button
               onClick={() => window.location.href = '/digital-maturity-tracker'}
               size="lg"
-              className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-gray-900 font-bold px-12 py-6 rounded-2xl text-xl hover:scale-110 transition-all duration-300 hover:shadow-2xl btn-pulse"
+              className="gradient-cta text-white font-bold px-12 py-6 rounded-2xl text-xl hover:scale-110 transition-all duration-300 shadow-xl hover:shadow-2xl"
             >
               Launch Free Assessment
               <ArrowRight className="w-6 h-6 ml-3" />
@@ -85,7 +85,7 @@ export const CTABanner = () => {
               onClick={scrollToContact}
               variant="outline"
               size="lg"
-              className="border-2 border-white text-white hover:bg-white hover:text-gray-900 font-bold px-12 py-6 rounded-2xl text-xl hover:scale-110 transition-all duration-300 bg-transparent"
+              className="border-2 border-luxury-ai-start text-luxury-ai-start hover:bg-luxury-ai-start hover:text-white font-bold px-12 py-6 rounded-2xl text-xl hover:scale-110 transition-all duration-300 bg-luxury-bg-primary"
             >
               Talk to an Expert
             </Button>
