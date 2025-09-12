@@ -92,10 +92,10 @@ export const CTABanner = () => {
           </div>
 
           <div className="space-y-2">
-            <p className="text-lg opacity-90">
+            <p className="text-lg text-luxury-text-body">
               ⚡ <strong>No credit card required</strong> • Instant results • Free consultation
             </p>
-            <p className="text-sm opacity-70">
+            <p className="text-sm text-luxury-text-secondary">
               Join 50+ businesses that eliminated manual work and scaled faster with AI
             </p>
           </div>
