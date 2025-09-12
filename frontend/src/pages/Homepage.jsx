@@ -52,7 +52,7 @@ export default function Homepage() {
               <Button 
                 onClick={() => window.location.href = '/digital-maturity-tracker'}
                 size="sm" 
-                className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white rounded-full px-3 py-1 text-xs font-medium"
+                className="gradient-ai text-white rounded-full px-3 py-1 text-xs font-medium shadow-sm"
               >
                 Assessment
               </Button>
@@ -60,7 +60,7 @@ export default function Homepage() {
                 onClick={scrollToContact}
                 variant="outline"
                 size="sm" 
-                className="border border-blue-600 text-blue-600 hover:bg-blue-50 rounded-full px-3 py-1 text-xs font-medium"
+                className="border border-luxury-ai-start text-luxury-ai-start hover:bg-luxury-hover-tint rounded-full px-3 py-1 text-xs font-medium"
               >
                 Contact
               </Button>
