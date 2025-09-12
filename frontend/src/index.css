@@ -183,6 +183,148 @@ body {
     background: linear-gradient(135deg, var(--gradient-cta-start) 0%, var(--gradient-cta-end) 100%);
 }
 
+/* Button System - Luxury Professional */
+
+/* Primary Button (Main CTA) */
+.btn-primary {
+    background: linear-gradient(135deg, #6366F1 0%, #06B6D4 100%);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 24px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #5855E8 0%, #0891B2 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-primary:disabled {
+    background: #F3F4F6;
+    color: #9CA3AF;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Secondary Button (Support CTA) */
+.btn-secondary {
+    background: #FFFFFF;
+    color: #111111;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 12px 24px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.btn-secondary:hover {
+    background: #F9FAFB;
+    transform: translateY(-1px);
+}
+
+.btn-secondary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary:disabled {
+    background: #F3F4F6;
+    color: #9CA3AF;
+    border-color: #E5E7EB;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Accent/Special CTA Button */
+.btn-accent {
+    background: linear-gradient(135deg, #F43F5E 0%, #F59E0B 100%);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 24px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.btn-accent:hover {
+    background: linear-gradient(135deg, #E11D48 0%, #D97706 100%);
+    transform: translateY(-1px);
+}
+
+.btn-accent:active {
+    transform: translateY(0);
+}
+
+.btn-accent:disabled {
+    background: #F3F4F6;
+    color: #9CA3AF;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Large Button Variants */
+.btn-large {
+    padding: 16px 32px;
+    font-size: 18px;
+    border-radius: 16px;
+}
+
+/* Small Button Variants */
+.btn-small {
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 8px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .btn-primary,
+    .btn-secondary,
+    .btn-accent {
+        padding: 10px 20px;
+        font-size: 15px;
+    }
+    
+    .btn-large {
+        padding: 14px 28px;
+        font-size: 16px;
+    }
+    
+    .btn-small {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+}
+
 /* Minimal Grid Sections */
 .grid-section {
     border-top: 1px solid var(--grid-divider);
