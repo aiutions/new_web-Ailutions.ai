@@ -13,6 +13,24 @@ module.exports = {
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		colors: {
+  			// Luxury Theme Colors
+  			luxury: {
+  				'bg-primary': '#FFFFFF',
+  				'bg-secondary': '#F9FAFB',
+  				'grid-divider': '#E5E7EB',
+  				'text-heading': '#111111',
+  				'text-body': '#4B5563',
+  				'text-secondary': '#6B7280',
+  				'ai-start': '#6366F1',
+  				'ai-end': '#06B6D4',
+  				'cta-start': '#F43F5E',
+  				'cta-end': '#F59E0B',
+  				'success': '#22C55E',
+  				'warning': '#FACC15',
+  				'critical': '#EF4444',
+  				'hover-tint': '#F3F4F6',
+  			},
+  			// Existing Shadcn colors
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
