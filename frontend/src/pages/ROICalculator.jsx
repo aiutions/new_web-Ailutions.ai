@@ -488,32 +488,32 @@ export default function ROICalculator() {
 
           {/* Action Buttons */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <Button
+            <button
               onClick={downloadPDF}
-              size="lg"
-              className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white font-semibold px-8 py-6 rounded-2xl text-lg hover:scale-105 transition-all duration-300 hover:shadow-xl"
+              className="btn-primary btn-large text-lg px-8 py-6"
+              style={{borderRadius: '20px'}}
             >
               <Download className="w-5 h-5 mr-2" />
               Download PDF Report
-            </Button>
+            </button>
             
-            <Button
+            <button
               onClick={() => window.open('https://calendly.com/ailutions-strategy-call', '_blank')}
-              size="lg"
-              className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white font-semibold px-8 py-6 rounded-2xl text-lg hover:scale-105 transition-all duration-300 hover:shadow-xl"
+              className="btn-accent btn-large text-lg px-8 py-6"
+              style={{borderRadius: '20px'}}
             >
               <Calendar className="w-5 h-5 mr-2" />
               Book Strategy Call
-            </Button>
+            </button>
 
-            <Button
+            <button
               onClick={() => window.location.href = '/digital-maturity-tracker'}
-              variant="outline"
-              size="lg"
-              className="border-2 border-gray-300 hover:border-blue-500 text-gray-700 hover:text-blue-600 font-semibold px-8 py-6 rounded-2xl text-lg hover:scale-105 transition-all duration-300"
+              className="btn-secondary btn-large text-lg px-8 py-6"
+              style={{borderRadius: '20px'}}
             >
-              Take Maturity Assessment
-            </Button>
+              <BarChart3 className="w-5 h-5 mr-2" />
+              Take Assessment
+            </button>
           </div>
 
           {/* Next Steps */}
