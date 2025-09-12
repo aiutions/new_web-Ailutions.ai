@@ -64,20 +64,20 @@ export const LeadMagnetSection = () => {
   const IconComponent = currentLead.icon;
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50/30 relative overflow-hidden">
+    <section className="py-20 bg-luxury-bg-secondary grid-section border-t border-luxury-grid-divider relative overflow-hidden">
       {/* Background elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5"></div>
-      <div className="absolute top-0 left-1/4 w-64 h-64 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-luxury-ai-start/3 to-luxury-ai-end/3"></div>
+      <div className="absolute top-0 left-1/4 w-64 h-64 bg-gradient-to-br from-luxury-ai-start/5 to-luxury-ai-end/5 rounded-full blur-3xl"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+          <h2 className="text-4xl md:text-6xl font-bold text-luxury-text-heading mb-6 leading-tight">
             Not Sure Where to Start?
           </h2>
-          <p className="text-2xl text-gray-600 max-w-4xl mx-auto mb-8">
+          <p className="text-2xl text-luxury-text-body max-w-4xl mx-auto mb-8">
             Take our <strong>free Digital Maturity Tracker</strong> and discover your business' automation potential.
           </p>
-          <div className="w-32 h-2 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"></div>
+          <div className="w-32 h-2 gradient-ai mx-auto rounded-full"></div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
