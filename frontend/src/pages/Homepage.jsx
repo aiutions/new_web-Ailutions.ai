@@ -119,7 +119,7 @@ export default function Homepage() {
               </Button>
             </div>
             
-            <p className="text-sm sm:text-base lg:text-lg text-gray-600 font-medium px-4">
+            <p className="text-sm sm:text-base lg:text-lg text-luxury-text-secondary font-medium px-4">
               ⚡ <strong>FREE assessment</strong> • 3 minutes • Instant results • No strings attached
             </p>
           </div>
