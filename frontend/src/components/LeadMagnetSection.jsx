@@ -82,12 +82,12 @@ export const LeadMagnetSection = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Rotating Lead Magnet Showcase */}
-          <Card className="border-0 shadow-2xl bg-white/90 backdrop-blur-sm overflow-hidden">
+          <Card className="border-0 luxury-card bg-luxury-bg-primary overflow-hidden">
             <CardContent className="p-0">
               {/* Progress bar */}
-              <div className="p-4 bg-gray-50 border-b">
+              <div className="p-4 bg-luxury-bg-secondary border-b border-luxury-grid-divider">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-medium text-gray-600">Preview</span>
+                  <span className="text-sm font-medium text-luxury-text-secondary">Preview</span>
                   <span className="text-sm text-gray-500">{currentMagnet + 1} of {leadMagnets.length}</span>
                 </div>
                 <Progress value={progress} className="h-1" />
