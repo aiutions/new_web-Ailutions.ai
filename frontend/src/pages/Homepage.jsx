@@ -69,31 +69,31 @@ export default function Homepage() {
         </div>
       </header>
 
-      {/* Hormozi-Style Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20">
-        <AnimatedHeroBackground />
+      {/* Luxury Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20 bg-luxury-bg-primary grid-section">
+        <div className="absolute inset-0 bg-gradient-to-br from-luxury-bg-primary via-luxury-bg-secondary to-luxury-bg-primary opacity-50"></div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
           <div className="space-y-6 sm:space-y-8">
-            <div className="inline-flex items-center space-x-2 bg-green-100 text-green-700 rounded-full px-4 sm:px-6 py-2 sm:py-3 shadow-lg font-semibold text-sm sm:text-base">
+            <div className="inline-flex items-center space-x-2 bg-luxury-bg-secondary border border-luxury-grid-divider text-luxury-ai-start rounded-full px-4 sm:px-6 py-2 sm:py-3 luxury-card font-semibold text-sm sm:text-base">
               <Target className="w-4 h-4 sm:w-5 sm:h-5" />
               <span className="hidden sm:inline">Proven Results • No Fluff • Outcome-Driven</span>
               <span className="sm:hidden">Proven Results • Outcome-Driven</span>
             </div>
             
-            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-900 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-luxury-text-heading leading-tight">
               We help businesses 
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-green-600 block">
+              <span className="text-transparent bg-clip-text gradient-ai block">
                 automate operations
               </span>
               & scale faster with AI
             </h1>
             
-            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-700 max-w-5xl mx-auto leading-relaxed font-medium px-4">
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-luxury-text-body max-w-5xl mx-auto leading-relaxed font-medium px-4">
               <strong>Without expensive IT projects or wasted effort.</strong>
             </p>
             
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-4">
+            <p className="text-base sm:text-lg md:text-xl text-luxury-text-secondary max-w-4xl mx-auto leading-relaxed px-4">
               Ailutions builds custom AI tools, integrates AI into your existing systems, automates sales & operations, and implements ERPNext tailored to your business.
             </p>
             
