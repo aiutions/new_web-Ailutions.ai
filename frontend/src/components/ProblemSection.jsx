@@ -16,7 +16,7 @@ export const ProblemSection = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50 relative overflow-hidden">
+    <section className="py-20 bg-luxury-bg-primary grid-section border-t border-luxury-grid-divider relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-orange-500/5"></div>
       <div className="absolute top-0 right-1/4 w-64 h-64 bg-gradient-to-br from-red-400/10 to-orange-400/10 rounded-full blur-3xl animate-pulse"></div>
