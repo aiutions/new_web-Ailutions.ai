@@ -42,19 +42,19 @@ export const SolutionSection = () => {
   ];
 
   return (
-    <section id="services" className="py-20 bg-gradient-to-br from-green-50 via-blue-50 to-purple-50">
+    <section id="services" className="py-20 bg-luxury-bg-secondary grid-section border-t border-luxury-grid-divider">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <Badge className="mb-6 bg-green-100 text-green-700 border-green-200 px-6 py-3 text-base font-semibold">
+          <Badge className="mb-6 bg-luxury-bg-primary text-luxury-ai-start border-luxury-grid-divider px-6 py-3 text-base font-semibold luxury-card">
             The Ailutions Advantage
           </Badge>
-          <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-8 leading-tight">
+          <h2 className="text-4xl md:text-6xl font-bold text-luxury-text-heading mb-8 leading-tight">
             The AI Partner That Does 
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600 block">
+            <span className="gradient-ai-text block">
               What Others Don't.
             </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-luxury-text-body max-w-3xl mx-auto">
             While others sell you software, we deliver outcomes. Here's our proven 3-step process:
           </p>
         </div>
