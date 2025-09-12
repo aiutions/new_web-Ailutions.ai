@@ -234,19 +234,21 @@ export default function Homepage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
+      <footer className="bg-luxury-text-heading text-white py-16 border-t border-luxury-grid-divider">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
-              <div className="text-3xl font-bold mb-4">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-400">
-                  Ailutions
-                </span>
-              </div>
-              <p className="text-gray-400 mb-4">
+              <a href="/" className="inline-block mb-4">
+                <img 
+                  src="https://customer-assets.emergentagent.com/job_ai-lead-toolkit/artifacts/lr58t0dk_ailutions.%20logo.svg" 
+                  alt="Ailutions Logo" 
+                  className="h-8 w-auto hover:scale-105 transition-transform duration-200 filter brightness-0 invert"
+                />
+              </a>
+              <p className="text-gray-300 mb-4">
                 AI that powers your business. Automate operations, eliminate manual work, and scale faster.
               </p>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-gray-400">
                 No fluff. No BS. Just results.
               </p>
             </div>
