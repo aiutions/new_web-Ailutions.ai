@@ -172,7 +172,7 @@ export default function Homepage() {
             <Button
               onClick={() => alert('Navigate to full case studies page')}
               size="lg"
-              className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white font-semibold px-10 py-4 rounded-2xl text-lg hover:scale-105 transition-all duration-300"
+              className="gradient-ai text-white font-semibold px-10 py-4 rounded-2xl text-lg hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
             >
               View More Case Studies
               <ArrowRight className="w-5 h-5 ml-2" />
