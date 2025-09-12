@@ -704,11 +704,12 @@ export default function ROICalculator() {
                 <button
                   type="submit"
                   disabled={!isFormValid()}
-                  className="btn-accent btn-large w-full text-xl py-6"
-                  style={{borderRadius: '20px'}}
+                  className="btn-accent btn-large w-full btn-wrap"
+                  style={{borderRadius: '16px'}}
                 >
-                  Calculate My ROI
-                  <Calculator className="w-6 h-6 ml-3" />
+                  <span className="hidden sm:inline">Calculate My ROI</span>
+                  <span className="sm:hidden">Calculate ROI</span>
+                  <Calculator className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
                 </button>
                 <p className="text-gray-500 mt-4">
                   ⚡ Instant results • Downloadable report • Free consultation
