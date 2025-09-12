@@ -38,13 +38,12 @@ export default function Homepage() {
               <a href="#services" className="text-luxury-text-body hover:text-luxury-ai-start transition-colors font-medium text-sm xl:text-base">How It Works</a>
               <a href="#case-studies" className="text-luxury-text-body hover:text-luxury-ai-start transition-colors font-medium text-sm xl:text-base">Results</a>
               <a href="/digital-maturity-tracker" className="text-luxury-text-body hover:text-luxury-ai-start transition-colors font-medium text-sm xl:text-base">Free Assessment</a>
-              <Button 
+              <button 
                 onClick={scrollToContact}
-                size="sm" 
-                className="gradient-ai text-white rounded-full px-4 xl:px-6 text-sm hover:scale-105 transition-all duration-300 shadow-sm"
+                className="btn-primary btn-small rounded-full"
               >
                 Get Started
-              </Button>
+              </button>
             </nav>
 
             {/* Mobile Navigation Button */}
