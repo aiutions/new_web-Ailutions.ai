@@ -116,6 +116,88 @@ button, [role="button"] {
     }
 }
 
+/* Luxury White + Minimal Grid Theme */
+:root {
+    /* Base Colors */
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F9FAFB;
+    --grid-divider: #E5E7EB;
+    
+    /* Text Colors */
+    --text-heading: #111111;
+    --text-body: #4B5563;
+    --text-secondary: #6B7280;
+    
+    /* Primary Accent (AI Gradient) */
+    --gradient-ai-start: #6366F1;
+    --gradient-ai-end: #06B6D4;
+    
+    /* Secondary Accent (CTA Gradient) */
+    --gradient-cta-start: #F43F5E;
+    --gradient-cta-end: #F59E0B;
+    
+    /* Highlight System */
+    --success: #22C55E;
+    --warning: #FACC15;
+    --critical: #EF4444;
+    
+    /* UI Effects */
+    --shadow-soft: rgba(0,0,0,0.04);
+    --hover-tint: #F3F4F6;
+}
+
+/* Luxury Theme Overrides */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-body);
+}
+
+/* Premium Cards */
+.luxury-card {
+    background: var(--bg-primary);
+    box-shadow: 0 1px 3px var(--shadow-soft), 0 1px 2px var(--shadow-soft);
+    border: 1px solid var(--grid-divider);
+    transition: all 0.2s ease;
+}
+
+.luxury-card:hover {
+    background: var(--hover-tint);
+    box-shadow: 0 4px 6px var(--shadow-soft), 0 2px 4px var(--shadow-soft);
+}
+
+/* AI Gradient Elements */
+.gradient-ai {
+    background: linear-gradient(135deg, var(--gradient-ai-start) 0%, var(--gradient-ai-end) 100%);
+}
+
+/* CTA Gradient Elements */
+.gradient-cta {
+    background: linear-gradient(135deg, var(--gradient-cta-start) 0%, var(--gradient-cta-end) 100%);
+}
+
+/* Minimal Grid Sections */
+.grid-section {
+    border-top: 1px solid var(--grid-divider);
+    background: var(--bg-primary);
+}
+
+.grid-section:nth-child(even) {
+    background: var(--bg-secondary);
+}
+
+/* Typography Overrides */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-heading);
+}
+
+.text-luxury-body {
+    color: var(--text-body);
+}
+
+.text-luxury-secondary {
+    color: var(--text-secondary);
+}
+
 /* Custom animations */
 @keyframes fadeInUp {
     from {
