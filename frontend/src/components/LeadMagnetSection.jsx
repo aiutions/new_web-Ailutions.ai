@@ -177,10 +177,11 @@ export const LeadMagnetSection = () => {
                 </p>
                 <button
                   onClick={() => window.location.href = '/digital-maturity-tracker'}
-                  className="btn-secondary btn-large text-lg px-8 py-4"
+                  className="btn-secondary btn-large w-full sm:w-auto btn-wrap"
                 >
-                  Launch Free Assessment
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                  <span className="hidden sm:inline">Launch Free Assessment</span>
+                  <span className="sm:hidden">Free Assessment</span>
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
                 </button>
               </CardContent>
             </Card>
