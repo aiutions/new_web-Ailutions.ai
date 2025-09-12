@@ -122,10 +122,10 @@ export const LeadMagnetSection = () => {
 
                 <button
                   onClick={() => window.location.href = currentLead.href}
-                  className="btn-primary w-full text-lg py-4"
+                  className="btn-primary w-full btn-wrap container-mobile-fix"
                 >
                   {currentLead.cta}
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
                 </button>
               </div>
             </CardContent>
