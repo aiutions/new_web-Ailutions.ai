@@ -94,10 +94,10 @@ export const SolutionSection = () => {
         </div>
 
         {/* Social Proof */}
-        <div className="bg-white/60 backdrop-blur-sm rounded-3xl p-12 shadow-xl">
+        <div className="bg-luxury-bg-primary luxury-card rounded-3xl p-12">
           <div className="text-center mb-12">
-            <Quote className="w-12 h-12 text-green-500 mx-auto mb-4" />
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">Real Results from Real Clients</h3>
+            <Quote className="w-12 h-12 text-luxury-ai-start mx-auto mb-4" />
+            <h3 className="text-3xl font-bold text-luxury-text-heading mb-4">Real Results from Real Clients</h3>
             <p className="text-gray-600 text-lg">Don't just take our word for it...</p>
           </div>
           
