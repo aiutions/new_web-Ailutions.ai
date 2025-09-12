@@ -93,19 +93,19 @@ export default function Homepage() {
               Ailutions builds custom AI tools, integrates AI into your existing systems, automates sales & operations, and implements ERPNext tailored to your business.
             </p>
             
-            <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 lg:space-x-8 px-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-4 lg:space-x-6 px-4 max-w-4xl mx-auto">
               <button 
                 onClick={() => window.location.href = '/digital-maturity-tracker'}
-                className="btn-primary btn-large w-full sm:w-auto"
+                className="btn-primary btn-large w-full sm:w-auto btn-wrap container-mobile-fix"
               >
                 <span className="hidden sm:inline">Start Free Digital Maturity Assessment</span>
                 <span className="sm:hidden">Free Assessment</span>
-                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 ml-2 sm:ml-3" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
               </button>
               
               <button 
                 onClick={scrollToContact}
-                className="btn-accent btn-large w-full sm:w-auto"
+                className="btn-accent btn-large w-full sm:w-auto btn-wrap container-mobile-fix"
               >
                 <span className="hidden sm:inline">Book a Free Strategy Call</span>
                 <span className="sm:hidden">Book Call</span>
