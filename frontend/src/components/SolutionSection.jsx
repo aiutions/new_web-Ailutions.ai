@@ -64,28 +64,28 @@ export const SolutionSection = () => {
           {steps.map((step, index) => {
             const IconComponent = LucideIcons[step.icon] || LucideIcons.Circle;
             return (
-              <Card key={index} className="group relative overflow-hidden hover:scale-105 transition-all duration-500 border-0 bg-white/90 backdrop-blur-sm hover:shadow-2xl">
+              <Card key={index} className="group relative overflow-hidden hover:scale-105 transition-all duration-500 border-0 bg-luxury-bg-primary luxury-card">
                 {/* Step number badge */}
-                <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-green-500 to-blue-500 rounded-full flex items-center justify-center">
+                <div className="absolute -top-4 -right-4 w-16 h-16 gradient-ai rounded-full flex items-center justify-center shadow-lg">
                   <span className="text-white font-bold text-lg">{index + 1}</span>
                 </div>
                 
                 <CardContent className="p-8">
                   <div className="flex items-center space-x-4 mb-6">
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-100 to-blue-100 flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                      <IconComponent className="w-8 h-8 text-green-600 group-hover:text-blue-600 transition-colors duration-300" />
+                    <div className="w-16 h-16 rounded-2xl bg-luxury-bg-secondary border border-luxury-grid-divider flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                      <IconComponent className="w-8 h-8 text-luxury-ai-start group-hover:text-luxury-ai-end transition-colors duration-300" />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900">{step.title}</h3>
+                    <h3 className="text-2xl font-bold text-luxury-text-heading">{step.title}</h3>
                   </div>
                   
-                  <p className="text-lg text-gray-700 mb-4 font-semibold">{step.desc}</p>
-                  <p className="text-gray-600">{step.detail}</p>
+                  <p className="text-lg text-luxury-text-body mb-4 font-semibold">{step.desc}</p>
+                  <p className="text-luxury-text-secondary">{step.detail}</p>
                 </CardContent>
 
                 {/* Connection arrow */}
                 {index < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-1/2 -right-6 w-12 h-px bg-gradient-to-r from-green-400 to-blue-400 z-10">
-                    <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <div className="hidden md:block absolute top-1/2 -right-6 w-12 h-px gradient-ai z-10">
+                    <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-2 h-2 bg-luxury-ai-end rounded-full"></div>
                   </div>
                 )}
               </Card>
