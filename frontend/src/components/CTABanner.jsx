@@ -8,45 +8,45 @@ export const CTABanner = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 text-white relative overflow-hidden">
+    <section className="py-20 bg-luxury-bg-secondary grid-section border-t border-luxury-grid-divider relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-10 left-1/4 w-32 h-32 bg-white/10 rounded-full animate-float"></div>
-        <div className="absolute bottom-20 right-1/3 w-24 h-24 bg-white/10 rounded-full animate-pulse delay-700"></div>
-        <div className="absolute top-1/3 right-1/4 w-16 h-16 bg-white/10 rounded-full animate-float delay-1000"></div>
-        <div className="absolute bottom-1/4 left-1/5 w-20 h-20 bg-white/10 rounded-full animate-pulse delay-300"></div>
+        <div className="absolute top-10 left-1/4 w-32 h-32 bg-luxury-ai-start/10 rounded-full"></div>
+        <div className="absolute bottom-20 right-1/3 w-24 h-24 bg-luxury-ai-end/10 rounded-full"></div>
+        <div className="absolute top-1/3 right-1/4 w-16 h-16 bg-luxury-ai-start/10 rounded-full"></div>
+        <div className="absolute bottom-1/4 left-1/5 w-20 h-20 bg-luxury-ai-end/10 rounded-full"></div>
         
         {/* Floating AI icons */}
         <div className="absolute top-20 left-20">
-          <Zap className="w-8 h-8 text-white/20 animate-pulse" />
+          <Zap className="w-8 h-8 text-luxury-ai-start/20" />
         </div>
         <div className="absolute bottom-20 right-20">
-          <TrendingUp className="w-8 h-8 text-white/20 animate-float delay-500" />
+          <TrendingUp className="w-8 h-8 text-luxury-ai-end/20" />
         </div>
         <div className="absolute top-1/2 left-10">
-          <Clock className="w-6 h-6 text-white/20 animate-pulse delay-1000" />
+          <Clock className="w-6 h-6 text-luxury-ai-start/20" />
         </div>
         
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/50 via-transparent to-purple-600/50"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-luxury-ai-start/5 via-transparent to-luxury-ai-end/5"></div>
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
         <div className="space-y-8">
           {/* Urgency badge */}
-          <div className="inline-flex items-center space-x-2 bg-red-500 text-white rounded-full px-6 py-3 font-bold animate-pulse">
+          <div className="inline-flex items-center space-x-2 bg-luxury-critical text-white rounded-full px-6 py-3 font-bold shadow-lg">
             <Clock className="w-5 h-5" />
             <span>Your Competitors Are Already Automating</span>
           </div>
 
-          <h2 className="text-4xl md:text-7xl font-bold leading-tight">
+          <h2 className="text-4xl md:text-7xl font-bold leading-tight text-luxury-text-heading">
             Ready to Automate 
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-white block">
+            <span className="gradient-ai-text block">
               Your Business?
             </span>
           </h2>
           
-          <p className="text-2xl md:text-3xl opacity-90 max-w-4xl mx-auto font-semibold">
+          <p className="text-2xl md:text-3xl text-luxury-text-body max-w-4xl mx-auto font-semibold">
             Start with a <strong>free Digital Maturity Assessment</strong> or book a strategy call today.
           </p>
 
