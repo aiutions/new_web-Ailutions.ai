@@ -98,25 +98,22 @@ export default function Homepage() {
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 lg:space-x-8 px-4">
-              <Button 
+              <button 
                 onClick={() => window.location.href = '/digital-maturity-tracker'}
-                size="lg" 
-                className="w-full sm:w-auto gradient-cta text-white font-bold px-6 sm:px-8 lg:px-12 py-4 sm:py-5 lg:py-6 rounded-xl sm:rounded-2xl text-base sm:text-lg lg:text-xl hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="btn-primary btn-large w-full sm:w-auto"
               >
                 <span className="hidden sm:inline">Start Free Digital Maturity Assessment</span>
                 <span className="sm:hidden">Free Assessment</span>
                 <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 ml-2 sm:ml-3" />
-              </Button>
+              </button>
               
-              <Button 
+              <button 
                 onClick={scrollToContact}
-                variant="outline" 
-                size="lg"
-                className="w-full sm:w-auto border-2 border-luxury-grid-divider hover:border-luxury-ai-start text-luxury-text-heading hover:text-luxury-ai-start font-bold px-6 sm:px-8 lg:px-12 py-4 sm:py-5 lg:py-6 rounded-xl sm:rounded-2xl text-base sm:text-lg lg:text-xl hover:scale-105 transition-all duration-300 bg-luxury-bg-primary luxury-card"
+                className="btn-accent btn-large w-full sm:w-auto"
               >
                 <span className="hidden sm:inline">Book a Free Strategy Call</span>
                 <span className="sm:hidden">Book Call</span>
-              </Button>
+              </button>
             </div>
             
             <p className="text-sm sm:text-base lg:text-lg text-luxury-text-secondary font-medium px-4">
