@@ -31,28 +31,28 @@ export const OfferSection = () => {
   const totalValue = 4288;
 
   return (
-    <section className="py-20 bg-gradient-to-br from-blue-900 via-purple-900 to-blue-900 text-white relative overflow-hidden">
+    <section className="py-20 bg-luxury-bg-primary grid-section border-t border-luxury-grid-divider relative overflow-hidden">
       {/* Background animations */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-purple-400/15 to-blue-400/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-luxury-ai-start/10 to-luxury-ai-end/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-luxury-ai-end/5 to-luxury-ai-start/5 rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center space-x-2 bg-yellow-400 text-yellow-900 rounded-full px-6 py-3 mb-6 font-bold">
+          <div className="inline-flex items-center space-x-2 bg-luxury-warning text-luxury-text-heading rounded-full px-6 py-3 mb-6 font-bold shadow-lg">
             <Gift className="w-5 h-5" />
             <span>Limited Time Offer</span>
           </div>
           
-          <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-tight">
+          <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-tight text-luxury-text-heading">
             What You Get with 
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-white">
+            <span className="gradient-ai-text">
               Ailutions
             </span>
           </h2>
           
-          <p className="text-2xl mb-8 opacity-90 max-w-4xl mx-auto">
+          <p className="text-2xl mb-8 text-luxury-text-body max-w-4xl mx-auto">
             <strong>AI-powered automation for your business</strong> — fast, tailored, outcome-driven.
           </p>
         </div>
