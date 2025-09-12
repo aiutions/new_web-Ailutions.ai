@@ -175,14 +175,13 @@ export const LeadMagnetSection = () => {
                 <p className="text-lg mb-6 opacity-90">
                   Start with the Digital Maturity Tracker — it takes just 3 minutes.
                 </p>
-                <Button
+                <button
                   onClick={() => window.location.href = '/digital-maturity-tracker'}
-                  size="lg"
-                  className="bg-white text-gray-900 hover:bg-gray-100 font-bold px-8 py-4 rounded-xl text-lg hover:scale-105 transition-all duration-300"
+                  className="btn-secondary btn-large text-lg px-8 py-4"
                 >
                   Launch Free Assessment
                   <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
+                </button>
               </CardContent>
             </Card>
           </div>
