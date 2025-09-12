@@ -423,7 +423,7 @@ export default function DigitalMaturityTracker() {
               </Button>
               <a href="/" className="flex items-center">
                 <img 
-                  src="https://i.postimg.cc/VvHqqQpF/ailutions-logo.png" 
+                  src="https://customer-assets.emergentagent.com/job_ai-lead-toolkit/artifacts/lr58t0dk_ailutions.%20logo.svg" 
                   alt="Ailutions Logo" 
                   className="h-6 sm:h-8 w-auto hover:scale-105 transition-transform duration-200"
                 />
