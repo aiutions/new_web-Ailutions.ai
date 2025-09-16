@@ -269,6 +269,7 @@ test_plan:
     - "About Page Content Sections"
     - "About Page Button Functionality"
     - "About Page Mobile Responsiveness"
+    - "About Page CTA Section Text Visibility Fix"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
