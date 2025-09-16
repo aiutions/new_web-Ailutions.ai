@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: Test the new About Us page functionality and navigation including navigation testing, About page routing, content sections verification, mobile responsiveness, and button functionality.
+user_problem_statement: Test the improved "Not Sure Where to Start" section slideshow functionality on the homepage including slideshow speed (8 seconds), user interaction with tool cards, auto-pause feature (15 seconds), visual feedback, card selection, progress bar behavior, button functionality, and mobile responsiveness.
 
 backend:
   - task: "Backend services remain unchanged"
