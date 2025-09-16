@@ -408,13 +408,13 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Tool Card User Interaction"
-    - "Card Selection Tool Details"
     - "Progress Bar Behavior"
     - "CTA Button Functionality"
-  stuck_tasks: []
+  stuck_tasks:
+    - "Progress Bar Behavior"
+    - "CTA Button Functionality"
   test_all: false
-  test_priority: "high_first"
+  test_priority: "stuck_first"
 
 agent_communication:
   - agent: "main"
