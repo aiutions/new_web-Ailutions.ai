@@ -353,7 +353,7 @@ frontend:
     implemented: true
     working: false
     file: "src/components/LeadMagnetSection.jsx"
-    stuck_count: 1
+    stuck_count: 2
     priority: "high"
     needs_retesting: false
     status_history:
@@ -366,6 +366,9 @@ frontend:
       - working: false
         agent: "testing"
         comment: "❌ PROGRESS BAR STILL NOT WORKING: Progress bar value still returns 'None' instead of 100% during user interaction. Manual Selection indicator appears correctly, but progress bar aria-valuenow attribute is not being set to 100% as expected. The Progress component from Radix UI may not be receiving the correct value prop or the value is not being properly applied to the aria-valuenow attribute."
+      - working: false
+        agent: "testing"
+        comment: "❌ PROGRESS BAR CRITICAL ISSUE PERSISTS: Comprehensive testing confirmed progress bar still returns 'None' instead of 100% during user interaction across all 3 tool cards (Digital Maturity Tracker, Automation Assessment, ROI Calculator). The Radix UI Progress component is not properly receiving or applying the value prop. This is a persistent technical issue requiring main agent investigation into the Progress component implementation and value prop handling."
 
   - task: "CTA Button Functionality"
     implemented: true
