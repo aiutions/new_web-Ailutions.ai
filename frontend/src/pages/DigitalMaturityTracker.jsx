@@ -771,14 +771,85 @@ export default function DigitalMaturityTracker() {
                   <div key={index}>
                     <div className="flex justify-between items-center mb-2">
                       <span className="font-medium text-gray-700">{section.name}</span>
-                      <span className="font-semibold text-gray-900">{section.score}%</span>
+                      <div className="flex items-center space-x-2">
+                        <Badge className={`text-xs px-2 py-1 ${
+                          section.status === 'Excellent' ? 'bg-green-100 text-green-700' :
+                          section.status === 'Good' ? 'bg-blue-100 text-blue-700' :
+                          section.status === 'Needs Improvement' ? 'bg-yellow-100 text-yellow-700' :
+                          'bg-red-100 text-red-700'
+                        }`}>
+                          {section.status}
+                        </Badge>
+                        <span className="font-semibold text-gray-900">{section.score}%</span>
+                      </div>
                     </div>
-                    <Progress value={section.score} className="h-3" />
+                    <Progress value={section.score} className="h-3 mb-2" />
+                    <p className="text-sm text-gray-600">{section.analysis}</p>
                   </div>
                 ))}
               </div>
             </CardContent>
           </Card>
+
+          {/* Overall Analysis */}
+          <Card className="mb-8 border-0 shadow-xl bg-gradient-to-br from-blue-50 to-green-50">
+            <CardContent className="p-8">
+              <h2 className="text-2xl font-semibold text-gray-900 mb-6">Current Status Analysis</h2>
+              <div className="space-y-4">
+                <div className="bg-white rounded-lg p-4">
+                  <h3 className="font-semibold text-gray-800 mb-2">Summary</h3>
+                  <p className="text-gray-700">{results.overallAnalysis.summary}</p>
+                </div>
+                <div className="bg-white rounded-lg p-4">
+                  <h3 className="font-semibold text-gray-800 mb-2">Strengths</h3>
+                  <p className="text-gray-700">{results.overallAnalysis.strengths}</p>
+                </div>
+                <div className="bg-white rounded-lg p-4">
+                  <h3 className="font-semibold text-gray-800 mb-2">Key Challenges</h3>
+                  <p className="text-gray-700">{results.overallAnalysis.challenges}</p>
+                </div>
+                <div className="bg-white rounded-lg p-4">
+                  <h3 className="font-semibold text-gray-800 mb-2">Strategic Recommendation</h3>
+                  <p className="text-gray-700">{results.overallAnalysis.recommendation}</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Strengths & Weaknesses */}
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            <Card className="border-0 shadow-xl bg-green-50">
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold text-green-800 mb-4">Key Strengths</h3>
+                <div className="space-y-2">
+                  {results.strengths.length > 0 ? results.strengths.map((strength, index) => (
+                    <div key={index} className="flex items-start space-x-2">
+                      <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
+                      <span className="text-green-700 text-sm">{strength}</span>
+                    </div>
+                  )) : (
+                    <p className="text-green-700 text-sm">Building foundation across all areas - great potential for growth</p>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-xl bg-red-50">
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold text-red-800 mb-4">Areas for Improvement</h3>
+                <div className="space-y-2">
+                  {results.weaknesses.length > 0 ? results.weaknesses.map((weakness, index) => (
+                    <div key={index} className="flex items-start space-x-2">
+                      <div className="w-4 h-4 bg-red-500 rounded-full flex-shrink-0 mt-0.5"></div>
+                      <span className="text-red-700 text-sm">{weakness}</span>
+                    </div>
+                  )) : (
+                    <p className="text-red-700 text-sm">Strong performance across all areas - focus on optimization opportunities</p>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
 
           {/* Recommendations */}
           <Card className="mb-8 border-0 shadow-xl bg-white/90 backdrop-blur-sm">
