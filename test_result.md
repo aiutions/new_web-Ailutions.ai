@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: Test the improved "Not Sure Where to Start" section slideshow functionality on the homepage including slideshow speed (8 seconds), user interaction with tool cards, auto-pause feature (15 seconds), visual feedback, card selection, progress bar behavior, button functionality, and mobile responsiveness.
+user_problem_statement: Test the enhanced Digital Maturity Tracker with updated questions and detailed reporting including updated questions verification (4 new questions in Data & Decisions and Customer & People sections), enhanced reporting testing (maturity stage classification, detailed report sections), and functionality testing (navigation, assessment completion, results display, PDF generation, mobile responsiveness).
 
 backend:
   - task: "Backend services remain unchanged"
