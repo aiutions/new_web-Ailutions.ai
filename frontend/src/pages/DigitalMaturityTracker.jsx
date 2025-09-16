@@ -128,6 +128,112 @@ export default function DigitalMaturityTracker() {
     });
     setIsComplete(true);
   };
+
+  // Helper functions for detailed analysis
+  const generateDetailedRecommendations = (stage, sections) => {
+    const recommendations = [];
+    
+    sections.forEach(section => {
+      if (section.score < 60) {
+        switch (section.name) {
+          case "Strategy":
+            recommendations.push("Develop a comprehensive digital transformation roadmap with clear KPIs and timelines");
+            break;
+          case "Process":
+            recommendations.push("Implement process standardization and system integration initiatives");
+            break;
+          case "Data & Decisions":
+            recommendations.push("Establish real-time dashboard systems and improve data governance practices");
+            break;
+          case "Automation":
+            recommendations.push("Identify repetitive tasks for automation and implement workflow optimization");
+            break;
+          case "Security":
+            recommendations.push("Strengthen cybersecurity framework and compliance protocols");
+            break;
+          case "Customer & People":
+            recommendations.push("Enhance digital customer experience and implement regular team training programs");
+            break;
+        }
+      }
+    });
+    
+    // Stage-specific recommendations
+    switch (stage) {
+      case "Pre-Digital":
+        recommendations.unshift("Focus on building foundational digital infrastructure and capabilities");
+        break;
+      case "Digital":
+        recommendations.unshift("Standardize processes and improve system integrations");
+        break;
+      case "Automated":
+        recommendations.unshift("Implement advanced automation and prepare for AI integration");
+        break;
+      case "AI-Powered":
+        recommendations.unshift("Optimize AI systems and explore emerging technologies");
+        break;
+    }
+    
+    return recommendations;
+  };
+
+  const generateNextSteps = (stage, sections) => {
+    const lowestSection = sections.reduce((min, section) => 
+      section.score < min.score ? section : min
+    );
+    
+    const nextSteps = [
+      `Priority Focus: Address ${lowestSection.name} area (Current score: ${lowestSection.score}%)`,
+      "Conduct detailed assessment of current systems and processes",
+      "Develop 90-day action plan with specific milestones"
+    ];
+    
+    if (stage === "Pre-Digital") {
+      nextSteps.push("Establish digital governance structure");
+      nextSteps.push("Begin foundational technology implementations");
+    } else if (stage === "Digital") {
+      nextSteps.push("Implement process automation initiatives");
+      nextSteps.push("Enhance data analytics capabilities");
+    } else if (stage === "Automated") {
+      nextSteps.push("Explore AI/ML implementation opportunities");
+      nextSteps.push("Optimize existing automated processes");
+    } else {
+      nextSteps.push("Drive innovation and explore emerging technologies");
+      nextSteps.push("Share best practices and mentor other organizations");
+    }
+    
+    return nextSteps;
+  };
+
+  const generateStrengths = (sections) => {
+    return sections
+      .filter(section => section.score >= 70)
+      .map(section => `${section.name}: ${section.status} performance (${section.score}%)`)
+      .concat(sections.length > 3 ? ["Well-rounded digital foundation"] : []);
+  };
+
+  const generateWeaknesses = (sections) => {
+    return sections
+      .filter(section => section.score < 50)
+      .map(section => `${section.name}: Requires immediate attention (${section.score}%)`)
+      .concat(sections.filter(s => s.score < 60).length > 3 ? ["Fragmented digital approach"] : []);
+  };
+
+  const generateOverallAnalysis = (percentage, stage, sections) => {
+    const avgScore = Math.round(sections.reduce((sum, s) => sum + s.score, 0) / sections.length);
+    const strongAreas = sections.filter(s => s.score >= 70).length;
+    const weakAreas = sections.filter(s => s.score < 50).length;
+    
+    return {
+      summary: `Your organization is currently at the ${stage} stage with an overall digital maturity score of ${percentage}%.`,
+      strengths: strongAreas > 0 ? `You excel in ${strongAreas} key area${strongAreas > 1 ? 's' : ''}, providing a solid foundation for growth.` : "Focus needed across all areas to build digital foundation.",
+      challenges: weakAreas > 0 ? `${weakAreas} critical area${weakAreas > 1 ? 's need' : ' needs'} immediate attention to prevent digital transformation roadblocks.` : "Strong performance across all areas with opportunities for optimization.",
+      recommendation: stage === "Pre-Digital" ? "Start with foundational infrastructure and change management initiatives." :
+                     stage === "Digital" ? "Focus on process optimization and system integration." :
+                     stage === "Automated" ? "Implement advanced automation and prepare for AI adoption." :
+                     "Lead innovation initiatives and explore emerging technologies."
+    };
+  };
     });
 
     const calculatedResults = {
