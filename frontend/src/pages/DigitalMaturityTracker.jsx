@@ -851,17 +851,34 @@ export default function DigitalMaturityTracker() {
             </Card>
           </div>
 
-          {/* Recommendations */}
+          {/* Detailed Recommendations */}
           <Card className="mb-8 border-0 shadow-xl bg-white/90 backdrop-blur-sm">
             <CardContent className="p-8">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-6">Recommended Next Steps</h2>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-6">Detailed Recommendations</h2>
               <div className="space-y-4">
-                {results.level.recommendations.map((recommendation, index) => (
+                {results.detailedRecommendations.map((recommendation, index) => (
                   <div key={index} className="flex items-start space-x-3">
                     <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-blue-100 to-green-100 flex items-center justify-center mt-0.5">
                       <div className="w-2 h-2 rounded-full bg-gradient-to-br from-blue-500 to-green-500"></div>
                     </div>
                     <p className="text-gray-700 font-medium">{recommendation}</p>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Next Steps */}
+          <Card className="mb-8 border-0 shadow-xl bg-gradient-to-br from-purple-50 to-blue-50">
+            <CardContent className="p-8">
+              <h2 className="text-2xl font-semibold text-gray-900 mb-6">What to Do Next</h2>
+              <div className="space-y-4">
+                {results.nextSteps.map((step, index) => (
+                  <div key={index} className="flex items-start space-x-3 bg-white rounded-lg p-4">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-white font-bold text-sm">
+                      {index + 1}
+                    </div>
+                    <p className="text-gray-700 font-medium mt-1">{step}</p>
                   </div>
                 ))}
               </div>
