@@ -124,9 +124,9 @@ button, [role="button"] {
     --grid-divider: #E5E7EB;
     
     /* Text Colors */
-    --text-heading: #111111;
-    --text-body: #4B5563;
-    --text-secondary: #6B7280;
+    --text-heading: #000000;
+    --text-body: #5A5A5A;
+    --text-secondary: #333333;
     
     /* Primary Accent (AI Gradient) */
     --gradient-ai-start: #6366F1;
