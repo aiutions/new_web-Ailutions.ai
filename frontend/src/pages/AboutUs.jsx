@@ -179,8 +179,8 @@ export default function AboutUs() {
             
             <div className="flex justify-center items-center space-x-8 py-12">
               <div className="flex flex-col items-center space-y-4 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-                <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center text-white">
-                  <Target className="w-8 h-8" />
+                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center border-2 border-gray-100 shadow-md">
+                  <Target className="w-8 h-8 gradient-primary-text" />
                 </div>
                 <span className="text-luxury-text-secondary font-medium">Audit</span>
               </div>
@@ -188,8 +188,8 @@ export default function AboutUs() {
               <ArrowRight className="w-8 h-8 text-luxury-text-body animate-pulse" />
               
               <div className="flex flex-col items-center space-y-4 animate-fade-in-up" style={{animationDelay: '0.4s'}}>
-                <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center text-white">
-                  <Settings className="w-8 h-8" />
+                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center border-2 border-gray-100 shadow-md">
+                  <Settings className="w-8 h-8 gradient-primary-text" />
                 </div>
                 <span className="text-luxury-text-secondary font-medium">Integrate</span>
               </div>
@@ -197,8 +197,8 @@ export default function AboutUs() {
               <ArrowRight className="w-8 h-8 text-luxury-text-body animate-pulse" />
               
               <div className="flex flex-col items-center space-y-4 animate-fade-in-up" style={{animationDelay: '0.6s'}}>
-                <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center text-white">
-                  <Sparkles className="w-8 h-8" />
+                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center border-2 border-gray-100 shadow-md">
+                  <Sparkles className="w-8 h-8 gradient-primary-text" />
                 </div>
                 <span className="text-luxury-text-secondary font-medium">Results</span>
               </div>
