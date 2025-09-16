@@ -264,9 +264,8 @@ body {
 }
 
 .btn-secondary:disabled {
-    background: #F3F4F6;
-    color: #9CA3AF;
-    border-color: #E5E7EB;
+    background: #F0F0F0;
+    color: #999999;
     cursor: not-allowed;
     transform: none;
 }
