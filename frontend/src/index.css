@@ -273,7 +273,7 @@ body {
 
 /* Accent/Special CTA Button */
 .btn-accent {
-    background: linear-gradient(135deg, #F43F5E 0%, #F59E0B 100%);
+    background: #000000;
     color: #FFFFFF;
     border: none;
     border-radius: 12px;
@@ -297,7 +297,7 @@ body {
 }
 
 .btn-accent:hover {
-    background: linear-gradient(135deg, #E11D48 0%, #D97706 100%);
+    background: linear-gradient(135deg, #3B82F6 0%, #06B6D4 100%);
     transform: translateY(-1px);
 }
 
