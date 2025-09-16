@@ -308,24 +308,24 @@ export default function AboutUs() {
               <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-3xl p-12 border border-purple-100 luxury-card">
                 <div className="grid md:grid-cols-3 gap-8">
                   <div className="text-center space-y-4">
-                    <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto">
-                      <Sparkles className="w-8 h-8 text-white" />
+                    <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto border-2 border-gray-100 shadow-md">
+                      <Sparkles className="w-8 h-8 gradient-primary-text" />
                     </div>
                     <h3 className="text-xl font-bold text-luxury-text-heading">Innovation Hub</h3>
                     <p className="text-luxury-text-body">Continuous AI research and development</p>
                   </div>
                   
                   <div className="text-center space-y-4">
-                    <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto">
-                      <Settings className="w-8 h-8 text-white" />
+                    <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto border-2 border-gray-100 shadow-md">
+                      <Settings className="w-8 h-8 gradient-primary-text" />
                     </div>
                     <h3 className="text-xl font-bold text-luxury-text-heading">Multiple Startups</h3>
                     <p className="text-luxury-text-body">AI-powered solutions across industries</p>
                   </div>
                   
                   <div className="text-center space-y-4">
-                    <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto">
-                      <Target className="w-8 h-8 text-white" />
+                    <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto border-2 border-gray-100 shadow-md">
+                      <Target className="w-8 h-8 gradient-primary-text" />
                     </div>
                     <h3 className="text-xl font-bold text-luxury-text-heading">Ecosystem Growth</h3>
                     <p className="text-luxury-text-body">Competitive advantage for all sizes</p>
