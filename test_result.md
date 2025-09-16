@@ -353,7 +353,7 @@ frontend:
     implemented: true
     working: false
     file: "src/components/LeadMagnetSection.jsx"
-    stuck_count: 0
+    stuck_count: 1
     priority: "high"
     needs_retesting: false
     status_history:
@@ -363,6 +363,9 @@ frontend:
       - working: false
         agent: "testing"
         comment: "❌ PROGRESS BAR BEHAVIOR ISSUE: Progress bar is not functioning correctly. During user interaction, progress bar value returns 'None' instead of expected '100'. The progress bar should show full (100%) when user is manually selecting tools and show normal progress during auto-rotation, but this behavior is not working as expected."
+      - working: false
+        agent: "testing"
+        comment: "❌ PROGRESS BAR STILL NOT WORKING: Progress bar value still returns 'None' instead of 100% during user interaction. Manual Selection indicator appears correctly, but progress bar aria-valuenow attribute is not being set to 100% as expected. The Progress component from Radix UI may not be receiving the correct value prop or the value is not being properly applied to the aria-valuenow attribute."
 
   - task: "CTA Button Functionality"
     implemented: true
