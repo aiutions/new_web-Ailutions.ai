@@ -22,7 +22,7 @@ module.exports = {
   				'text-body': '#5A5A5A',
   				'text-secondary': '#333333',
   				'gradient-start': '#3B82F6',
-  				'ai-end': '#06B6D4',
+  				'gradient-end': '#06B6D4',
   				'cta-start': '#F43F5E',
   				'cta-end': '#F59E0B',
   				'success': '#22C55E',
