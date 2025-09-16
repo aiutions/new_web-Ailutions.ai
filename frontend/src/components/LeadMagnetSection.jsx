@@ -7,6 +7,7 @@ import { ArrowRight, Download, Calculator, BookOpen, FileText, TrendingUp, BarCh
 export const LeadMagnetSection = () => {
   const [currentMagnet, setCurrentMagnet] = useState(0);
   const [progress, setProgress] = useState(0);
+  const [isUserInteracting, setIsUserInteracting] = useState(false);
 
   const leadMagnets = [
     {
@@ -41,24 +42,42 @@ export const LeadMagnetSection = () => {
     }
   ];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentMagnet(prev => (prev + 1) % leadMagnets.length);
-      setProgress(0);
-    }, 4000);
+  // Handle user click on tool card
+  const handleToolClick = (index) => {
+    setCurrentMagnet(index);
+    setProgress(0);
+    setIsUserInteracting(true);
+    
+    // Resume auto-rotation after 15 seconds of no interaction
+    setTimeout(() => {
+      setIsUserInteracting(false);
+    }, 15000);
+  };
 
-    const progressInterval = setInterval(() => {
-      setProgress(prev => {
-        if (prev >= 100) return 0;
-        return prev + 2.5;
-      });
-    }, 100);
+  useEffect(() => {
+    let interval;
+    let progressInterval;
+
+    // Only run auto-rotation if user is not interacting
+    if (!isUserInteracting) {
+      interval = setInterval(() => {
+        setCurrentMagnet(prev => (prev + 1) % leadMagnets.length);
+        setProgress(0);
+      }, 8000); // Slower: 8 seconds instead of 4
+
+      progressInterval = setInterval(() => {
+        setProgress(prev => {
+          if (prev >= 100) return 0;
+          return prev + 1.25; // Slower progress: 1.25 instead of 2.5
+        });
+      }, 100);
+    }
 
     return () => {
-      clearInterval(interval);
-      clearInterval(progressInterval);
+      if (interval) clearInterval(interval);
+      if (progressInterval) clearInterval(progressInterval);
     };
-  }, []);
+  }, [isUserInteracting]);
 
   const currentLead = leadMagnets[currentMagnet];
   const IconComponent = currentLead.icon;
