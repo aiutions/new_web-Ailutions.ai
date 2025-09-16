@@ -106,10 +106,15 @@ export const LeadMagnetSection = () => {
               {/* Progress bar */}
               <div className="p-4 bg-luxury-bg-secondary border-b border-luxury-grid-divider">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-medium text-luxury-text-secondary">Preview</span>
+                  <span className="text-sm font-medium text-luxury-text-secondary">
+                    {isUserInteracting ? "Manual Selection" : "Preview"}
+                  </span>
                   <span className="text-sm text-gray-500">{currentMagnet + 1} of {leadMagnets.length}</span>
                 </div>
-                <Progress value={progress} className="h-1" />
+                <Progress value={isUserInteracting ? 100 : progress} className="h-1" />
+                {isUserInteracting && (
+                  <p className="text-xs text-blue-600 mt-1">Auto-rotation paused • Resumes in 15 seconds</p>
+                )}
               </div>
 
               {/* Lead magnet content */}
