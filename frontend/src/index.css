@@ -239,7 +239,7 @@ body {
 /* Secondary Button (Support CTA) */
 .btn-secondary {
     background: #E6E6E6;
-    color: #333333;
+    color: #000000;
     border: none;
     border-radius: 12px;
     padding: 12px 20px;
