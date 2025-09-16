@@ -57,23 +57,77 @@ export default function DigitalMaturityTracker() {
     const totalScore = Object.values(answers).reduce((sum, score) => sum + score, 0);
     const percentage = Math.round((totalScore / (totalQuestions * 3)) * 100);
     
+    // Determine maturity stage based on enhanced criteria
+    let maturityStage = "Pre-Digital";
+    if (percentage >= 75) {
+      maturityStage = "AI-Powered";
+    } else if (percentage >= 60) {
+      maturityStage = "Automated";
+    } else if (percentage >= 40) {
+      maturityStage = "Digital";
+    }
+    
     const level = maturityLevels.find(level => 
       percentage >= level.range[0] && percentage <= level.range[1]
     );
     
-    // Calculate section scores
+    // Calculate section scores with detailed analysis
     const sectionScores = digitalMaturitySections.map((section, sectionIndex) => {
       const sectionAnswers = Object.entries(answers)
         .filter(([key]) => key.startsWith(`${sectionIndex}-`))
         .map(([, score]) => score);
       
       const sectionTotal = sectionAnswers.reduce((sum, score) => sum + score, 0);
-      const sectionPercentage = Math.round((sectionTotal / (3 * 3)) * 100);
+      const maxSectionScore = section.questions.length * 3;
+      const sectionPercentage = Math.round((sectionTotal / maxSectionScore) * 100);
+      
+      // Detailed analysis for each section
+      let status = "Critical";
+      let analysis = "";
+      
+      if (sectionPercentage >= 80) {
+        status = "Excellent";
+        analysis = "This area is performing exceptionally well and can serve as a foundation for further digital transformation.";
+      } else if (sectionPercentage >= 60) {
+        status = "Good";
+        analysis = "Solid performance with room for optimization and strategic improvements.";
+      } else if (sectionPercentage >= 40) {
+        status = "Needs Improvement";
+        analysis = "This area requires attention and investment to reach digital maturity standards.";
+      } else {
+        status = "Critical";
+        analysis = "Immediate action required. This area poses significant challenges to digital transformation progress.";
+      }
       
       return {
         name: section.name,
-        score: sectionPercentage
+        score: sectionPercentage,
+        status,
+        analysis,
+        questions: section.questions,
+        answers: sectionAnswers
       };
+    });
+
+    // Generate detailed recommendations based on maturity stage and section analysis
+    const detailedRecommendations = generateDetailedRecommendations(maturityStage, sectionScores);
+    const nextSteps = generateNextSteps(maturityStage, sectionScores);
+    const strengths = generateStrengths(sectionScores);
+    const weaknesses = generateWeaknesses(sectionScores);
+
+    setResults({
+      percentage,
+      level,
+      maturityStage,
+      sectionScores,
+      detailedRecommendations,
+      nextSteps,
+      strengths,
+      weaknesses,
+      overallAnalysis: generateOverallAnalysis(percentage, maturityStage, sectionScores)
+    });
+    setIsComplete(true);
+  };
     });
 
     const calculatedResults = {
