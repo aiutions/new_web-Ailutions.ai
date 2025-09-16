@@ -264,12 +264,14 @@ metadata:
 
 test_plan:
   current_focus:
-    - "About Us Page Navigation"
-    - "About Page Routing"
-    - "About Page Content Sections"
-    - "About Page Button Functionality"
-    - "About Page Mobile Responsiveness"
-    - "About Page CTA Section Text Visibility Fix"
+    - "Slideshow Speed Verification"
+    - "Tool Card User Interaction"
+    - "Auto-Pause Feature"
+    - "Manual Selection Visual Feedback"
+    - "Card Selection Tool Details"
+    - "Progress Bar Behavior"
+    - "CTA Button Functionality"
+    - "Slideshow Mobile Responsiveness"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
