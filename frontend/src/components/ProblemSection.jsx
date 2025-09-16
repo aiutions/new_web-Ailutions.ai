@@ -21,7 +21,7 @@ export const ProblemSection = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-orange-500/5"></div>
       <div className="absolute top-0 right-1/4 w-64 h-64 bg-gradient-to-br from-red-400/10 to-orange-400/10 rounded-full blur-3xl animate-pulse"></div>
       
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 section-mobile-safe">
         <div className="text-center mb-16">
           <div className="inline-flex items-center space-x-2 bg-red-100 text-red-700 rounded-full px-6 py-3 mb-6">
             <AlertTriangle className="w-5 h-5" />
