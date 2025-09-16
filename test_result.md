@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: Test the updated Ailutions website styling and functionality focusing on hero section button styling, gradient consistency, button functionality, mobile responsiveness, and navigation.
+user_problem_statement: Test the new About Us page functionality and navigation including navigation testing, About page routing, content sections verification, mobile responsiveness, and button functionality.
 
 backend:
   - task: "Backend services remain unchanged"
