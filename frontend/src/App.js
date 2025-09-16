@@ -5,6 +5,7 @@ import Homepage from "./pages/Homepage";
 import DigitalMaturityTracker from "./pages/DigitalMaturityTracker";
 import ROICalculator from "./pages/ROICalculator";
 import AutomationReadinessAssessment from "./pages/AutomationReadinessAssessment";
+import AboutUs from "./pages/AboutUs";
 
 function App() {
   return (
