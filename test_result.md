@@ -371,7 +371,7 @@ frontend:
     implemented: true
     working: false
     file: "src/components/LeadMagnetSection.jsx"
-    stuck_count: 0
+    stuck_count: 1
     priority: "high"
     needs_retesting: false
     status_history:
@@ -381,6 +381,9 @@ frontend:
       - working: false
         agent: "testing"
         comment: "❌ CTA BUTTON FUNCTIONALITY ISSUE: CTA buttons in the left panel are not working correctly. All CTA buttons show generic 'Get Started' text instead of tool-specific text like 'Start Assessment', 'Analyze Tasks', or 'Calculate Savings'. Additionally, clicking CTA buttons does not navigate to the expected pages - all clicks remain on homepage (/) instead of navigating to /digital-maturity-tracker, /automation-assessment, or /roi-calculator respectively."
+      - working: false
+        agent: "testing"
+        comment: "❌ CTA BUTTON PARTIALLY WORKING: 'Analyze Tasks' and 'Calculate Savings' buttons are visible and navigate correctly to /automation-assessment and /roi-calculator respectively. However, 'Start Assessment' button for Digital Maturity Tracker is not visible - only generic 'Get Started' button appears. This suggests the CTA button text is not updating correctly for the first tool in the slideshow."
 
   - task: "Slideshow Mobile Responsiveness"
     implemented: true
