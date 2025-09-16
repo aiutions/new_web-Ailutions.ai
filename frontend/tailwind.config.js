@@ -21,7 +21,7 @@ module.exports = {
   				'text-heading': '#000000',
   				'text-body': '#5A5A5A',
   				'text-secondary': '#333333',
-  				'ai-start': '#6366F1',
+  				'gradient-start': '#3B82F6',
   				'ai-end': '#06B6D4',
   				'cta-start': '#F43F5E',
   				'cta-end': '#F59E0B',
