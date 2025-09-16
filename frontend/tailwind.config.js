@@ -23,7 +23,7 @@ module.exports = {
   				'text-secondary': '#333333',
   				'gradient-start': '#3B82F6',
   				'gradient-end': '#06B6D4',
-  				'cta-start': '#F43F5E',
+  				// Removed cta-start
   				'cta-end': '#F59E0B',
   				'success': '#22C55E',
   				'warning': '#FACC15',
