@@ -23,8 +23,8 @@ export default function DigitalMaturityTracker() {
     role: ''
   });
 
-  const totalQuestions = digitalMaturitySections.length * 3;
-  const currentQuestionNumber = (currentSection * 3) + currentQuestion + 1;
+  const totalQuestions = digitalMaturitySections.reduce((sum, section) => sum + section.questions.length, 0);
+  const currentQuestionNumber = digitalMaturitySections.slice(0, currentSection).reduce((sum, section) => sum + section.questions.length, 0) + currentQuestion + 1;
   const progress = (Object.keys(answers).length / totalQuestions) * 100;
 
   const handleAnswer = (score) => {
