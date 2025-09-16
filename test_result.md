@@ -264,7 +264,11 @@ metadata:
 
 test_plan:
   current_focus:
-    - "All styling and functionality tests completed successfully"
+    - "About Us Page Navigation"
+    - "About Page Routing"
+    - "About Page Content Sections"
+    - "About Page Button Functionality"
+    - "About Page Mobile Responsiveness"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
