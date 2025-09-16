@@ -774,19 +774,18 @@ export default function DigitalMaturityTracker() {
         </Card>
 
         {/* Navigation */}
-        <div className="flex items-center justify-between">
-          <Button
+        <div className="flex items-center justify-between section-mobile-safe">
+          <button
             onClick={goBack}
-            variant="outline"
             disabled={currentSection === 0 && currentQuestion === 0}
-            className="border-2 border-gray-200 hover:border-gray-400 text-gray-600 hover:text-gray-800 font-semibold px-3 sm:px-6 py-2 sm:py-3 rounded-xl transition-all duration-300 text-sm sm:text-base"
+            className="btn-secondary btn-small"
           >
             <ArrowLeft className="w-4 h-4 mr-1 sm:mr-2" />
             <span className="hidden sm:inline">Previous</span>
             <span className="sm:hidden">Back</span>
-          </Button>
+          </button>
           
-          <div className="text-xs sm:text-sm text-gray-500 text-center">
+          <div className="text-xs sm:text-sm text-luxury-text-secondary text-center flex-1 mx-4">
             Section {currentSection + 1} of {digitalMaturitySections.length}
           </div>
           
