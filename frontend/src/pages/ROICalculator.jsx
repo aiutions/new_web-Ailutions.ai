@@ -487,10 +487,10 @@ export default function ROICalculator() {
           </div>
 
           {/* Action Buttons */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="button-container-mobile md:grid md:grid-cols-3 md:gap-6 mb-8">
             <button
               onClick={downloadPDF}
-              className="btn-primary btn-large w-full sm:w-auto btn-wrap"
+              className="btn-primary btn-large w-full btn-wrap"
               style={{borderRadius: '16px'}}
             >
               <Download className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
@@ -500,7 +500,7 @@ export default function ROICalculator() {
             
             <button
               onClick={() => window.open('https://calendly.com/ailutions-strategy-call', '_blank')}
-              className="btn-accent btn-large w-full sm:w-auto btn-wrap"
+              className="btn-accent btn-large w-full btn-wrap"
               style={{borderRadius: '16px'}}
             >
               <Calendar className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
@@ -510,7 +510,7 @@ export default function ROICalculator() {
 
             <button
               onClick={() => window.location.href = '/digital-maturity-tracker'}
-              className="btn-secondary btn-large w-full sm:w-auto btn-wrap"
+              className="btn-secondary btn-large w-full btn-wrap"
               style={{borderRadius: '16px'}}
             >
               <BarChart3 className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
