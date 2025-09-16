@@ -712,11 +712,21 @@ export default function DigitalMaturityTracker() {
               Your Digital Maturity Score
             </h1>
             <div className="text-6xl md:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-green-600 mb-2">
-              {results.overallScore}%
+              {results.percentage}%
             </div>
-            <Badge className="text-lg px-6 py-2 bg-gradient-to-r from-blue-100 to-green-100 text-gray-700 border-0">
-              {results.level.name}
-            </Badge>
+            <div className="flex flex-col items-center space-y-2">
+              <Badge className="text-lg px-6 py-2 bg-gradient-to-r from-blue-100 to-green-100 text-gray-700 border-0">
+                {results.level.name}
+              </Badge>
+              <Badge className={`text-lg px-6 py-2 border-0 ${
+                results.maturityStage === 'AI-Powered' ? 'bg-gradient-to-r from-purple-100 to-blue-100 text-purple-700' :
+                results.maturityStage === 'Automated' ? 'bg-gradient-to-r from-green-100 to-teal-100 text-green-700' :
+                results.maturityStage === 'Digital' ? 'bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-700' :
+                'bg-gradient-to-r from-gray-100 to-slate-100 text-gray-700'
+              }`}>
+                {results.maturityStage} Stage
+              </Badge>
+            </div>
             <p className="text-xl text-gray-600 mt-4 max-w-2xl mx-auto">
               {results.level.description}
             </p>
