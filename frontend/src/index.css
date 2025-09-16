@@ -305,8 +305,8 @@ body {
 }
 
 .btn-accent:disabled {
-    background: #F3F4F6;
-    color: #9CA3AF;
+    background: #CCCCCC;
+    color: #666666;
     cursor: not-allowed;
     transform: none;
 }
