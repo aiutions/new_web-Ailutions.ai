@@ -107,7 +107,7 @@ export default function Homepage() {
               
               <button 
                 onClick={scrollToContact}
-                className="btn-accent btn-large w-full sm:w-auto btn-wrap container-mobile-fix"
+                className="btn-secondary btn-large w-full sm:w-auto btn-wrap container-mobile-fix"
               >
                 <span className="hidden sm:inline">Book a Free Strategy Call</span>
                 <span className="sm:hidden">Book Call</span>
