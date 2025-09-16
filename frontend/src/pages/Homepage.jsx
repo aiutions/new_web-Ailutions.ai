@@ -69,7 +69,7 @@ export default function Homepage() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20 bg-luxury-bg-primary grid-section">
         <div className="absolute inset-0 bg-gradient-to-br from-luxury-bg-primary via-luxury-bg-secondary to-luxury-bg-primary opacity-50"></div>
         
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center section-mobile-safe">
           <div className="space-y-6 sm:space-y-8">
             <div className="inline-flex items-center space-x-2 bg-luxury-bg-secondary border border-luxury-grid-divider text-luxury-ai-start rounded-full px-4 sm:px-6 py-2 sm:py-3 luxury-card font-semibold text-sm sm:text-base">
               <Target className="w-4 h-4 sm:w-5 sm:h-5" />
