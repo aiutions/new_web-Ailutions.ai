@@ -11,7 +11,7 @@ from datetime import datetime
 import uuid
 
 # Get backend URL from environment
-BACKEND_URL = "https://ai-lead-toolkit.preview.emergentagent.com/api"
+BACKEND_URL = "https://luxury-theme-app.preview.emergentagent.com/api"
 
 def test_root_endpoint():
     """Test the root API endpoint"""
