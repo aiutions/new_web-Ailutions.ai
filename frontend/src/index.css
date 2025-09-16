@@ -510,6 +510,30 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text-secondary);
 }
 
+/* Specific Text Color Classes */
+.text-heading {
+    color: #000000;
+}
+
+.text-description {
+    color: #5A5A5A;
+}
+
+.text-emphasis {
+    color: #333333;
+}
+
+/* Paragraph and description default */
+p {
+    color: #5A5A5A;
+}
+
+/* Sub-headlines and emphasis */
+.sub-headline,
+.emphasis-text {
+    color: #333333;
+}
+
 /* Custom animations */
 @keyframes fadeInUp {
     from {
