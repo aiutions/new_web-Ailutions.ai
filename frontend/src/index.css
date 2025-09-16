@@ -165,22 +165,33 @@ body {
     box-shadow: 0 4px 6px var(--shadow-soft), 0 2px 4px var(--shadow-soft);
 }
 
-/* AI Gradient Elements */
-.gradient-ai {
-    background: linear-gradient(135deg, var(--gradient-ai-start) 0%, var(--gradient-ai-end) 100%);
+/* Primary Gradient - Modern Blue (Only One Used) */
+.gradient-primary {
+    background: linear-gradient(135deg, #3B82F6 0%, #06B6D4 100%);
 }
 
-/* AI Gradient Text */
-.gradient-ai-text {
-    background: linear-gradient(135deg, var(--gradient-ai-start) 0%, var(--gradient-ai-end) 100%);
+/* Primary Gradient Text */
+.gradient-primary-text {
+    background: linear-gradient(135deg, #3B82F6 0%, #06B6D4 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
-/* CTA Gradient Elements */
+/* Legacy gradient classes - Updated to use primary gradient */
+.gradient-ai {
+    background: linear-gradient(135deg, #3B82F6 0%, #06B6D4 100%);
+}
+
+.gradient-ai-text {
+    background: linear-gradient(135deg, #3B82F6 0%, #06B6D4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 .gradient-cta {
-    background: linear-gradient(135deg, var(--gradient-cta-start) 0%, var(--gradient-cta-end) 100%);
+    background: linear-gradient(135deg, #3B82F6 0%, #06B6D4 100%);
 }
 
 /* Button System - Luxury Professional */
