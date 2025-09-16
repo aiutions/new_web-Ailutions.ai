@@ -425,7 +425,7 @@ export default function AboutUs() {
       </section>
 
       {/* CTA Banner Section */}
-      <section className="py-20 bg-gradient-primary relative overflow-hidden">
+      <section className="py-20 bg-gradient-primary relative overflow-hidden" style={{background: 'linear-gradient(135deg, #3B82F6 0%, #06B6D4 100%)'}}>
         <div className="absolute inset-0">
           <div className="absolute -top-20 -right-20 w-40 h-40 bg-white rounded-full opacity-10 animate-float"></div>
           <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-white rounded-full opacity-10 animate-float" style={{animationDelay: '2s'}}></div>
@@ -433,11 +433,11 @@ export default function AboutUs() {
         </div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 text-center space-y-8">
-          <h2 className="text-4xl md:text-6xl font-bold text-white leading-tight">
+          <h2 className="text-4xl md:text-6xl font-bold text-white leading-tight drop-shadow-lg">
             Ready to Bring AI Into Your Business?
           </h2>
           
-          <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-white/95 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
             Start with a free Digital Maturity Assessment or book a strategy call.
           </p>
           
@@ -452,7 +452,7 @@ export default function AboutUs() {
             
             <button 
               onClick={scrollToContact}
-              className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-200 hover:scale-105"
+              className="border-2 border-white text-white hover:bg-white hover:text-blue-600 bg-white/10 backdrop-blur-sm px-8 py-4 rounded-full font-semibold text-lg transition-all duration-200 hover:scale-105"
             >
               Book a Call
             </button>
