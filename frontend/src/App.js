@@ -13,6 +13,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Homepage />} />
+          <Route path="/about" element={<AboutUs />} />
           <Route path="/digital-maturity-tracker" element={<DigitalMaturityTracker />} />
           <Route path="/roi-calculator" element={<ROICalculator />} />
           <Route path="/automation-assessment" element={<AutomationReadinessAssessment />} />
