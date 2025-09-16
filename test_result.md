@@ -418,10 +418,8 @@ metadata:
 test_plan:
   current_focus:
     - "Progress Bar Behavior"
-    - "CTA Button Functionality"
   stuck_tasks:
     - "Progress Bar Behavior"
-    - "CTA Button Functionality"
   test_all: false
   test_priority: "stuck_first"
 
