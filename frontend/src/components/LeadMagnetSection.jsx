@@ -164,7 +164,7 @@ export const LeadMagnetSection = () => {
                   className={`group border-0 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer ${
                     index === currentMagnet ? 'bg-blue-50 border-2 border-blue-200' : 'bg-white hover:scale-105'
                   }`}
-                  onClick={() => setCurrentMagnet(index)}
+                  onClick={() => handleToolClick(index)}
                 >
                   <CardContent className="p-6">
                     <div className="flex items-center space-x-4">
