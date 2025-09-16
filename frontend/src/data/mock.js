@@ -152,11 +152,12 @@ export const digitalMaturitySections = [
     ]
   },
   {
-    name: "Data",
+    name: "Data & Decisions",
     questions: [
-      "How accessible is your business data?",
-      "How well do you leverage data for decision making?",
-      "How robust is your data governance framework?"
+      "We use real-time dashboards for the numbers that matter.",
+      "Customer data is clean, secure, and available to the right people.",
+      "Management use data over gut feel for key decisions.",
+      "We forecast with data (e.g., sales, demand, customer drop-off)."
     ]
   },
   {
