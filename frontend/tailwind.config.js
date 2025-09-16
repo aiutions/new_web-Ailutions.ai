@@ -24,7 +24,7 @@ module.exports = {
   				'gradient-start': '#3B82F6',
   				'gradient-end': '#06B6D4',
   				// Removed cta-start
-  				'cta-end': '#F59E0B',
+  				// Removed cta-end
   				'success': '#22C55E',
   				'warning': '#FACC15',
   				'critical': '#EF4444',
