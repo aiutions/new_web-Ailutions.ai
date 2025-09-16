@@ -128,13 +128,9 @@ button, [role="button"] {
     --text-body: #5A5A5A;
     --text-secondary: #333333;
     
-    /* Primary Accent (AI Gradient) */
-    --gradient-ai-start: #6366F1;
-    --gradient-ai-end: #06B6D4;
-    
-    /* Secondary Accent (CTA Gradient) */
-    --gradient-cta-start: #F43F5E;
-    --gradient-cta-end: #F59E0B;
+    /* Primary Gradient - Modern Blue */
+    --gradient-primary-start: #3B82F6;
+    --gradient-primary-end: #06B6D4;
     
     /* Highlight System */
     --success: #22C55E;
