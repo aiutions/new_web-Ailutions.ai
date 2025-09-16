@@ -45,12 +45,13 @@ export const LeadMagnetSection = () => {
   // Handle user click on tool card
   const handleToolClick = (index) => {
     setCurrentMagnet(index);
-    setProgress(0);
+    setProgress(100); // Set to 100 to show full progress during manual selection
     setIsUserInteracting(true);
     
     // Resume auto-rotation after 15 seconds of no interaction
     setTimeout(() => {
       setIsUserInteracting(false);
+      setProgress(0); // Reset progress when auto-rotation resumes
     }, 15000);
   };
 
