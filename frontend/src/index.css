@@ -187,7 +187,7 @@ body {
 
 /* Primary Button (Main CTA) */
 .btn-primary {
-    background: linear-gradient(135deg, #6366F1 0%, #06B6D4 100%);
+    background: #000000;
     color: #FFFFFF;
     border: none;
     border-radius: 12px;
@@ -212,9 +212,9 @@ body {
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, #5855E8 0%, #0891B2 100%);
+    background: linear-gradient(135deg, #3B82F6 0%, #06B6D4 100%);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .btn-primary:active {
