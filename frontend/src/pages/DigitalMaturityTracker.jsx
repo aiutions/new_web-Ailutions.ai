@@ -35,7 +35,8 @@ export default function DigitalMaturityTracker() {
     }));
 
     // Move to next question
-    if (currentQuestion < 2) {
+    const currentSectionQuestions = digitalMaturitySections[currentSection].questions.length;
+    if (currentQuestion < currentSectionQuestions - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else if (currentSection < digitalMaturitySections.length - 1) {
       setCurrentSection(currentSection + 1);
