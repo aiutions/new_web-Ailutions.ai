@@ -489,11 +489,13 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Progress Bar Behavior"
+    - "Enhanced Digital Maturity Tracker - Updated Questions Verification"
+    - "Enhanced Digital Maturity Tracker - Maturity Stage Classification"
+    - "Enhanced Digital Maturity Tracker - Detailed Report Sections"
   stuck_tasks:
     - "Progress Bar Behavior"
   test_all: false
-  test_priority: "stuck_first"
+  test_priority: "high_first"
 
 agent_communication:
   - agent: "main"
