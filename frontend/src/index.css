@@ -231,9 +231,9 @@ body {
 
 /* Secondary Button (Support CTA) */
 .btn-secondary {
-    background: #FFFFFF;
-    color: #111111;
-    border: 1px solid #E5E7EB;
+    background: #E6E6E6;
+    color: #000000;
+    border: none;
     border-radius: 12px;
     padding: 12px 20px;
     font-weight: 500;
@@ -255,7 +255,7 @@ body {
 }
 
 .btn-secondary:hover {
-    background: #F9FAFB;
+    background: #CCCCCC;
     transform: translateY(-1px);
 }
 
