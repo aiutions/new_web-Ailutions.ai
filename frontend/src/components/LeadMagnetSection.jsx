@@ -80,8 +80,8 @@ export const LeadMagnetSection = () => {
     };
   }, [isUserInteracting, leadMagnets.length]);
 
-  const currentLead = leadMagnets[currentMagnet];
-  const IconComponent = currentLead.icon;
+  const currentLead = leadMagnets[currentMagnet] || leadMagnets[0];
+  const IconComponent = currentLead?.icon || TrendingUp;
 
   return (
     <section className="py-20 bg-luxury-bg-secondary grid-section border-t border-luxury-grid-divider relative overflow-hidden">
