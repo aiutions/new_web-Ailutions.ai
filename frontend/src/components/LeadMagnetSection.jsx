@@ -78,7 +78,7 @@ export const LeadMagnetSection = () => {
       if (interval) clearInterval(interval);
       if (progressInterval) clearInterval(progressInterval);
     };
-  }, [isUserInteracting]);
+  }, [isUserInteracting, leadMagnets.length]);
 
   const currentLead = leadMagnets[currentMagnet];
   const IconComponent = currentLead.icon;
