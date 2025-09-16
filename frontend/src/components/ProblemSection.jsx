@@ -93,15 +93,16 @@ export const ProblemSection = () => {
         
         {/* CTA */}
         <div className="text-center">
-          <Button
+          <button
             onClick={scrollToServices}
-            size="lg"
-            className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white font-bold px-12 py-6 rounded-2xl text-xl hover:scale-105 transition-all duration-300 hover:shadow-2xl"
+            className="btn-accent btn-large w-full sm:w-auto btn-wrap container-mobile-fix"
+            style={{borderRadius: '20px'}}
           >
-            See How Ailutions Eliminates These Problems
-            <ArrowRight className="w-6 h-6 ml-3" />
-          </Button>
-          <p className="text-gray-600 mt-4 text-lg">
+            <span className="hidden sm:inline">See How Ailutions Eliminates These Problems</span>
+            <span className="sm:hidden">See Our Solutions</span>
+            <ArrowRight className="w-4 h-4 sm:w-6 sm:h-6 ml-2 sm:ml-3" />
+          </button>
+          <p className="text-luxury-text-secondary mt-4 text-sm sm:text-lg text-center px-4">
             👆 Stop the bleeding. Start automating.
           </p>
         </div>
