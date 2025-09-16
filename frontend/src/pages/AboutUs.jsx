@@ -357,32 +357,32 @@ export default function AboutUs() {
             
             <div className="grid md:grid-cols-4 gap-8 pt-12">
               <div className="text-center space-y-4">
-                <div className="w-20 h-20 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto animate-float">
-                  <Settings className="w-10 h-10 text-white" />
+                <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto animate-float border-2 border-gray-100 shadow-md">
+                  <Settings className="w-10 h-10 gradient-primary-text" />
                 </div>
                 <h3 className="text-lg font-bold text-luxury-text-heading">Operations</h3>
                 <p className="text-luxury-text-body text-sm">Streamlined workflows</p>
               </div>
               
               <div className="text-center space-y-4">
-                <div className="w-20 h-20 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto animate-float" style={{animationDelay: '0.5s'}}>
-                  <Target className="w-10 h-10 text-white" />
+                <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto animate-float border-2 border-gray-100 shadow-md" style={{animationDelay: '0.5s'}}>
+                  <Target className="w-10 h-10 gradient-primary-text" />
                 </div>
                 <h3 className="text-lg font-bold text-luxury-text-heading">Decision-Making</h3>
                 <p className="text-luxury-text-body text-sm">Data-driven insights</p>
               </div>
               
               <div className="text-center space-y-4">
-                <div className="w-20 h-20 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto animate-float" style={{animationDelay: '1s'}}>
-                  <Heart className="w-10 h-10 text-white" />
+                <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto animate-float border-2 border-gray-100 shadow-md" style={{animationDelay: '1s'}}>
+                  <Heart className="w-10 h-10 gradient-primary-text" />
                 </div>
                 <h3 className="text-lg font-bold text-luxury-text-heading">Customer Experience</h3>
                 <p className="text-luxury-text-body text-sm">Personalized interactions</p>
               </div>
               
               <div className="text-center space-y-4">
-                <div className="w-20 h-20 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto animate-float" style={{animationDelay: '1.5s'}}>
-                  <Sparkles className="w-10 h-10 text-white" />
+                <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto animate-float border-2 border-gray-100 shadow-md" style={{animationDelay: '1.5s'}}>
+                  <Sparkles className="w-10 h-10 gradient-primary-text" />
                 </div>
                 <h3 className="text-lg font-bold text-luxury-text-heading">Growth Strategies</h3>
                 <p className="text-luxury-text-body text-sm">Scalable solutions</p>
