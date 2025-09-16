@@ -47,16 +47,18 @@ export default function Homepage() {
             </nav>
 
             {/* Mobile Navigation Button */}
-            <div className="lg:hidden flex items-center space-x-2">
+            <div className="lg:hidden flex items-center space-x-1 sm:space-x-2">
               <button 
                 onClick={() => window.location.href = '/digital-maturity-tracker'}
-                className="btn-primary btn-small rounded-full text-xs"
+                className="btn-primary rounded-full text-xs px-2 py-1 sm:px-3 sm:py-1.5"
+                style={{fontSize: '11px', padding: '4px 8px'}}
               >
                 Assessment
               </button>
               <button 
                 onClick={scrollToContact}
-                className="btn-secondary btn-small rounded-full text-xs"
+                className="btn-secondary rounded-full text-xs px-2 py-1 sm:px-3 sm:py-1.5"
+                style={{fontSize: '11px', padding: '4px 8px'}}
               >
                 Contact
               </button>
