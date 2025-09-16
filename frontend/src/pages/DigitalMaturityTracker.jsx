@@ -234,24 +234,6 @@ export default function DigitalMaturityTracker() {
                      "Lead innovation initiatives and explore emerging technologies."
     };
   };
-    });
-
-    const calculatedResults = {
-      overallScore: percentage,
-      level: level,
-      sectionScores: sectionScores,
-      timestamp: new Date().toISOString(),
-      userInfo: userInfo || formData
-    };
-
-    setResults(calculatedResults);
-    setIsComplete(true);
-    
-    // Save to localStorage
-    const assessments = JSON.parse(localStorage.getItem('maturityAssessments') || '[]');
-    assessments.push(calculatedResults);
-    localStorage.setItem('maturityAssessments', JSON.stringify(assessments));
-  };
 
   const downloadPDF = async () => {
     if (!results) return;
