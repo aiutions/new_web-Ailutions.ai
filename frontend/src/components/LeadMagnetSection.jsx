@@ -112,7 +112,7 @@ export const LeadMagnetSection = () => {
                   </span>
                   <span className="text-sm text-gray-500">{currentMagnet + 1} of {leadMagnets.length}</span>
                 </div>
-                <Progress value={isUserInteracting ? 100 : progress} className="h-1" />
+                <Progress value={isUserInteracting ? 100 : Math.min(100, Math.max(0, progress || 0))} className="h-1" />
                 {isUserInteracting && (
                   <p className="text-xs text-blue-600 mt-1">Auto-rotation paused • Resumes in 15 seconds</p>
                 )}
