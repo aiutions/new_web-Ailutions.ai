@@ -121,16 +121,17 @@ export const OfferSection = () => {
                     </p>
                   </div>
 
-                  <Button
+                  <button
                     onClick={() => window.location.href = '/digital-maturity-tracker'}
-                    size="lg"
-                    className="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-bold px-10 py-6 rounded-2xl text-xl hover:scale-105 transition-all duration-300 hover:shadow-2xl"
+                    className="btn-primary btn-large w-full btn-wrap container-mobile-fix"
+                    style={{borderRadius: '20px'}}
                   >
-                    Claim My Free Assessment
-                    <ArrowRight className="w-6 h-6 ml-3" />
-                  </Button>
+                    <span className="hidden sm:inline">Claim My Free Assessment</span>
+                    <span className="sm:hidden">Free Assessment</span>
+                    <ArrowRight className="w-4 h-4 sm:w-6 sm:h-6 ml-2 sm:ml-3" />
+                  </button>
                   
-                  <p className="text-sm opacity-80">
+                  <p className="text-xs sm:text-sm text-center px-4 mt-3" style={{opacity: '0.8'}}>
                     ⚡ Takes 3 minutes • Instant results • No credit card required
                   </p>
                 </div>
