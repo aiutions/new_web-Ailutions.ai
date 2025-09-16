@@ -232,7 +232,7 @@ body {
 /* Secondary Button (Support CTA) */
 .btn-secondary {
     background: #E6E6E6;
-    color: #000000;
+    color: #333333;
     border: none;
     border-radius: 12px;
     padding: 12px 20px;
@@ -256,6 +256,7 @@ body {
 
 .btn-secondary:hover {
     background: #CCCCCC;
+    color: #000000;
     transform: translateY(-1px);
 }
 
