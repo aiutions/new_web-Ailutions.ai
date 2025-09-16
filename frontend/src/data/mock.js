@@ -177,11 +177,12 @@ export const digitalMaturitySections = [
     ]
   },
   {
-    name: "Culture",
+    name: "Customer & People",
     questions: [
-      "How adaptable is your workforce to digital change?",
-      "How well do you support digital skills development?",
-      "How effectively do you communicate digital initiatives?"
+      "Our site/app is fast, mobile-friendly, and easy to use.",
+      "We collect customer feedback and act on it within a week.",
+      "Customers get the same info and service on our website, WhatsApp, phone, and in-person.",
+      "We train our team on new tools at least twice a year."
     ]
   }
 ];
