@@ -499,7 +499,7 @@ export default function ROICalculator() {
             </button>
             
             <button
-              onClick={() => window.open('https://calendly.com/ailutions-strategy-call', '_blank')}
+              onClick={() => window.open('https://cal.com/ailutions/15-minutes-strategy-call', '_blank')}
               className="btn-accent btn-large w-full btn-wrap"
               style={{borderRadius: '16px'}}
             >
