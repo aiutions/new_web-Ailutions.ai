@@ -201,7 +201,7 @@ export default function Homepage() {
           <div className="mt-12 text-center">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
               <Button
-                onClick={() => window.open('https://calendly.com/ailutions', '_blank')}
+                onClick={() => window.open('https://cal.com/ailutions/15-minutes-strategy-call', '_blank')}
                 variant="outline"
                 className="p-6 h-auto flex-col space-y-2 hover:scale-105 transition-all duration-300"
               >
