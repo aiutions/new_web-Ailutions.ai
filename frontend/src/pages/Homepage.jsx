@@ -271,10 +271,36 @@ export default function Homepage() {
             <div>
               <h3 className="text-lg font-semibold mb-4">Contact</h3>
               <ul className="space-y-2 text-gray-400">
-                <li>hello@ailutions.com</li>
-                <li>+1 (555) 123-4567</li>
-                <li><a href="#" className="hover:text-white transition-colors">WhatsApp Support</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Book a Strategy Call</a></li>
+                <li>
+                  <a href="mailto:info@ailutions.ai" className="hover:text-white transition-colors">
+                    info@ailutions.ai
+                  </a>
+                </li>
+                <li>
+                  <a href="tel:+971585695177" className="hover:text-white transition-colors">
+                    +971 58 569 5177
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="https://wa.me/971585695177?text=Hi, I'd like to learn more about your AI automation services" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="hover:text-white transition-colors"
+                  >
+                    WhatsApp Support
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="https://cal.com/ailutions/15-minutes-strategy-call" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="hover:text-white transition-colors"
+                  >
+                    Book a Strategy Call
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
