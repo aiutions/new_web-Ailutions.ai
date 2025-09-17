@@ -528,7 +528,7 @@ export default function ROICalculator() {
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
                 <button
-                  onClick={() => window.open('https://calendly.com/ailutions-strategy-call', '_blank')}
+                  onClick={() => window.open('https://cal.com/ailutions/15-minutes-strategy-call', '_blank')}
                   className="btn-accent btn-large text-lg px-8 py-4"
                 >
                   Book Free Strategy Call
