@@ -660,12 +660,19 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Digital Maturity Assessment API - Save Endpoint"
-    - "Digital Maturity Assessment API - Retrieval Endpoint"
-    - "Digital Maturity Assessment API - All Assessments Endpoint"
-    - "Digital Maturity Assessment API - Statistics Endpoint"
-    - "Digital Maturity Assessment API - Company Assessments Endpoint"
-  stuck_tasks: []
+    - "Supabase Backend Integration - Health Check"
+    - "Supabase Backend Integration - Table Auto-Creation"
+    - "Supabase Backend Integration - Digital Maturity Assessment Save"
+    - "Supabase Backend Integration - Data Retrieval"
+    - "Supabase Backend Integration - Error Handling"
+    - "Supabase Backend Integration - ROI Calculator & Automation Assessment"
+  stuck_tasks:
+    - "Supabase Backend Integration - Health Check"
+    - "Supabase Backend Integration - Table Auto-Creation"
+    - "Supabase Backend Integration - Digital Maturity Assessment Save"
+    - "Supabase Backend Integration - Data Retrieval"
+    - "Supabase Backend Integration - Error Handling"
+    - "Supabase Backend Integration - ROI Calculator & Automation Assessment"
   test_all: false
   test_priority: "high_first"
 
