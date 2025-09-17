@@ -603,6 +603,10 @@ export default function DigitalMaturityTracker() {
   };
 
   const contactWhatsApp = () => {
+    window.open('https://wa.me/971585695177?text=Hi, I\'d like to learn more about your digital transformation services', '_blank');
+  };
+
+  const contactWhatsApp = () => {
     const message = encodeURIComponent(
       `Hi! I just completed the Digital Maturity Assessment and got ${results?.overallScore}% (${results?.level?.name} level). I'd like to discuss next steps for automation in my business.`
     );
