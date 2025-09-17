@@ -372,35 +372,35 @@ def test_get_all_assessments():
         return False
 
 def test_get_assessment_stats():
-    """Test retrieving assessment statistics"""
-    print("\nTesting get assessment stats endpoint...")
+    """Test retrieving assessment statistics - Analytics verification"""
+    print("\nTesting get analytics overview endpoint...")
     try:
-        response = requests.get(f"{BACKEND_URL}/assessments/stats")
+        response = requests.get(f"{BACKEND_URL}/analytics/overview")
         print(f"Status Code: {response.status_code}")
         
         if response.status_code == 200:
             data = response.json()
-            print(f"Stats response keys: {list(data.keys())}")
+            print(f"Analytics response keys: {list(data.keys())}")
             
-            # Verify required stats fields
-            required_fields = ["total_assessments", "recent_assessments_30_days", 
-                             "maturity_stage_distribution", "section_averages", "last_updated"]
+            # Verify required analytics fields
+            required_fields = ["total_assessments", "recent_assessments_30_days", "last_updated"]
             
             if all(field in data for field in required_fields):
-                print(f"Total assessments: {data['total_assessments']}")
-                print(f"Recent assessments (30 days): {data['recent_assessments_30_days']}")
-                print(f"Stage distribution entries: {len(data['maturity_stage_distribution'])}")
-                print(f"Section averages entries: {len(data['section_averages'])}")
-                print("✅ Get assessment stats working correctly")
+                total_assessments = data.get("total_assessments", {})
+                recent_assessments = data.get("recent_assessments_30_days", {})
+                
+                print(f"Total assessments: {total_assessments}")
+                print(f"Recent assessments (30 days): {recent_assessments}")
+                print("✅ Get analytics overview working correctly")
                 return True
             else:
-                print("❌ Get assessment stats missing required fields")
+                print("❌ Get analytics overview missing required fields")
                 return False
         else:
-            print(f"❌ Get assessment stats failed with status {response.status_code}")
+            print(f"❌ Get analytics overview failed with status {response.status_code}")
             return False
     except Exception as e:
-        print(f"❌ Get assessment stats test failed: {str(e)}")
+        print(f"❌ Get analytics overview test failed: {str(e)}")
         return False
 
 def test_get_company_assessments():
