@@ -192,7 +192,7 @@ export default function DigitalMaturityTracker() {
     const strengths = generateStrengths(sectionScores);
     const weaknesses = generateWeaknesses(sectionScores);
 
-    setResults({
+    const calculatedResults = {
       percentage,
       level,
       maturityStage,
@@ -202,8 +202,12 @@ export default function DigitalMaturityTracker() {
       strengths,
       weaknesses,
       overallAnalysis: generateOverallAnalysis(percentage, maturityStage, sectionScores)
-    });
+    };
+
+    setResults(calculatedResults);
     setIsComplete(true);
+    
+    return calculatedResults;
   };
 
   // Helper functions for detailed analysis
