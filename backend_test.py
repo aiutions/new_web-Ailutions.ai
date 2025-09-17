@@ -150,117 +150,118 @@ def test_backend_connectivity():
         return False
 
 def test_save_assessment():
-    """Test saving a Digital Maturity Assessment"""
-    print("\nTesting save assessment endpoint...")
+    """Test saving a Digital Maturity Assessment - PRIORITY TEST for table auto-creation"""
+    print("\nTesting save assessment endpoint (Table auto-creation verification)...")
     try:
-        # Create comprehensive test assessment data
+        # Create comprehensive test assessment data with realistic information
         test_assessment = {
             "user_info": {
-                "name": "Sarah Johnson",
-                "email": "sarah.johnson@techcorp.com",
-                "company": "TechCorp Solutions",
-                "role": "Digital Transformation Manager"
+                "name": "Michael Chen",
+                "email": "michael.chen@innovatetech.com",
+                "company": "InnovateTech Solutions",
+                "role": "CTO"
             },
             "answers": {
-                "0-0-0": 2,  # Strategy & Leadership - Fully agree
-                "0-0-1": 1,  # Strategy & Leadership - Partially agree
-                "0-0-2": 2,  # Strategy & Leadership - Fully agree
-                "0-0-3": 0,  # Strategy & Leadership - Disagree
-                "0-1-0": 2,  # Data & Decisions - Fully agree
-                "0-1-1": 1,  # Data & Decisions - Partially agree
-                "0-1-2": 2,  # Data & Decisions - Fully agree
-                "0-1-3": 1,  # Data & Decisions - Partially agree
-                "0-2-0": 1,  # Operations & Processes - Partially agree
-                "0-2-1": 2,  # Operations & Processes - Fully agree
-                "0-2-2": 0,  # Operations & Processes - Disagree
-                "0-3-0": 2,  # Technology & Infrastructure - Fully agree
-                "0-3-1": 1,  # Technology & Infrastructure - Partially agree
-                "0-3-2": 2,  # Technology & Infrastructure - Fully agree
-                "0-4-0": 1,  # Customer & People - Partially agree
-                "0-4-1": 2,  # Customer & People - Fully agree
-                "0-4-2": 1,  # Customer & People - Partially agree
-                "0-4-3": 0,  # Customer & People - Disagree
-                "0-5-0": 2,  # Innovation & Growth - Fully agree
-                "0-5-1": 1,  # Innovation & Growth - Partially agree
-                "0-5-2": 2   # Innovation & Growth - Fully agree
+                "strategy_leadership_1": 2,  # Digital strategy is clearly defined
+                "strategy_leadership_2": 1,  # Leadership partially committed
+                "strategy_leadership_3": 2,  # Budget allocated for digital initiatives
+                "data_decisions_1": 2,      # Real-time dashboards used
+                "data_decisions_2": 1,      # Customer data partially clean
+                "data_decisions_3": 2,      # Management uses data for decisions
+                "data_decisions_4": 1,      # Some forecasting with data
+                "operations_processes_1": 1, # Some processes automated
+                "operations_processes_2": 2, # Workflow management tools used
+                "operations_processes_3": 0, # Manual reporting still common
+                "technology_infrastructure_1": 2, # Cloud-based systems
+                "technology_infrastructure_2": 1, # Partial integration
+                "technology_infrastructure_3": 2, # Strong cybersecurity
+                "customer_people_1": 2,     # Fast, mobile-friendly site
+                "customer_people_2": 1,     # Some customer feedback collection
+                "customer_people_3": 0,     # Inconsistent omnichannel experience
+                "customer_people_4": 1,     # Some team training
+                "innovation_growth_1": 2,   # Regular experimentation
+                "innovation_growth_2": 1,   # Some emerging tech exploration
+                "innovation_growth_3": 2    # Data-driven growth strategies
             },
             "results": {
-                "percentage": 65,
+                "percentage": 72,
                 "maturity_stage": "Automated",
                 "level_name": "Automated Stage",
-                "level_description": "Your business has automated key processes and uses data effectively for decision-making.",
+                "level_description": "Your business has automated key processes and uses data effectively for decision-making with strong technology infrastructure.",
                 "section_scores": [
                     {
                         "name": "Strategy & Leadership",
-                        "score": 62,
-                        "status": "Good",
-                        "analysis": "Strong leadership commitment with room for improvement in digital strategy execution."
+                        "score": 83,
+                        "status": "Excellent",
+                        "analysis": "Strong leadership commitment with clear digital strategy and adequate budget allocation."
                     },
                     {
                         "name": "Data & Decisions",
                         "score": 75,
                         "status": "Excellent",
-                        "analysis": "Excellent use of data for decision-making with real-time dashboards and clean data practices."
+                        "analysis": "Good use of data for decision-making with real-time dashboards, though data quality could be improved."
                     },
                     {
                         "name": "Operations & Processes",
                         "score": 50,
                         "status": "Needs Improvement",
-                        "analysis": "Some automation in place but significant opportunities for process optimization."
+                        "analysis": "Mixed automation levels with workflow tools in place but manual reporting still prevalent."
                     },
                     {
                         "name": "Technology & Infrastructure",
                         "score": 83,
                         "status": "Excellent",
-                        "analysis": "Strong technology foundation with cloud infrastructure and security measures."
+                        "analysis": "Strong cloud infrastructure and cybersecurity with room for better system integration."
                     },
                     {
                         "name": "Customer & People",
-                        "score": 50,
-                        "status": "Needs Improvement",
-                        "analysis": "Good customer experience foundation but team training and omnichannel consistency need attention."
+                        "score": 62,
+                        "status": "Good",
+                        "analysis": "Good digital customer experience foundation but omnichannel consistency and team training need attention."
                     },
                     {
                         "name": "Innovation & Growth",
                         "score": 83,
                         "status": "Excellent",
-                        "analysis": "Strong innovation culture with effective experimentation and growth strategies."
+                        "analysis": "Strong innovation culture with regular experimentation and data-driven growth strategies."
                     }
                 ],
                 "detailed_recommendations": [
-                    "Implement comprehensive process automation in operations",
-                    "Enhance team training programs for digital tools",
-                    "Develop omnichannel customer experience strategy",
-                    "Strengthen digital strategy execution framework",
-                    "Expand data analytics capabilities across all departments"
+                    "Implement comprehensive process automation to eliminate manual reporting",
+                    "Enhance data quality management and customer data cleansing processes",
+                    "Develop integrated omnichannel customer experience strategy",
+                    "Improve system integration across all technology platforms",
+                    "Establish regular digital skills training program for all team members"
                 ],
                 "next_steps": [
-                    "Conduct process mapping workshop to identify automation opportunities",
-                    "Design quarterly digital skills training program",
-                    "Implement customer journey mapping across all touchpoints",
-                    "Establish digital transformation steering committee",
-                    "Deploy advanced analytics tools for predictive insights"
+                    "Conduct comprehensive process audit to identify automation opportunities",
+                    "Implement data governance framework and quality monitoring",
+                    "Design unified customer experience across all touchpoints",
+                    "Develop API-first integration strategy for all systems",
+                    "Create quarterly digital transformation training curriculum"
                 ],
                 "strengths": [
-                    "Strong data-driven decision making culture",
-                    "Robust technology infrastructure",
-                    "Active innovation and experimentation",
-                    "Leadership commitment to digital transformation"
+                    "Strong leadership commitment to digital transformation",
+                    "Excellent use of real-time dashboards and data-driven decisions",
+                    "Robust cloud infrastructure and cybersecurity measures",
+                    "Active innovation culture with regular experimentation",
+                    "Data-driven approach to growth strategies"
                 ],
                 "weaknesses": [
-                    "Manual processes in operations",
-                    "Inconsistent customer experience across channels",
-                    "Limited team training on digital tools",
-                    "Gap between strategy and execution"
+                    "Manual reporting processes still prevalent",
+                    "Inconsistent customer data quality",
+                    "Limited omnichannel customer experience integration",
+                    "Partial system integration across platforms",
+                    "Irregular team training on digital tools"
                 ],
                 "overall_analysis": {
-                    "summary": "TechCorp Solutions demonstrates strong digital maturity in data usage and technology infrastructure, with significant opportunities in operations automation and customer experience consistency.",
-                    "strategic_recommendation": "Focus on process automation and team development to achieve AI-Powered stage maturity.",
-                    "priority_focus": "Operations optimization and customer experience enhancement"
+                    "summary": "InnovateTech Solutions shows strong digital maturity with excellent leadership commitment and technology infrastructure, positioned well for advancement to AI-Powered stage.",
+                    "strategic_recommendation": "Focus on process automation and data quality improvements to achieve full digital transformation.",
+                    "priority_focus": "Operations automation and integrated customer experience development"
                 }
             },
-            "ip_address": "192.168.1.100",
-            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+            "ip_address": "203.0.113.45",
+            "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         }
         
         response = requests.post(
@@ -273,15 +274,18 @@ def test_save_assessment():
         
         if response.status_code == 200:
             data = response.json()
-            if (data.get("message") == "Assessment saved successfully" and 
+            if (data.get("message") == "Digital Maturity Assessment saved successfully" and 
                 "id" in data and "assessment_url" in data):
-                print("✅ Save assessment working correctly")
+                print("✅ Save assessment working correctly - Table auto-creation successful")
+                print(f"Assessment ID: {data['id']}")
                 return True, data["id"]
             else:
                 print("❌ Save assessment returned unexpected response")
                 return False, None
         else:
             print(f"❌ Save assessment failed with status {response.status_code}")
+            if response.status_code == 500:
+                print("This might indicate table creation issues in Supabase")
             return False, None
     except Exception as e:
         print(f"❌ Save assessment test failed: {str(e)}")
