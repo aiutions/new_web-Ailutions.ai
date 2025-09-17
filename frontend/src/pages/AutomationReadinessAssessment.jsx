@@ -955,7 +955,7 @@ export default function AutomationReadinessAssessment() {
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Button
-                  onClick={() => window.open('https://calendly.com/ailutions-automation-strategy', '_blank')}
+                  onClick={() => window.open('https://cal.com/ailutions/15-minutes-strategy-call', '_blank')}
                   size="lg"
                   className="bg-white text-purple-600 hover:bg-gray-100 font-bold px-8 py-4 rounded-xl text-lg hover:scale-105 transition-all duration-300"
                 >
