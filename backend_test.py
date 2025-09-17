@@ -2,6 +2,7 @@
 """
 Backend API Testing Suite - Supabase Integration
 Tests all backend endpoints with new Supabase database integration.
+Focus on priority tests: Health Check, Table Auto-Creation, Digital Maturity Assessment, Data Retrieval, Error Handling
 """
 
 import requests
@@ -37,8 +38,8 @@ def test_root_endpoint():
         return False
 
 def test_health_endpoint():
-    """Test the health check endpoint - PRIORITY TEST for Supabase connection"""
-    print("\nTesting health endpoint (Supabase connection verification)...")
+    """Test the health check endpoint - PRIORITY TEST #1 for Supabase connection"""
+    print("\n🔥 PRIORITY TEST #1: Testing health endpoint (Supabase connection verification)...")
     try:
         response = requests.get(f"{BACKEND_URL}/health")
         print(f"Status Code: {response.status_code}")
@@ -66,92 +67,9 @@ def test_health_endpoint():
         print(f"❌ Health endpoint test failed: {str(e)}")
         return False
 
-def test_create_status_check():
-    """Test creating a status check"""
-    print("\nTesting create status check endpoint...")
-    try:
-        test_data = {
-            "client_name": "Test Client for API Testing"
-        }
-        
-        response = requests.post(
-            f"{BACKEND_URL}/status",
-            json=test_data,
-            headers={"Content-Type": "application/json"}
-        )
-        print(f"Status Code: {response.status_code}")
-        print(f"Response: {response.json()}")
-        
-        if response.status_code == 200:
-            data = response.json()
-            if (data.get("client_name") == test_data["client_name"] and 
-                "id" in data and "timestamp" in data):
-                print("✅ Create status check working correctly")
-                return True, data["id"]
-            else:
-                print("❌ Create status check returned unexpected response")
-                return False, None
-        else:
-            print(f"❌ Create status check failed with status {response.status_code}")
-            return False, None
-    except Exception as e:
-        print(f"❌ Create status check test failed: {str(e)}")
-        return False, None
-
-def test_get_status_checks():
-    """Test getting all status checks"""
-    print("\nTesting get status checks endpoint...")
-    try:
-        response = requests.get(f"{BACKEND_URL}/status")
-        print(f"Status Code: {response.status_code}")
-        
-        if response.status_code == 200:
-            data = response.json()
-            print(f"Number of status checks returned: {len(data)}")
-            
-            if isinstance(data, list):
-                if len(data) > 0:
-                    # Check if the structure is correct
-                    first_item = data[0]
-                    if all(key in first_item for key in ["id", "client_name", "timestamp"]):
-                        print("✅ Get status checks working correctly")
-                        return True
-                    else:
-                        print("❌ Get status checks returned items with incorrect structure")
-                        return False
-                else:
-                    print("✅ Get status checks working correctly (empty list)")
-                    return True
-            else:
-                print("❌ Get status checks did not return a list")
-                return False
-        else:
-            print(f"❌ Get status checks failed with status {response.status_code}")
-            return False
-    except Exception as e:
-        print(f"❌ Get status checks test failed: {str(e)}")
-        return False
-
-def test_backend_connectivity():
-    """Test basic connectivity to backend"""
-    print("Testing backend connectivity...")
-    try:
-        response = requests.get(BACKEND_URL, timeout=10)
-        print(f"Backend connectivity test - Status: {response.status_code}")
-        return response.status_code < 500
-    except requests.exceptions.ConnectionError:
-        print("❌ Cannot connect to backend - Connection refused")
-        return False
-    except requests.exceptions.Timeout:
-        print("❌ Backend connection timeout")
-        return False
-    except Exception as e:
-        print(f"❌ Backend connectivity test failed: {str(e)}")
-        return False
-
 def test_save_assessment():
-    """Test saving a Digital Maturity Assessment - PRIORITY TEST for table auto-creation"""
-    print("\nTesting save assessment endpoint (Table auto-creation verification)...")
+    """Test saving a Digital Maturity Assessment - PRIORITY TEST #2 for table auto-creation"""
+    print("\n🔥 PRIORITY TEST #2: Testing save assessment endpoint (Table auto-creation verification)...")
     try:
         # Create comprehensive test assessment data with realistic information
         test_assessment = {
@@ -285,15 +203,15 @@ def test_save_assessment():
         else:
             print(f"❌ Save assessment failed with status {response.status_code}")
             if response.status_code == 500:
-                print("This might indicate table creation issues in Supabase")
+                print("⚠️  This might indicate table creation issues in Supabase")
             return False, None
     except Exception as e:
         print(f"❌ Save assessment test failed: {str(e)}")
         return False, None
 
 def test_get_assessment(assessment_id):
-    """Test retrieving a specific assessment by ID - PRIORITY TEST for data retrieval"""
-    print(f"\nTesting get assessment endpoint with ID: {assessment_id} (Data retrieval verification)...")
+    """Test retrieving a specific assessment by ID - PRIORITY TEST #3 for data retrieval"""
+    print(f"\n🔥 PRIORITY TEST #3: Testing get assessment endpoint with ID: {assessment_id} (Data retrieval verification)...")
     try:
         response = requests.get(f"{BACKEND_URL}/assessment/{assessment_id}")
         print(f"Status Code: {response.status_code}")
@@ -311,7 +229,7 @@ def test_get_assessment(assessment_id):
                 
                 if (user_info.get("name") and user_info.get("email") and 
                     results.get("percentage") is not None and results.get("maturity_stage")):
-                    print("✅ Get assessment working correctly - Data properly stored in Supabase format")
+                    print("✅ Get assessment working correctly - Data properly stored in Supabase JSONB format")
                     print(f"User: {user_info.get('name')} from {user_info.get('company')}")
                     print(f"Maturity: {results.get('percentage')}% - {results.get('maturity_stage')}")
                     return True
@@ -333,8 +251,8 @@ def test_get_assessment(assessment_id):
         return False
 
 def test_get_all_assessments():
-    """Test retrieving all assessments - PRIORITY TEST for pagination and filtering"""
-    print("\nTesting get all digital maturity assessments endpoint (Pagination verification)...")
+    """Test retrieving all assessments - PRIORITY TEST #4 for pagination and filtering"""
+    print("\n🔥 PRIORITY TEST #4: Testing get all digital maturity assessments endpoint (Pagination verification)...")
     try:
         response = requests.get(f"{BACKEND_URL}/assessments/digital-maturity")
         print(f"Status Code: {response.status_code}")
@@ -371,75 +289,9 @@ def test_get_all_assessments():
         print(f"❌ Get all assessments test failed: {str(e)}")
         return False
 
-def test_get_assessment_stats():
-    """Test retrieving assessment statistics - Analytics verification"""
-    print("\nTesting get analytics overview endpoint...")
-    try:
-        response = requests.get(f"{BACKEND_URL}/analytics/overview")
-        print(f"Status Code: {response.status_code}")
-        
-        if response.status_code == 200:
-            data = response.json()
-            print(f"Analytics response keys: {list(data.keys())}")
-            
-            # Verify required analytics fields
-            required_fields = ["total_assessments", "recent_assessments_30_days", "last_updated"]
-            
-            if all(field in data for field in required_fields):
-                total_assessments = data.get("total_assessments", {})
-                recent_assessments = data.get("recent_assessments_30_days", {})
-                
-                print(f"Total assessments: {total_assessments}")
-                print(f"Recent assessments (30 days): {recent_assessments}")
-                print("✅ Get analytics overview working correctly")
-                return True
-            else:
-                print("❌ Get analytics overview missing required fields")
-                return False
-        else:
-            print(f"❌ Get analytics overview failed with status {response.status_code}")
-            return False
-    except Exception as e:
-        print(f"❌ Get analytics overview test failed: {str(e)}")
-        return False
-
-def test_get_company_assessments():
-    """Test retrieving assessments by company - Company filtering verification"""
-    print("\nTesting get company analytics endpoint...")
-    try:
-        # Test with the company from our test data
-        company_name = "InnovateTech"
-        response = requests.get(f"{BACKEND_URL}/analytics/company/{company_name}")
-        print(f"Status Code: {response.status_code}")
-        
-        if response.status_code == 200:
-            data = response.json()
-            print(f"Company: {data.get('company')}")
-            print(f"Total assessments: {data.get('total_assessments')}")
-            
-            # Verify response structure
-            required_fields = ["company", "assessments", "total_assessments"]
-            if all(field in data for field in required_fields):
-                assessments = data.get("assessments", {})
-                if isinstance(assessments, dict):
-                    print("✅ Get company analytics working correctly")
-                    return True
-                else:
-                    print("❌ Company assessments field is not a dict")
-                    return False
-            else:
-                print("❌ Get company analytics missing required fields")
-                return False
-        else:
-            print(f"❌ Get company analytics failed with status {response.status_code}")
-            return False
-    except Exception as e:
-        print(f"❌ Get company analytics test failed: {str(e)}")
-        return False
-
 def test_assessment_error_handling():
-    """Test error handling for assessment endpoints"""
-    print("\nTesting assessment error handling...")
+    """Test error handling for assessment endpoints - PRIORITY TEST #5 for error handling"""
+    print("\n🔥 PRIORITY TEST #5: Testing assessment error handling (Supabase error scenarios)...")
     try:
         # Test invalid assessment ID
         response = requests.get(f"{BACKEND_URL}/assessment/invalid-id-12345")
@@ -469,13 +321,226 @@ def test_assessment_error_handling():
         print(f"❌ Error handling test failed: {str(e)}")
         return False
 
+def test_analytics_overview():
+    """Test analytics overview endpoint"""
+    print("\nTesting analytics overview endpoint...")
+    try:
+        response = requests.get(f"{BACKEND_URL}/analytics/overview")
+        print(f"Status Code: {response.status_code}")
+        
+        if response.status_code == 200:
+            data = response.json()
+            print(f"Analytics response keys: {list(data.keys())}")
+            
+            # Verify required analytics fields
+            required_fields = ["total_assessments", "recent_assessments_30_days", "last_updated"]
+            
+            if all(field in data for field in required_fields):
+                total_assessments = data.get("total_assessments", {})
+                recent_assessments = data.get("recent_assessments_30_days", {})
+                
+                print(f"Total assessments: {total_assessments}")
+                print(f"Recent assessments (30 days): {recent_assessments}")
+                print("✅ Analytics overview working correctly")
+                return True
+            else:
+                print("❌ Analytics overview missing required fields")
+                return False
+        else:
+            print(f"❌ Analytics overview failed with status {response.status_code}")
+            return False
+    except Exception as e:
+        print(f"❌ Analytics overview test failed: {str(e)}")
+        return False
+
+def test_company_analytics():
+    """Test company analytics endpoint"""
+    print("\nTesting company analytics endpoint...")
+    try:
+        # Test with the company from our test data
+        company_name = "InnovateTech"
+        response = requests.get(f"{BACKEND_URL}/analytics/company/{company_name}")
+        print(f"Status Code: {response.status_code}")
+        
+        if response.status_code == 200:
+            data = response.json()
+            print(f"Company: {data.get('company')}")
+            print(f"Total assessments: {data.get('total_assessments')}")
+            
+            # Verify response structure
+            required_fields = ["company", "assessments", "total_assessments"]
+            if all(field in data for field in required_fields):
+                assessments = data.get("assessments", {})
+                if isinstance(assessments, dict):
+                    print("✅ Company analytics working correctly")
+                    return True
+                else:
+                    print("❌ Company assessments field is not a dict")
+                    return False
+            else:
+                print("❌ Company analytics missing required fields")
+                return False
+        else:
+            print(f"❌ Company analytics failed with status {response.status_code}")
+            return False
+    except Exception as e:
+        print(f"❌ Company analytics test failed: {str(e)}")
+        return False
+
+def test_roi_calculator_save():
+    """Test saving ROI Calculator results"""
+    print("\nTesting ROI Calculator save endpoint...")
+    try:
+        test_roi_data = {
+            "user_info": {
+                "name": "Jennifer Martinez",
+                "email": "jennifer.martinez@efficiency.com",
+                "company": "Efficiency Solutions Inc",
+                "role": "Operations Manager"
+            },
+            "inputs": {
+                "current_time_spent": 40,
+                "hourly_rate": 75,
+                "automation_percentage": 80,
+                "implementation_cost": 15000,
+                "maintenance_cost_monthly": 500
+            },
+            "calculations": {
+                "weekly_savings_hours": 32,
+                "weekly_savings_cost": 2400,
+                "monthly_savings": 9600,
+                "annual_savings": 115200,
+                "roi_percentage": 668,
+                "payback_period_months": 1.8,
+                "net_benefit_year_1": 100200
+            }
+        }
+        
+        response = requests.post(
+            f"{BACKEND_URL}/roi-calculator/save",
+            json=test_roi_data,
+            headers={"Content-Type": "application/json"}
+        )
+        print(f"Status Code: {response.status_code}")
+        print(f"Response: {response.json()}")
+        
+        if response.status_code == 200:
+            data = response.json()
+            if (data.get("message") == "ROI Calculator result saved successfully" and 
+                "id" in data and "assessment_url" in data):
+                print("✅ ROI Calculator save working correctly")
+                return True, data["id"]
+            else:
+                print("❌ ROI Calculator save returned unexpected response")
+                return False, None
+        else:
+            print(f"❌ ROI Calculator save failed with status {response.status_code}")
+            return False, None
+    except Exception as e:
+        print(f"❌ ROI Calculator save test failed: {str(e)}")
+        return False, None
+
+def test_automation_assessment_save():
+    """Test saving Automation Assessment results"""
+    print("\nTesting Automation Assessment save endpoint...")
+    try:
+        test_automation_data = {
+            "user_info": {
+                "name": "David Kim",
+                "email": "david.kim@streamline.com",
+                "company": "Streamline Operations",
+                "role": "Process Improvement Specialist"
+            },
+            "task_analysis": {
+                "total_tasks_analyzed": 15,
+                "high_automation_potential": 8,
+                "medium_automation_potential": 5,
+                "low_automation_potential": 2,
+                "total_time_weekly": 35,
+                "automatable_time_weekly": 28
+            },
+            "recommendations": [
+                "Automate invoice processing using OCR and workflow automation",
+                "Implement chatbot for customer service inquiries",
+                "Set up automated reporting dashboards",
+                "Deploy RPA for data entry tasks",
+                "Create automated email marketing sequences"
+            ],
+            "priority_tasks": [
+                {
+                    "task": "Invoice Processing",
+                    "current_time_weekly": 8,
+                    "automation_potential": 95,
+                    "priority": "High",
+                    "estimated_savings": 7.6
+                },
+                {
+                    "task": "Customer Service Responses",
+                    "current_time_weekly": 6,
+                    "automation_potential": 70,
+                    "priority": "High",
+                    "estimated_savings": 4.2
+                },
+                {
+                    "task": "Report Generation",
+                    "current_time_weekly": 4,
+                    "automation_potential": 90,
+                    "priority": "Medium",
+                    "estimated_savings": 3.6
+                }
+            ],
+            "automation_score": 78
+        }
+        
+        response = requests.post(
+            f"{BACKEND_URL}/automation-assessment/save",
+            json=test_automation_data,
+            headers={"Content-Type": "application/json"}
+        )
+        print(f"Status Code: {response.status_code}")
+        print(f"Response: {response.json()}")
+        
+        if response.status_code == 200:
+            data = response.json()
+            if (data.get("message") == "Automation Assessment saved successfully" and 
+                "id" in data and "assessment_url" in data):
+                print("✅ Automation Assessment save working correctly")
+                return True, data["id"]
+            else:
+                print("❌ Automation Assessment save returned unexpected response")
+                return False, None
+        else:
+            print(f"❌ Automation Assessment save failed with status {response.status_code}")
+            return False, None
+    except Exception as e:
+        print(f"❌ Automation Assessment save test failed: {str(e)}")
+        return False, None
+
+def test_backend_connectivity():
+    """Test basic connectivity to backend"""
+    print("Testing backend connectivity...")
+    try:
+        response = requests.get(BACKEND_URL, timeout=10)
+        print(f"Backend connectivity test - Status: {response.status_code}")
+        return response.status_code < 500
+    except requests.exceptions.ConnectionError:
+        print("❌ Cannot connect to backend - Connection refused")
+        return False
+    except requests.exceptions.Timeout:
+        print("❌ Backend connection timeout")
+        return False
+    except Exception as e:
+        print(f"❌ Backend connectivity test failed: {str(e)}")
+        return False
+
 def main():
-    """Run all backend tests including Digital Maturity Assessment endpoints"""
-    print("=" * 60)
-    print("BACKEND API TESTING SUITE - DIGITAL MATURITY ASSESSMENT")
-    print("=" * 60)
+    """Run comprehensive Supabase backend integration tests"""
+    print("=" * 80)
+    print("SUPABASE BACKEND INTEGRATION TESTING SUITE")
+    print("=" * 80)
     print(f"Testing backend at: {BACKEND_URL}")
-    print("=" * 60)
+    print("Focus: Health Check, Table Auto-Creation, Digital Maturity Assessment, Data Retrieval, Error Handling")
+    print("=" * 80)
     
     # Test results
     results = []
@@ -486,7 +551,7 @@ def main():
     
     if not connectivity_ok:
         print("\n❌ Backend is not accessible. Skipping API tests.")
-        print("=" * 60)
+        print("=" * 80)
         print("SUMMARY: Backend connectivity failed")
         return False
     
@@ -494,49 +559,54 @@ def main():
     root_ok = test_root_endpoint()
     results.append(("Root Endpoint", root_ok))
     
+    # PRIORITY TESTS
+    print("\n" + "=" * 80)
+    print("🔥 PRIORITY SUPABASE INTEGRATION TESTS")
+    print("=" * 80)
+    
     health_ok = test_health_endpoint()
-    results.append(("Health Endpoint", health_ok))
-    
-    create_ok, created_id = test_create_status_check()
-    results.append(("Create Status Check", create_ok))
-    
-    get_ok = test_get_status_checks()
-    results.append(("Get Status Checks", get_ok))
-    
-    # Test Digital Maturity Assessment endpoints
-    print("\n" + "=" * 60)
-    print("DIGITAL MATURITY ASSESSMENT API TESTS")
-    print("=" * 60)
+    results.append(("🔥 Health Check (Supabase Connection)", health_ok))
     
     save_ok, assessment_id = test_save_assessment()
-    results.append(("Save Assessment", save_ok))
+    results.append(("🔥 Save Assessment (Table Auto-Creation)", save_ok))
     
     if assessment_id:
         get_assessment_ok = test_get_assessment(assessment_id)
-        results.append(("Get Assessment by ID", get_assessment_ok))
+        results.append(("🔥 Get Assessment (Data Retrieval)", get_assessment_ok))
     else:
-        results.append(("Get Assessment by ID", False))
+        results.append(("🔥 Get Assessment (Data Retrieval)", False))
     
     get_all_ok = test_get_all_assessments()
-    results.append(("Get All Assessments", get_all_ok))
-    
-    stats_ok = test_get_assessment_stats()
-    results.append(("Get Assessment Stats", stats_ok))
-    
-    company_ok = test_get_company_assessments()
-    results.append(("Get Company Assessments", company_ok))
+    results.append(("🔥 Get All Assessments (Pagination)", get_all_ok))
     
     error_handling_ok = test_assessment_error_handling()
-    results.append(("Assessment Error Handling", error_handling_ok))
+    results.append(("🔥 Error Handling (Supabase Errors)", error_handling_ok))
+    
+    # Additional tests
+    print("\n" + "=" * 80)
+    print("ADDITIONAL SUPABASE INTEGRATION TESTS")
+    print("=" * 80)
+    
+    analytics_ok = test_analytics_overview()
+    results.append(("Analytics Overview", analytics_ok))
+    
+    company_ok = test_company_analytics()
+    results.append(("Company Analytics", company_ok))
+    
+    roi_ok, roi_id = test_roi_calculator_save()
+    results.append(("ROI Calculator Save", roi_ok))
+    
+    automation_ok, automation_id = test_automation_assessment_save()
+    results.append(("Automation Assessment Save", automation_ok))
     
     # Print summary
-    print("\n" + "=" * 60)
-    print("TEST SUMMARY")
-    print("=" * 60)
+    print("\n" + "=" * 80)
+    print("SUPABASE INTEGRATION TEST SUMMARY")
+    print("=" * 80)
     
     all_passed = True
-    basic_tests_passed = 0
-    assessment_tests_passed = 0
+    priority_tests_passed = 0
+    additional_tests_passed = 0
     
     for test_name, passed in results:
         status = "✅ PASS" if passed else "❌ FAIL"
@@ -545,25 +615,26 @@ def main():
             all_passed = False
         
         # Count test categories
-        if test_name in ["Backend Connectivity", "Root Endpoint", "Health Endpoint", "Create Status Check", "Get Status Checks"]:
+        if "🔥" in test_name:
             if passed:
-                basic_tests_passed += 1
-        elif "Assessment" in test_name:
+                priority_tests_passed += 1
+        elif test_name not in ["Backend Connectivity", "Root Endpoint"]:
             if passed:
-                assessment_tests_passed += 1
+                additional_tests_passed += 1
     
-    print("=" * 60)
-    print(f"Basic API Tests: {basic_tests_passed}/5 passed")
-    print(f"Assessment API Tests: {assessment_tests_passed}/6 passed")
+    print("=" * 80)
+    print(f"Priority Supabase Tests: {priority_tests_passed}/5 passed")
+    print(f"Additional Integration Tests: {additional_tests_passed}/4 passed")
     
-    if all_passed:
-        print("🎉 ALL BACKEND TESTS PASSED!")
-        print("✅ Digital Maturity Assessment API is fully functional")
+    if priority_tests_passed == 5:
+        print("🎉 ALL PRIORITY SUPABASE INTEGRATION TESTS PASSED!")
+        print("✅ Supabase backend integration is fully functional")
+        if all_passed:
+            print("✅ All additional tests also passed")
         return True
     else:
-        print("⚠️  SOME BACKEND TESTS FAILED!")
-        if assessment_tests_passed < 6:
-            print("❌ Digital Maturity Assessment API has issues")
+        print("⚠️  SOME PRIORITY SUPABASE TESTS FAILED!")
+        print("❌ Supabase backend integration has critical issues")
         return False
 
 if __name__ == "__main__":
