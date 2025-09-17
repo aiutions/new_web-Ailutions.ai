@@ -176,7 +176,8 @@ async def get_assessment_stats():
         total_count = await db.maturity_assessments.count_documents({})
         
         # Get assessments from last 30 days
-        thirty_days_ago = datetime.utcnow().replace(day=datetime.utcnow().day-30)
+        from datetime import timedelta
+        thirty_days_ago = datetime.utcnow() - timedelta(days=30)
         recent_count = await db.maturity_assessments.count_documents({
             "timestamp": {"$gte": thirty_days_ago.isoformat()}
         })
