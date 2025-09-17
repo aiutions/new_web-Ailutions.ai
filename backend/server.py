@@ -37,6 +37,52 @@ class StatusCheck(BaseModel):
 class StatusCheckCreate(BaseModel):
     client_name: str
 
+# Digital Maturity Tracker Models
+class UserInfo(BaseModel):
+    name: str
+    email: str
+    company: str
+    role: str
+
+class SectionScore(BaseModel):
+    name: str
+    score: int
+    status: str
+    analysis: str
+
+class AssessmentResults(BaseModel):
+    percentage: int
+    maturity_stage: str
+    level_name: str
+    level_description: str
+    section_scores: List[SectionScore]
+    detailed_recommendations: List[str]
+    next_steps: List[str]
+    strengths: List[str]
+    weaknesses: List[str]
+    overall_analysis: Dict[str, str]
+
+class DigitalMaturityAssessment(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    user_info: UserInfo
+    answers: Dict[str, int]  # question_key: score mapping
+    results: AssessmentResults
+    timestamp: datetime = Field(default_factory=datetime.utcnow)
+    ip_address: Optional[str] = None
+    user_agent: Optional[str] = None
+
+class DigitalMaturityAssessmentCreate(BaseModel):
+    user_info: UserInfo
+    answers: Dict[str, int]
+    results: AssessmentResults
+    ip_address: Optional[str] = None
+    user_agent: Optional[str] = None
+
+class DigitalMaturityAssessmentResponse(BaseModel):
+    id: str
+    message: str
+    assessment_url: Optional[str] = None
+
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
 async def root():
