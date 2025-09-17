@@ -587,8 +587,8 @@ export default function DigitalMaturityTracker() {
     pdf.setFontSize(10);
     pdf.setTextColor(255, 255, 255);
     pdf.text('Ready to accelerate your digital transformation?', margin, yPos + 15);
-    pdf.text('📞 Book your free strategy call: calendly.com/ailutions-strategy', margin, yPos + 25);
-    pdf.text('📧 Questions? Contact us: hello@ailutions.com', margin, yPos + 35);
+    pdf.text('📞 Book your free strategy call: cal.com/ailutions/15-minutes-strategy-call', margin, yPos + 25);
+    pdf.text('📧 Questions? Contact us: info@ailutions.ai', margin, yPos + 35);
     
     pdf.setTextColor(59, 130, 246);
     pdf.text('Ailutions - AI that powers your business', pageWidth - margin - 80, yPos + 25);
