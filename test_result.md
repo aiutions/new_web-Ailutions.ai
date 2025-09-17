@@ -576,11 +576,12 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Enhanced Digital Maturity Tracker - Updated Questions Verification"
-    - "Enhanced Digital Maturity Tracker - Maturity Stage Classification"
-    - "Enhanced Digital Maturity Tracker - Detailed Report Sections"
-  stuck_tasks:
-    - "Progress Bar Behavior"
+    - "Digital Maturity Assessment API - Save Endpoint"
+    - "Digital Maturity Assessment API - Retrieval Endpoint"
+    - "Digital Maturity Assessment API - All Assessments Endpoint"
+    - "Digital Maturity Assessment API - Statistics Endpoint"
+    - "Digital Maturity Assessment API - Company Assessments Endpoint"
+  stuck_tasks: []
   test_all: false
   test_priority: "high_first"
 
