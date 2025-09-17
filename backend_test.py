@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Backend API Testing Suite
-Tests all backend endpoints to ensure they are working correctly.
+Backend API Testing Suite - Supabase Integration
+Tests all backend endpoints with new Supabase database integration.
 """
 
 import requests
