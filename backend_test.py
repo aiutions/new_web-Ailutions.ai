@@ -404,37 +404,37 @@ def test_get_assessment_stats():
         return False
 
 def test_get_company_assessments():
-    """Test retrieving assessments by company"""
-    print("\nTesting get company assessments endpoint...")
+    """Test retrieving assessments by company - Company filtering verification"""
+    print("\nTesting get company analytics endpoint...")
     try:
         # Test with the company from our test data
-        company_name = "TechCorp"
-        response = requests.get(f"{BACKEND_URL}/assessments/company/{company_name}")
+        company_name = "InnovateTech"
+        response = requests.get(f"{BACKEND_URL}/analytics/company/{company_name}")
         print(f"Status Code: {response.status_code}")
         
         if response.status_code == 200:
             data = response.json()
             print(f"Company: {data.get('company')}")
-            print(f"Assessment count: {data.get('assessment_count')}")
+            print(f"Total assessments: {data.get('total_assessments')}")
             
             # Verify response structure
-            required_fields = ["company", "assessment_count", "assessments"]
+            required_fields = ["company", "assessments", "total_assessments"]
             if all(field in data for field in required_fields):
-                assessments = data.get("assessments", [])
-                if isinstance(assessments, list):
-                    print("✅ Get company assessments working correctly")
+                assessments = data.get("assessments", {})
+                if isinstance(assessments, dict):
+                    print("✅ Get company analytics working correctly")
                     return True
                 else:
-                    print("❌ Company assessments field is not a list")
+                    print("❌ Company assessments field is not a dict")
                     return False
             else:
-                print("❌ Get company assessments missing required fields")
+                print("❌ Get company analytics missing required fields")
                 return False
         else:
-            print(f"❌ Get company assessments failed with status {response.status_code}")
+            print(f"❌ Get company analytics failed with status {response.status_code}")
             return False
     except Exception as e:
-        print(f"❌ Get company assessments test failed: {str(e)}")
+        print(f"❌ Get company analytics test failed: {str(e)}")
         return False
 
 def test_assessment_error_handling():
