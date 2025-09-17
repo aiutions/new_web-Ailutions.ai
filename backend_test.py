@@ -292,8 +292,8 @@ def test_save_assessment():
         return False, None
 
 def test_get_assessment(assessment_id):
-    """Test retrieving a specific assessment by ID"""
-    print(f"\nTesting get assessment endpoint with ID: {assessment_id}...")
+    """Test retrieving a specific assessment by ID - PRIORITY TEST for data retrieval"""
+    print(f"\nTesting get assessment endpoint with ID: {assessment_id} (Data retrieval verification)...")
     try:
         response = requests.get(f"{BACKEND_URL}/assessment/{assessment_id}")
         print(f"Status Code: {response.status_code}")
@@ -302,8 +302,8 @@ def test_get_assessment(assessment_id):
             data = response.json()
             print(f"Retrieved assessment for: {data.get('user_info', {}).get('name', 'Unknown')}")
             
-            # Verify essential fields are present
-            required_fields = ["id", "user_info", "answers", "results", "timestamp"]
+            # Verify essential fields are present (Supabase format)
+            required_fields = ["id", "user_info", "answers", "results", "created_at"]
             if all(field in data for field in required_fields):
                 # Verify nested structures
                 user_info = data.get("user_info", {})
@@ -311,13 +311,16 @@ def test_get_assessment(assessment_id):
                 
                 if (user_info.get("name") and user_info.get("email") and 
                     results.get("percentage") is not None and results.get("maturity_stage")):
-                    print("✅ Get assessment working correctly")
+                    print("✅ Get assessment working correctly - Data properly stored in Supabase format")
+                    print(f"User: {user_info.get('name')} from {user_info.get('company')}")
+                    print(f"Maturity: {results.get('percentage')}% - {results.get('maturity_stage')}")
                     return True
                 else:
                     print("❌ Get assessment missing required nested fields")
                     return False
             else:
                 print("❌ Get assessment missing required fields")
+                print(f"Available fields: {list(data.keys())}")
                 return False
         elif response.status_code == 404:
             print("❌ Assessment not found (404)")
