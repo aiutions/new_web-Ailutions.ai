@@ -928,7 +928,7 @@ export default function AutomationReadinessAssessment() {
             </Button>
             
             <Button
-              onClick={() => window.open('https://calendly.com/ailutions-automation-strategy', '_blank')}
+              onClick={() => window.open('https://cal.com/ailutions/15-minutes-strategy-call', '_blank')}
               size="lg"
               className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white font-semibold px-8 py-6 rounded-2xl text-lg hover:scale-105 transition-all duration-300 hover:shadow-xl"
             >
