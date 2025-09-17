@@ -47,10 +47,87 @@ export default function DigitalMaturityTracker() {
     }
   };
 
-  const handleUserFormSubmit = (e) => {
+  const handleUserFormSubmit = async (e) => {
     e.preventDefault();
     setUserInfo(formData);
-    calculateResults();
+    
+    // Calculate results first
+    const calculatedResults = calculateResults();
+    
+    // Save to database
+    await saveAssessmentToDatabase(formData, calculatedResults);
+  };
+
+  const saveAssessmentToDatabase = async (userInfo, results) => {
+    try {
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
+      
+      const assessmentData = {
+        user_info: {
+          name: userInfo.name,
+          email: userInfo.email,
+          company: userInfo.company,
+          role: userInfo.role
+        },
+        answers: answers,
+        results: {
+          percentage: results.percentage,
+          maturity_stage: results.maturityStage,
+          level_name: results.level.name,
+          level_description: results.level.description,
+          section_scores: results.sectionScores.map(section => ({
+            name: section.name,
+            score: section.score,
+            status: section.status,
+            analysis: section.analysis
+          })),
+          detailed_recommendations: results.detailedRecommendations,
+          next_steps: results.nextSteps,
+          strengths: results.strengths,
+          weaknesses: results.weaknesses,
+          overall_analysis: results.overallAnalysis
+        },
+        ip_address: null, // Could be populated if needed
+        user_agent: navigator.userAgent
+      };
+
+      const response = await fetch(`${backendUrl}/api/assessment/save`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(assessmentData)
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log('Assessment saved successfully:', result);
+        
+        // Still save to localStorage as backup
+        localStorage.setItem('digitalMaturityResults', JSON.stringify({
+          userInfo,
+          results,
+          assessmentId: result.id,
+          timestamp: new Date().toISOString()
+        }));
+      } else {
+        console.error('Failed to save assessment:', response.statusText);
+        // Fallback to localStorage only
+        localStorage.setItem('digitalMaturityResults', JSON.stringify({
+          userInfo,
+          results,
+          timestamp: new Date().toISOString()
+        }));
+      }
+    } catch (error) {
+      console.error('Error saving assessment:', error);
+      // Fallback to localStorage only
+      localStorage.setItem('digitalMaturityResults', JSON.stringify({
+        userInfo,
+        results,
+        timestamp: new Date().toISOString()
+      }));
+    }
   };
 
   const calculateResults = () => {
