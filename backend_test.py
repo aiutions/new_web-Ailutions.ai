@@ -37,8 +37,8 @@ def test_root_endpoint():
         return False
 
 def test_health_endpoint():
-    """Test the health check endpoint"""
-    print("\nTesting health endpoint...")
+    """Test the health check endpoint - PRIORITY TEST for Supabase connection"""
+    print("\nTesting health endpoint (Supabase connection verification)...")
     try:
         response = requests.get(f"{BACKEND_URL}/health")
         print(f"Status Code: {response.status_code}")
@@ -46,9 +46,16 @@ def test_health_endpoint():
         
         if response.status_code == 200:
             data = response.json()
-            if data.get("status") == "healthy" and "ailutions-api" in data.get("service", ""):
-                print("✅ Health endpoint working correctly")
+            if (data.get("status") == "healthy" and 
+                "ailutions-supabase-api" in data.get("service", "") and
+                data.get("database") == "connected"):
+                print("✅ Health endpoint working correctly - Supabase connection verified")
                 return True
+            elif data.get("status") == "degraded":
+                print("❌ Health endpoint shows degraded status - Supabase connection issue")
+                print(f"Database status: {data.get('database')}")
+                print(f"Error: {data.get('error', 'Unknown error')}")
+                return False
             else:
                 print("❌ Health endpoint returned unexpected response")
                 return False
