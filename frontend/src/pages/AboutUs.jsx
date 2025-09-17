@@ -451,7 +451,7 @@ export default function AboutUs() {
             </button>
             
             <button 
-              onClick={scrollToContact}
+              onClick={() => window.open('https://cal.com/ailutions/15-minutes-strategy-call', '_blank')}
               className="border-2 border-white text-white hover:bg-white hover:text-blue-600 bg-white/10 backdrop-blur-sm px-8 py-4 rounded-full font-semibold text-lg transition-all duration-200 hover:scale-105"
             >
               Book a Call
