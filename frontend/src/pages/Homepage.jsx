@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from '../components/ui/button';
 import { AnimatedHeroBackground } from '../components/AnimatedHeroBackground';
@@ -282,7 +283,7 @@ export default function Homepage() {
               <ul className="space-y-2 text-gray-400">
                 <li><a href="/digital-maturity-tracker" className="hover:text-white transition-colors">Digital Maturity Assessment</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Automation Playbook</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">ROI Calculator</a></li>
+                <li><a href="/roi-calculator" className="hover:text-white transition-colors">ROI Calculator</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Case Studies</a></li>
               </ul>
             </div>
@@ -329,8 +330,8 @@ export default function Homepage() {
               © 2025 Ailutions. All rights reserved. We help businesses automate and scale.
             </p>
             <div className="flex space-x-6">
-              <a href="#" className="hover:text-white transition-colors">Privacy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms</a>
+              <a href="/privacy-policy" className="hover:text-white transition-colors">Privacy</a>
+              <a href="/terms-of-service" className="hover:text-white transition-colors">Terms</a>
               <a href="#" className="hover:text-white transition-colors">Support</a>
             </div>
           </div>
