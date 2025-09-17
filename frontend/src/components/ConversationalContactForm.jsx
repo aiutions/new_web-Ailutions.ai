@@ -1,9 +1,11 @@
+
 import React, { useState } from 'react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { Card, CardContent } from './ui/card';
 import { ArrowRight, ArrowLeft, Send, MessageCircle } from 'lucide-react';
+import axios from 'axios';
 
 export const ConversationalContactForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -89,24 +91,20 @@ export const ConversationalContactForm = () => {
     }
   };
 
-  const handleSubmit = () => {
-    // Mock submission - store in localStorage
-    const submissions = JSON.parse(localStorage.getItem('conversationalContactSubmissions') || '[]');
-    submissions.push({
-      ...formData,
-      timestamp: new Date().toISOString(),
-      source: 'conversational_form'
-    });
-    localStorage.setItem('conversationalContactSubmissions', JSON.stringify(submissions));
-    
-    setIsSubmitted(true);
-    
-    // Reset form after 5 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setCurrentStep(0);
-      setFormData({ name: '', email: '', company: '', goal: '', message: '' });
-    }, 5000);
+  const handleSubmit = async () => {
+    try {
+        await axios.post('http://localhost:8000/api/contact', formData);
+        setIsSubmitted(true);
+        // Reset form after 5 seconds
+        setTimeout(() => {
+            setIsSubmitted(false);
+            setCurrentStep(0);
+            setFormData({ name: '', email: '', company: '', goal: '', message: '' });
+        }, 5000);
+    } catch (error) {
+        console.error("Error submitting form:", error);
+        // Handle error state
+    }
   };
 
   const handleWhatsApp = () => {

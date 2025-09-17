@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '../components/ui/button';
 import { AnimatedHeroBackground } from '../components/AnimatedHeroBackground';
 import { TrustBar } from '../components/TrustBar';
@@ -10,12 +10,16 @@ import { InteractiveCaseStudyCard } from '../components/InteractiveCaseStudyCard
 import { AboutSection } from '../components/AboutSection';
 import { CTABanner } from '../components/CTABanner';
 import { ConversationalContactForm } from '../components/ConversationalContactForm';
-import { ArrowRight, Sparkles, Target, MessageCircle } from 'lucide-react';
+import { ArrowRight, Sparkles, Target, MessageCircle, Menu } from 'lucide-react';
 import { caseStudiesData, contactData } from '../data/mock';
+import Drawer from '../components/ui/drawer';
 
 export default function Homepage() {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    setIsDrawerOpen(false);
   };
 
   return (
@@ -48,25 +52,40 @@ export default function Homepage() {
             </nav>
 
             {/* Mobile Navigation Button */}
-            <div className="lg:hidden flex items-center space-x-1 sm:space-x-2">
-              <button 
+            <div className="lg:hidden flex items-center space-x-2 sm:space-x-4">
+              <button
                 onClick={() => window.location.href = '/digital-maturity-tracker'}
-                className="btn-primary rounded-full text-xs px-2 py-1 sm:px-3 sm:py-1.5"
-                style={{fontSize: '11px', padding: '4px 8px'}}
+                className="btn-primary rounded-full text-xs px-3 py-1.5 sm:px-4 sm:py-2"
+                style={{fontSize: '12px'}}
               >
                 Assessment
               </button>
-              <button 
-                onClick={scrollToContact}
-                className="btn-secondary rounded-full text-xs px-2 py-1 sm:px-3 sm:py-1.5"
-                style={{fontSize: '11px', padding: '4px 8px'}}
+              <button
+                onClick={() => setIsDrawerOpen(true)}
+                className="p-2 text-luxury-text-body hover:text-luxury-text-heading"
               >
-                Contact
+                <Menu className="w-6 h-6 sm:w-7 sm:h-7" />
               </button>
             </div>
           </div>
         </div>
       </header>
+
+      <Drawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
+        <div className="flex flex-col space-y-6">
+          <a href="#problem" onClick={() => setIsDrawerOpen(false)} className="text-luxury-text-body hover:text-luxury-ai-start transition-colors font-semibold text-lg">Problems We Solve</a>
+          <a href="#services" onClick={() => setIsDrawerOpen(false)} className="text-luxury-text-body hover:text-luxury-ai-start transition-colors font-semibold text-lg">How It Works</a>
+          <a href="#case-studies" onClick={() => setIsDrawerOpen(false)} className="text-luxury-text-body hover:text-luxury-ai-start transition-colors font-semibold text-lg">Results</a>
+          <a href="/about" onClick={() => setIsDrawerOpen(false)} className="text-luxury-text-body hover:text-luxury-ai-start transition-colors font-semibold text-lg">About</a>
+          <a href="/digital-maturity-tracker" onClick={() => setIsDrawerOpen(false)} className="text-luxury-text-body hover:text-luxury-ai-start transition-colors font-semibold text-lg">Free Assessment</a>
+          <button 
+            onClick={scrollToContact}
+            className="btn-primary rounded-full mt-4"
+          >
+            Contact Us
+          </button>
+        </div>
+      </Drawer>
 
       {/* Luxury Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20 bg-luxury-bg-primary grid-section">
@@ -213,7 +232,7 @@ export default function Homepage() {
               </Button>
               
               <Button
-                onClick={() => window.open('https://wa.me/YOUR_WHATSAPP', '_blank')}
+                onClick={() => window.open('https://wa.me/971585695177', '_blank')}
                 variant="outline"
                 className="p-6 h-auto flex-col space-y-2 bg-green-50 border-green-200 text-green-700 hover:bg-green-100 hover:scale-105 transition-all duration-300"
               >
@@ -310,9 +329,9 @@ export default function Homepage() {
               © 2025 Ailutions. All rights reserved. We help businesses automate and scale.
             </p>
             <div className="flex space-x-6">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">Terms</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">Support</a>
+              <a href="#" className="hover:text-white transition-colors">Privacy</a>
+              <a href="#" className="hover:text-white transition-colors">Terms</a>
+              <a href="#" className="hover:text-white transition-colors">Support</a>
             </div>
           </div>
         </div>

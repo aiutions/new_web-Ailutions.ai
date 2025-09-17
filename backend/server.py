@@ -9,6 +9,7 @@ from typing import List, Dict, Optional, Any
 import uuid
 from datetime import datetime
 from supabase import create_client, Client
+import resend
 
 # Load environment variables
 load_dotenv()
@@ -16,9 +17,13 @@ load_dotenv()
 # Supabase configuration
 SUPABASE_URL = "https://cwbjscsbixtdglspnexn.supabase.co"
 SUPABASE_SERVICE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3YmpzY3NiaXh0ZGdsc3BuZXhuIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1ODA4NDc2MSwiZXhwIjoyMDczNjYwNzYxfQ.tNLwUKClzE3LoYSPcC9xGSnYYc2nGFPqAxDvEp6XdbQ"
+RESEND_API_KEY = os.environ.get("RESEND_API_KEY")
 
 # Initialize Supabase client
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_SERVICE_KEY)
+
+# Initialize Resend
+# resend.api_key = RESEND_API_KEY
 
 # Create the main app
 app = FastAPI(title="Ailutions API with Supabase", version="1.0.0")
@@ -111,6 +116,13 @@ class AssessmentResponse(BaseModel):
     message: str
     assessment_url: Optional[str] = None
 
+class ContactForm(BaseModel):
+    name: str
+    email: str
+    company: str
+    goal: str
+    message: str
+
 # Database initialization
 async def create_tables():
     """Create Supabase tables if they don't exist"""
@@ -176,6 +188,16 @@ async def health_check():
         return {"status": "healthy", "service": "ailutions-supabase-api", "database": "connected"}
     except Exception as e:
         return {"status": "degraded", "service": "ailutions-supabase-api", "database": "error", "error": str(e)}
+
+@api_router.post("/contact")
+async def contact(form_data: ContactForm):
+    try:
+        # Temporarily disable email sending to test form submission
+        print(f"Received form data: {form_data.dict()}")
+        return {"message": "Form submitted successfully!", "data": form_data.dict()}
+    except Exception as e:
+        logger.error(f"Error in contact form: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error in contact form: {str(e)}")
 
 # Digital Maturity Tracker Endpoints
 @api_router.post("/assessment/save", response_model=AssessmentResponse)
