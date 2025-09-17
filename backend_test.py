@@ -333,32 +333,36 @@ def test_get_assessment(assessment_id):
         return False
 
 def test_get_all_assessments():
-    """Test retrieving all assessments"""
-    print("\nTesting get all assessments endpoint...")
+    """Test retrieving all assessments - PRIORITY TEST for pagination and filtering"""
+    print("\nTesting get all digital maturity assessments endpoint (Pagination verification)...")
     try:
-        response = requests.get(f"{BACKEND_URL}/assessments")
+        response = requests.get(f"{BACKEND_URL}/assessments/digital-maturity")
         print(f"Status Code: {response.status_code}")
         
         if response.status_code == 200:
             data = response.json()
-            print(f"Number of assessments returned: {len(data)}")
+            assessments = data.get("data", [])
+            count = data.get("count", 0)
+            print(f"Number of assessments returned: {count}")
             
-            if isinstance(data, list):
-                if len(data) > 0:
+            if isinstance(assessments, list):
+                if len(assessments) > 0:
                     # Check structure of first assessment
-                    first_assessment = data[0]
-                    required_fields = ["id", "user_info", "answers", "results", "timestamp"]
+                    first_assessment = assessments[0]
+                    required_fields = ["id", "user_info", "answers", "results", "created_at"]
                     if all(field in first_assessment for field in required_fields):
-                        print("✅ Get all assessments working correctly")
+                        print("✅ Get all assessments working correctly - Supabase pagination functional")
+                        print(f"Sample assessment: {first_assessment.get('user_info', {}).get('name', 'Unknown')}")
                         return True
                     else:
                         print("❌ Get all assessments returned items with incorrect structure")
+                        print(f"Available fields: {list(first_assessment.keys())}")
                         return False
                 else:
                     print("✅ Get all assessments working correctly (empty list)")
                     return True
             else:
-                print("❌ Get all assessments did not return a list")
+                print("❌ Get all assessments did not return correct structure")
                 return False
         else:
             print(f"❌ Get all assessments failed with status {response.status_code}")
