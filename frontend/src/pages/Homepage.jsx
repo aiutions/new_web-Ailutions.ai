@@ -101,7 +101,7 @@ export default function Homepage() {
             </div>
             
             <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-luxury-text-heading leading-tight">
-              We help businesses (Vercel Test)
+              We help businesses 
               <span className="gradient-ai-text block">
                 automate operations
               </span>
