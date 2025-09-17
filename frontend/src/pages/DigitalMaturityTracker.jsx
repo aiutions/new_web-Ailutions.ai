@@ -599,7 +599,7 @@ export default function DigitalMaturityTracker() {
   };
 
   const bookStrategyCall = () => {
-    window.open('https://calendly.com/ailutions-strategy-call', '_blank');
+    window.open('https://cal.com/ailutions/15-minutes-strategy-call', '_blank');
   };
 
   const contactWhatsApp = () => {
