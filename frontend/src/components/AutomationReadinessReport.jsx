@@ -237,7 +237,7 @@ export default function AutomationReadinessReport({ results, userInfo, onBack })
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12 text-center">
                 <Card>
                   <CardContent className="p-6">
-                    <Target className="w-10 h-10 mx-auto mb-3 text-purple-600" />
+                    <Target className="w-10 h-10 mx-auto mb-3 text-blue-600" />
                     <div className="text-3xl font-bold">{results.totalTasks}</div>
                     <div className="text-gray-600">Tasks Analyzed</div>
                   </CardContent>
@@ -275,7 +275,7 @@ export default function AutomationReadinessReport({ results, userInfo, onBack })
                         <div className="p-6 bg-gray-50 border-b">
                           <div className="flex justify-between items-start">
                             <h3 className="text-xl font-bold text-gray-800">#{index + 1} {task.taskName}</h3>
-                            <Badge className="bg-purple-600 text-white">Score: {task.score}</Badge>
+                            <Badge className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white">Score: {task.score}</Badge>
                           </div>
                         </div>
                         <div className="p-6">
@@ -321,13 +321,13 @@ export default function AutomationReadinessReport({ results, userInfo, onBack })
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
-          <Card className="bg-gradient-to-r from-purple-600 to-pink-500 text-white">
+          <Card className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white">
             <CardContent className="p-10 flex items-center justify-between">
               <div>
                 <h3 className="text-2xl font-bold mb-2">Ready to Automate?</h3>
                 <p className="opacity-90">Book a free strategy call to discuss your automation roadmap.</p>
               </div>
-              <Button onClick={() => window.open('https://cal.com/ailutions/15-minutes-strategy-call', '_blank')} size="lg" className="bg-white text-purple-600 hover:bg-gray-100 font-bold px-8 py-4 rounded-lg text-lg"> 
+              <Button onClick={() => window.open('https://cal.com/ailutions/15-minutes-strategy-call', '_blank')} size="lg" className="bg-white text-blue-600 hover:bg-gray-100 font-bold px-8 py-4 rounded-lg text-lg"> 
                 <Calendar className="w-5 h-5 mr-2" />
                 Book Strategy Call
               </Button>

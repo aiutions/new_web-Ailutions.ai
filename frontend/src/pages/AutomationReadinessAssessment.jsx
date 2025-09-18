@@ -177,7 +177,7 @@ export default function AutomationReadinessAssessment() {
 
   if (showUserForm) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50/30">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50/30">
         <header className="bg-white/80 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
           <div className="max-w-4xl mx-auto px-6 py-4">
             <div className="text-center">
@@ -190,8 +190,8 @@ export default function AutomationReadinessAssessment() {
           <Card className="border-0 shadow-2xl bg-white/95 backdrop-blur-sm">
             <CardContent className="p-10">
               <div className="text-center mb-8">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-purple-100 to-pink-100 flex items-center justify-center">
-                  <BarChart3 className="w-8 h-8 text-purple-600" />
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-blue-100 to-cyan-100 flex items-center justify-center">
+                  <BarChart3 className="w-8 h-8 text-blue-600" />
                 </div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-4">
                   Get Your Custom Automation Roadmap
@@ -210,7 +210,7 @@ export default function AutomationReadinessAssessment() {
                     type="text"
                     value={userInfo.name}
                     onChange={(e) => setUserInfo(prev => ({...prev, name: e.target.value}))}
-                    className="w-full p-4 border border-gray-200 rounded-lg focus:border-purple-500 focus:ring-purple-500/20 text-lg"
+                    className="w-full p-4 border border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500/20 text-lg"
                     required
                     placeholder="Your full name"
                   />
@@ -224,7 +224,7 @@ export default function AutomationReadinessAssessment() {
                     type="email"
                     value={userInfo.email}
                     onChange={(e) => setUserInfo(prev => ({...prev, email: e.target.value}))}
-                    className="w-full p-4 border border-gray-200 rounded-lg focus:border-purple-500 focus:ring-purple-500/20 text-lg"
+                    className="w-full p-4 border border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500/20 text-lg"
                     required
                     placeholder="your@company.com"
                   />
@@ -238,7 +238,7 @@ export default function AutomationReadinessAssessment() {
                     type="text"
                     value={userInfo.company}
                     onChange={(e) => setUserInfo(prev => ({...prev, company: e.target.value}))}
-                    className="w-full p-4 border border-gray-200 rounded-lg focus:border-purple-500 focus:ring-purple-500/20 text-lg"
+                    className="w-full p-4 border border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500/20 text-lg"
                     required
                     placeholder="Your company"
                   />
@@ -251,7 +251,7 @@ export default function AutomationReadinessAssessment() {
                   <select
                     value={userInfo.role}
                     onChange={(e) => setUserInfo(prev => ({...prev, role: e.target.value}))}
-                    className="w-full p-4 border border-gray-200 rounded-lg focus:border-purple-500 focus:ring-purple-500/20 text-lg"
+                    className="w-full p-4 border border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500/20 text-lg"
                   >
                     <option value="">Select your role</option>
                     <option value="CEO/Founder">CEO/Founder</option>
@@ -265,7 +265,7 @@ export default function AutomationReadinessAssessment() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-4 rounded-xl text-lg hover:scale-105 transition-all duration-300"
+                  className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold py-4 rounded-xl text-lg hover:scale-105 transition-all duration-300"
                 >
                   <Download className="w-5 h-5 mr-2" />
                   Get My Automation Roadmap
@@ -310,7 +310,7 @@ export default function AutomationReadinessAssessment() {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-12">
         <div className="text-center mb-8 sm:mb-12">
-          <div className="inline-flex items-center space-x-2 bg-purple-100 text-purple-700 rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-4 sm:mb-6">
+          <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-700 rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-4 sm:mb-6">
             <BarChart3 className="w-4 h-4 sm:w-5 sm:h-5" />
             <span className="font-semibold text-sm sm:text-base">Automation Assessment</span>
           </div>
@@ -329,7 +329,7 @@ export default function AutomationReadinessAssessment() {
               <Button
                 onClick={addTask}
                 disabled={tasks.length >= 10}
-                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
+                className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white"
               >
                 <Plus className="w-4 h-4 mr-2" />
                 Add Task {tasks.length >= 10 && '(Max 10)'}
@@ -338,13 +338,13 @@ export default function AutomationReadinessAssessment() {
 
             <div className="space-y-6">
               {tasks.map((task, index) => (
-                <Card key={task.id} className="border-2 border-gray-100 hover:border-purple-200 transition-all duration-200">
+                <Card key={task.id} className="border-2 border-gray-100 hover:border-blue-200 transition-all duration-200">
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between mb-4">
                       <h3 className="text-lg font-semibold text-gray-700">Task #{index + 1}</h3>
                       <div className="flex items-center space-x-3">
                         {task.score > 0 && (
-                          <Badge className="bg-gradient-to-r from-purple-600 to-pink-600 text-white">
+                          <Badge className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white">
                             Score: {task.score}
                           </Badge>
                         )}
@@ -369,7 +369,7 @@ export default function AutomationReadinessAssessment() {
                           value={task.taskName}
                           onChange={(e) => updateTask(task.id, 'taskName', e.target.value)}
                           placeholder="e.g., Data entry from emails"
-                          className="border-gray-200 focus:border-purple-500"
+                          className="border-gray-200 focus:border-blue-500"
                         />
                       </div>
 
@@ -381,7 +381,7 @@ export default function AutomationReadinessAssessment() {
                           value={task.whoHandles}
                           onChange={(e) => updateTask(task.id, 'whoHandles', e.target.value)}
                           placeholder="e.g., Sarah, Admin team"
-                          className="border-gray-200 focus:border-purple-500"
+                          className="border-gray-200 focus:border-blue-500"
                         />
                       </div>
 
@@ -392,7 +392,7 @@ export default function AutomationReadinessAssessment() {
                         <select
                           value={task.frequency}
                           onChange={(e) => updateTask(task.id, 'frequency', e.target.value)}
-                          className="w-full p-2 border border-gray-200 rounded-md focus:border-purple-500 focus:ring-purple-500/20"
+                          className="w-full p-2 border border-gray-200 rounded-md focus:border-blue-500 focus:ring-blue-500/20"
                         >
                           <option value="">Select frequency</option>
                           <option value="daily">Daily</option>
@@ -411,7 +411,7 @@ export default function AutomationReadinessAssessment() {
                           value={task.timeSpent}
                           onChange={(e) => updateTask(task.id, 'timeSpent', e.target.value)}
                           placeholder="30"
-                          className="border-gray-200 focus:border-purple-500"
+                          className="border-gray-200 focus:border-blue-500"
                         />
                       </div>
 
@@ -423,7 +423,7 @@ export default function AutomationReadinessAssessment() {
                           value={task.toolsUsed}
                           onChange={(e) => updateTask(task.id, 'toolsUsed', e.target.value)}
                           placeholder="Excel, Email, CRM"
-                          className="border-gray-200 focus:border-purple-500"
+                          className="border-gray-200 focus:border-blue-500"
                         />
                       </div>
                     </div>
@@ -437,7 +437,7 @@ export default function AutomationReadinessAssessment() {
                 onClick={analyzeResults}
                 disabled={!isFormValid()}
                 size="lg"
-                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold px-12 py-6 rounded-2xl text-xl hover:scale-105 transition-all duration-300 hover:shadow-2xl disabled:opacity-50"
+                className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold px-12 py-6 rounded-2xl text-xl hover:scale-105 transition-all duration-300 hover:shadow-2xl disabled:opacity-50"
               >
                 <BarChart3 className="w-6 h-6 mr-3" />
                 Analyze My Tasks
@@ -450,7 +450,7 @@ export default function AutomationReadinessAssessment() {
         </Card>
 
         {preliminaryResults && (
-          <Card className="border-0 shadow-xl bg-gradient-to-r from-purple-50 to-pink-50 mb-8">
+          <Card className="border-0 shadow-xl bg-gradient-to-r from-blue-50 to-cyan-50 mb-8">
             <CardContent className="p-8 text-center">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
                 🎉 Analysis Complete!
@@ -461,7 +461,7 @@ export default function AutomationReadinessAssessment() {
               <Button
                 onClick={() => setShowUserForm(true)}
                 size="lg"
-                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold px-10 py-4 rounded-xl text-lg hover:scale-105 transition-all duration-300"
+                className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold px-10 py-4 rounded-xl text-lg hover:scale-105 transition-all duration-300"
               >
                 Get My Full Automation Roadmap
               </Button>
