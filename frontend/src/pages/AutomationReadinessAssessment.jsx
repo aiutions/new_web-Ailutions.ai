@@ -21,15 +21,15 @@ export default function AutomationReadinessAssessment() {
     }
   ]);
   
-  const [showResults, setShowResults] = useState(false);
-  const [showEmailCapture, setShowEmailCapture] = useState(false);
+  const [preliminaryResults, setPreliminaryResults] = useState(null);
+  const [showUserForm, setShowUserForm] = useState(false);
+  const [showFullReport, setShowFullReport] = useState(false);
   const [userInfo, setUserInfo] = useState({
     name: '',
     email: '',
     company: '',
     role: ''
   });
-  const [results, setResults] = useState(null);
 
   const frequencyValues = {
     'daily': { label: 'Daily', multiplier: 365, priority: 'high' },
@@ -142,40 +142,40 @@ export default function AutomationReadinessAssessment() {
       timestamp: new Date().toISOString()
     };
 
-    setResults(analysisResults);
-    setShowResults(true);
+    setPreliminaryResults(analysisResults);
   };
 
-  const handleEmailSubmit = (e) => {
+  const handleUserFormSubmit = (e) => {
     e.preventDefault();
-    setShowEmailCapture(false);
     
     const assessments = JSON.parse(localStorage.getItem('automationAssessments') || '[]');
     assessments.push({
-      ...results,
+      ...preliminaryResults,
       userInfo,
       timestamp: new Date().toISOString()
     });
     localStorage.setItem('automationAssessments', JSON.stringify(assessments));
+    
+    setShowFullReport(true);
+    setShowUserForm(false);
   };
   
-  const handleShowReport = () => {
-      if (!userInfo.email) {
-          setShowEmailCapture(true);
-      } else {
-          setShowResults(true);
-      }
-  }
+  const handleBackToAssessment = () => {
+    setShowFullReport(false);
+    setShowUserForm(false);
+    setPreliminaryResults(null);
+    setUserInfo({ name: '', email: '', company: '', role: '' });
+  };
 
   const isFormValid = () => {
     return tasks.some(task => task.taskName && task.frequency && task.timeSpent);
   };
 
-  if (showResults && results && userInfo.email) {
-    return <AutomationReadinessReport results={results} userInfo={userInfo} onBack={() => {setShowResults(false); setUserInfo({name: '', email: '', company: '', role: ''})}} />;
+  if (showFullReport && preliminaryResults) {
+    return <AutomationReadinessReport results={preliminaryResults} userInfo={userInfo} onBack={handleBackToAssessment} />;
   }
 
-  if (showEmailCapture && !userInfo.email) {
+  if (showUserForm) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50/30">
         <header className="bg-white/80 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
@@ -201,7 +201,7 @@ export default function AutomationReadinessAssessment() {
                 </p>
               </div>
 
-              <form onSubmit={handleEmailSubmit} className="space-y-6">
+              <form onSubmit={handleUserFormSubmit} className="space-y-6">
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Full Name *
@@ -449,17 +449,17 @@ export default function AutomationReadinessAssessment() {
           </CardContent>
         </Card>
 
-        {showResults && results && (
+        {preliminaryResults && (
           <Card className="border-0 shadow-xl bg-gradient-to-r from-purple-50 to-pink-50 mb-8">
             <CardContent className="p-8 text-center">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
                 🎉 Analysis Complete!
               </h3>
               <p className="text-lg text-gray-600 mb-6">
-                Your automation readiness score is <strong>{results.readinessScore}%</strong> with <strong>{results.topAutomationCandidates.length}</strong> high-priority tasks identified.
+                Your automation readiness score is <strong>{preliminaryResults.readinessScore}%</strong> with <strong>{preliminaryResults.topAutomationCandidates.length}</strong> high-priority tasks identified.
               </p>
               <Button
-                onClick={handleShowReport}
+                onClick={() => setShowUserForm(true)}
                 size="lg"
                 className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold px-10 py-4 rounded-xl text-lg hover:scale-105 transition-all duration-300"
               >
