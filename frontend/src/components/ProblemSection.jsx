@@ -65,8 +65,8 @@ export const ProblemSection = () => {
                   <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
                     <AlertTriangle className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold">Here's What Happens If You Don't Act:</h3>
-                  <p className="text-xl leading-relaxed opacity-95">
+                  <h3 className="text-2xl font-bold text-white">Here's What Happens If You Don't Act:</h3>
+                  <p className="text-xl leading-relaxed opacity-95 text-white">
                     Competitors who adopt AI will operate leaner, move faster, and capture market share while you're still drowning in manual processes.
                   </p>
                 </div>
