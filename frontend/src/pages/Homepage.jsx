@@ -187,7 +187,7 @@ export default function Homepage() {
           <div className="text-center">
             <button
               onClick={() => alert('Navigate to full case studies page')}
-              className="btn-secondary btn-large"
+              className="btn-secondary btn-large bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600"
             >
               View More Case Studies
               <ArrowRight className="w-5 h-5 ml-2" />

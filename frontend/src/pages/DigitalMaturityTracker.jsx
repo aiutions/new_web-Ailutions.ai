@@ -189,6 +189,18 @@ export default function DigitalMaturityTracker() {
     setFormData({ name: '', email: '', company: '', role: '' });
   };
 
+  const AppHeader = () => (
+    <header className="bg-white/80 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
+            <Button variant="ghost" onClick={() => window.location.href = '/'}><ArrowLeft className="w-4 h-4 mr-2" /> Home</Button>
+            <a href="/">
+              <img src="https://customer-assets.emergentagent.com/job_ai-lead-toolkit/artifacts/lr58t0dk_ailutions.%20logo.svg" alt="Ailutions Logo" className="h-8" />
+            </a>
+            <div className="text-sm text-gray-500">{currentQuestionNumber} of {totalQuestions}</div>
+        </div>
+    </header>
+  );
+
   if (showUserForm && !isComplete) {
     return (
         <div className="min-h-screen bg-luxury-bg-primary flex items-center justify-center p-4">
@@ -227,22 +239,7 @@ export default function DigitalMaturityTracker() {
   if (isComplete && results) {
     return (
         <div className="min-h-screen bg-gray-100">
-            <header className="bg-white shadow-md sticky top-0 z-50">
-                <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-                <a href="/" className="flex items-center">
-                  <img 
-                    src="https://customer-assets.emergentagent.com/job_ai-lead-toolkit/artifacts/lr58t0dk_ailutions.%20logo.svg" 
-                    alt="Ailutions Logo" 
-                    className="h-10 w-auto"
-                  />
-                 </a>
-                    <div className="flex items-center space-x-4">
-                        <Button onClick={downloadPDF}><Download className="w-5 h-5 mr-2" /> Download PDF</Button>
-                        <Button onClick={bookStrategyCall} variant="outline"><Calendar className="w-5 h-5 mr-2" /> Book Strategy Call</Button>
-                        <Button onClick={contactWhatsApp} className="bg-green-500 hover:bg-green-600"><MessageCircle className="w-5 h-5 mr-2" /> Chat on WhatsApp</Button>
-                    </div>
-                </div>
-            </header>
+            <AppHeader />
             <main className="py-12 px-6">
                 <div className="max-w-7xl mx-auto">
                     <Report ref={reportRef} {...results} />
@@ -266,15 +263,7 @@ export default function DigitalMaturityTracker() {
 
   return (
     <div className="min-h-screen bg-luxury-bg-primary">
-        <header className="bg-white/80 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
-                <Button variant="ghost" onClick={() => window.location.href = '/'}><ArrowLeft className="w-4 h-4 mr-2" /> Home</Button>
-                <a href="/">
-                  <img src="https://customer-assets.emergentagent.com/job_ai-lead-toolkit/artifacts/lr58t0dk_ailutions.%20logo.svg" alt="Ailutions Logo" className="h-8" />
-                </a>
-                <div className="text-sm text-gray-500">{currentQuestionNumber} of {totalQuestions}</div>
-            </div>
-        </header>
+        <AppHeader />
         <main className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
             <Progress value={progress} className="mb-12 h-3" />
             <Card className="border-0 shadow-2xl bg-white/90 backdrop-blur-sm">

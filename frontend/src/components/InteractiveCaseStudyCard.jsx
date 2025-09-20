@@ -20,13 +20,13 @@ export const InteractiveCaseStudyCard = ({ title, metric, problem, solution, out
         <Card className={`absolute inset-0 backface-hidden hover:scale-105 transition-all duration-300 hover:shadow-xl border-0 bg-gradient-to-br from-gray-50 to-blue-50/30 ${isFlipped ? 'rotate-y-180' : ''}`}>
           <CardContent className="p-8 text-center h-full flex flex-col justify-center">
             <div className="space-y-6">
-              <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-blue-100 to-green-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-green-500 group-hover:rotate-12 transition-transform duration-300"></div>
+              <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 group-hover:rotate-12 transition-transform duration-300"></div>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
                 {title}
               </h3>
-              <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-green-600">
+              <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600">
                 {metric}
               </div>
               <p className="text-sm text-gray-500">Click to learn more</p>
@@ -35,7 +35,7 @@ export const InteractiveCaseStudyCard = ({ title, metric, problem, solution, out
         </Card>
         
         {/* Back Card */}
-        <Card className={`absolute inset-0 backface-hidden rotate-y-180 hover:scale-105 transition-all duration-300 hover:shadow-xl border-0 bg-gradient-to-br from-blue-50 to-green-50 ${isFlipped ? '' : 'rotate-y-180'}`}>
+        <Card className={`absolute inset-0 backface-hidden rotate-y-180 hover:scale-105 transition-all duration-300 hover:shadow-xl border-0 bg-gradient-to-br from-blue-50 to-cyan-50 ${isFlipped ? '' : 'rotate-y-180'}`}>
           <CardContent className="p-6 h-full flex flex-col justify-between">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
@@ -68,7 +68,7 @@ export const InteractiveCaseStudyCard = ({ title, metric, problem, solution, out
                 </div>
               </div>
               
-              <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-green-600">
+              <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600">
                 {metric}
               </div>
             </div>
@@ -78,7 +78,7 @@ export const InteractiveCaseStudyCard = ({ title, metric, problem, solution, out
                 e.stopPropagation();
                 handleReadFullCase();
               }}
-              className="w-full bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white font-semibold py-2 rounded-lg text-sm mt-4"
+              className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-semibold py-2 rounded-lg text-sm mt-4"
             >
               Read Full Case
               <ArrowRight className="w-4 h-4 ml-2" />

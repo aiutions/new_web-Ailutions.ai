@@ -113,10 +113,10 @@ export const OfferSection = () => {
                       <CheckCircle className="w-6 h-6 text-green-400" />
                       <h4 className="text-xl font-bold text-green-400">Our Guarantee</h4>
                     </div>
-                    <p className="text-lg">
+                    <p className="text-lg text-black">
                       <strong>You don't pay until your first automation is live.</strong>
                     </p>
-                    <p className="text-sm opacity-80 mt-2">
+                    <p className="text-sm text-black mt-2">
                       We're so confident in our results, we'll prove the value first.
                     </p>
                   </div>

@@ -194,10 +194,10 @@ export const LeadMagnetSection = () => {
             })}
 
             {/* CTA */}
-            <Card className="border-0 bg-gradient-to-r from-green-500 to-blue-500 text-white shadow-xl">
+            <Card className="border-0 bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-xl">
               <CardContent className="p-8 text-center">
                 <h4 className="text-2xl font-bold mb-4">Ready to Automate?</h4>
-                <p className="text-lg mb-6 opacity-90">
+                <p className="text-lg mb-6 text-black">
                   Start with the Digital Maturity Tracker — it takes just 3 minutes.
                 </p>
                 <button
