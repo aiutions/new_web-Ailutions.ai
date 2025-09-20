@@ -136,7 +136,8 @@ export const blogPreviews = [
 
 export const digitalMaturitySections = [
   {
-    name: "Strategy",
+    id: "strategy",
+    name: "Strategy & Leadership",
     questions: [
       "How clearly defined is your digital strategy?",
       "How well does your leadership support digital initiatives?",
@@ -144,7 +145,8 @@ export const digitalMaturitySections = [
     ]
   },
   {
-    name: "Process",
+    id: "process",
+    name: "Process & Operations",
     questions: [
       "How standardized are your business processes?",
       "How well integrated are your different systems?",
@@ -152,6 +154,7 @@ export const digitalMaturitySections = [
     ]
   },
   {
+    id: "data",
     name: "Data & Decisions",
     questions: [
       "We use real-time dashboards for the numbers that matter.",
@@ -161,7 +164,8 @@ export const digitalMaturitySections = [
     ]
   },
   {
-    name: "Automation",
+    id: "automation",
+    name: "Automation & AI",
     questions: [
       "How much of your routine work is automated?",
       "How effectively do you use AI/ML in operations?",
@@ -169,7 +173,8 @@ export const digitalMaturitySections = [
     ]
   },
   {
-    name: "Security",
+    id: "security",
+    name: "Security & Compliance",
     questions: [
       "How comprehensive is your cybersecurity framework?",
       "How well do you manage data privacy compliance?",
@@ -177,6 +182,7 @@ export const digitalMaturitySections = [
     ]
   },
   {
+    id: "customer",
     name: "Customer & People",
     questions: [
       "Our site/app is fast, mobile-friendly, and easy to use.",
@@ -189,43 +195,43 @@ export const digitalMaturitySections = [
 
 export const maturityLevels = [
   {
-    name: "Foundational",
+    name: "Pre-Digital",
     range: [0, 25],
-    description: "Building basic digital capabilities",
+    description: "Building basic digital capabilities, often with manual or ad-hoc processes.",
     recommendations: [
-      "Establish clear digital strategy",
-      "Invest in foundational technologies",
-      "Build digital skills across teams"
+      "Establish a clear digital strategy and roadmap.",
+      "Invest in foundational technologies like a modern ERP or CRM.",
+      "Begin standardizing core business processes."
     ]
   },
   {
-    name: "Emerging",
+    name: "Digital",
     range: [26, 50],
-    description: "Developing structured digital practices",
+    description: "Developing structured digital practices and integrating core systems.",
     recommendations: [
-      "Standardize core processes",
-      "Implement data governance",
-      "Expand automation initiatives"
+      "Implement data governance and start using data for decisions.",
+      "Identify and begin automating high-frequency, low-value tasks.",
+      "Enhance customer experience through digital channels."
     ]
   },
   {
-    name: "Established",
+    name: "Automated",
     range: [51, 75],
-    description: "Strong digital foundation with growth opportunities",
+    description: "Automating core processes and workflows to improve efficiency and reduce errors.",
     recommendations: [
-      "Optimize existing systems",
-      "Implement advanced analytics",
-      "Enhance cross-functional integration"
+      "Optimize and expand automation across departments.",
+      "Implement advanced analytics and business intelligence.",
+      "Develop a culture of continuous improvement and data-driven decisions."
     ]
   },
   {
-    name: "Advanced",
+    name: "AI-Powered",
     range: [76, 100],
-    description: "Leading digital transformation practices",
+    description: "Leveraging AI for predictive insights, strategic advantage, and autonomous operations.",
     recommendations: [
-      "Drive innovation initiatives",
-      "Mentor others in digital transformation",
-      "Explore emerging technologies"
+      "Deploy AI and machine learning models for forecasting and optimization.",
+      "Explore generative AI for content creation and customer interaction.",
+      "Foster a culture of innovation and data experimentation."
     ]
   }
 ];

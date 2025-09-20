@@ -1,12 +1,11 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Progress } from '../components/ui/progress';
 import { Badge } from '../components/ui/badge';
-import { ArrowLeft, Download, Calendar, CheckCircle, MessageCircle, FileText } from 'lucide-react';
+import { ArrowLeft, RefreshCw, CheckCircle } from 'lucide-react';
 import { digitalMaturitySections, maturityLevels } from '../data/mock';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 import Report from '../components/Report';
 
 export default function DigitalMaturityTracker() {
@@ -17,6 +16,8 @@ export default function DigitalMaturityTracker() {
   const [results, setResults] = useState(null);
   const [userInfo, setUserInfo] = useState(null);
   const [showUserForm, setShowUserForm] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [aiReport, setAiReport] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -25,16 +26,15 @@ export default function DigitalMaturityTracker() {
   });
   const reportRef = useRef();
 
+  // Removed the useEffect that loaded previous results to ensure a fresh start every time.
+
   const totalQuestions = digitalMaturitySections.reduce((sum, section) => sum + section.questions.length, 0);
   const currentQuestionNumber = digitalMaturitySections.slice(0, currentSection).reduce((sum, section) => sum + section.questions.length, 0) + currentQuestion + 1;
   const progress = (Object.keys(answers).length / totalQuestions) * 100;
 
   const handleAnswer = (score) => {
     const questionKey = `${currentSection}-${currentQuestion}`;
-    setAnswers(prev => ({
-      ...prev,
-      [questionKey]: score
-    }));
+    setAnswers(prev => ({ ...prev, [questionKey]: score }));
 
     const currentSectionQuestions = digitalMaturitySections[currentSection].questions.length;
     if (currentQuestion < currentSectionQuestions - 1) {
@@ -47,134 +47,74 @@ export default function DigitalMaturityTracker() {
     }
   };
 
-  const handleUserFormSubmit = async (e) => {
-    e.preventDefault();
-    setUserInfo(formData);
-    const calculatedResults = calculateResults();
-    await saveAssessmentToDatabase(formData, calculatedResults);
-  };
-
-  const saveAssessmentToDatabase = async (userInfo, results) => {
-    try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
-      const assessmentData = {
-        user_info: { ...userInfo },
-        answers: answers,
-        results: {
-          percentage: results.percentage,
-          maturity_stage: results.maturityStage.name,
-          level_name: results.maturityStage.name,
-          level_description: results.maturityStage.description,
-          section_scores: Object.entries(results.categoryScores).map(([key, value]) => ({ name: value.name, score: value.score.toFixed(1) })),
-          detailed_recommendations: results.analysis.recommendations,
-          strengths: results.analysis.strengths,
-          weaknesses: results.analysis.challenges,
-          overall_analysis: results.analysis.summary,
-        },
-        user_agent: navigator.userAgent
-      };
-
-      const response = await fetch(`${backendUrl}/api/assessment/save`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(assessmentData)
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to save assessment');
-      }
-
-      const result = await response.json();
-      localStorage.setItem('digitalMaturityResults', JSON.stringify({ ...results, userInfo, assessmentId: result.id, timestamp: new Date().toISOString() }));
-
-    } catch (error) {
-      console.error('Error saving assessment:', error);
-      localStorage.setItem('digitalMaturityResults', JSON.stringify({ ...results, userInfo, timestamp: new Date().toISOString() }));
-    }
-  };
-
   const calculateResults = () => {
     const categoryScores = digitalMaturitySections.reduce((acc, section, index) => {
-        const sectionAnswers = Object.entries(answers).filter(([key]) => key.startsWith(`${index}-`)).map(([, score]) => score);
-        const totalScore = sectionAnswers.reduce((sum, score) => sum + score, 0);
-        const maxScore = sectionAnswers.length * 3;
-        const score = (totalScore / maxScore) * 10;
-        acc[section.id] = { name: section.name, score };
-        return acc;
+      const sectionAnswers = Object.entries(answers).filter(([key]) => key.startsWith(`${index}-`)).map(([, score]) => score);
+      const totalScore = sectionAnswers.reduce((sum, score) => sum + score, 0);
+      const maxScore = sectionAnswers.length * 3;
+      const score = (totalScore / maxScore) * 10;
+      acc[section.id] = { name: section.name, score };
+      return acc;
     }, {});
 
     const totalScore = Object.values(categoryScores).reduce((sum, cat) => sum + cat.score, 0);
     const overallPercentage = (totalScore / (digitalMaturitySections.length * 10)) * 100;
-
     const maturityStage = maturityLevels.find(level => overallPercentage >= level.range[0] && overallPercentage <= level.range[1]) || maturityLevels[0];
-
-    const analysis = {
-        summary: `Your overall digital maturity score of ${overallPercentage.toFixed(0)}% places you in the '${maturityStage.name}' stage. ${maturityStage.description}`,
-        strengths: Object.values(categoryScores).filter(c => c.score >= 8).map(c => `${c.name} is a key strength. Keep capitalizing on this!`),
-        challenges: Object.values(categoryScores).filter(c => c.score < 5).map(c => `${c.name} requires significant attention.`),
-        recommendations: maturityStage.recommendations
+    
+    const staticAnalysis = {
+      summary: `Your overall digital maturity score of ${overallPercentage.toFixed(0)}% places you in the '${maturityStage.name}' stage. ${maturityStage.description}`,
+      recommendations: maturityStage.recommendations
     };
 
-    const calculatedResults = { score: overallPercentage, categoryScores, maturityStage, analysis };
-    setResults(calculatedResults);
-    setIsComplete(true);
-    return calculatedResults;
+    return { score: overallPercentage, categoryScores, maturityStage, analysis: staticAnalysis };
   };
 
+  const handleUserFormSubmit = async (e) => {
+    e.preventDefault();
+    setIsGenerating(true);
+    setShowUserForm(false);
+    setUserInfo(formData);
 
-  const downloadPDF = () => {
-    const input = reportRef.current;
-    if (!input) return;
-  
-    html2canvas(input, { scale: 2, useCORS: true }).then((canvas) => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = pdf.internal.pageSize.getHeight();
-      const canvasWidth = canvas.width;
-      const canvasHeight = canvas.height;
-      const ratio = canvasWidth / canvasHeight;
-      const width = pdfWidth;
-      const height = width / ratio;
-  
-      let position = 0;
-      let heightLeft = height;
-  
-      pdf.addImage(imgData, 'PNG', 0, position, width, height);
-      heightLeft -= pdfHeight;
-  
-      while (heightLeft > 0) {
-        position = heightLeft - height;
-        pdf.addPage();
-        pdf.addImage(imgData, 'PNG', 0, position, width, height);
-        heightLeft -= pdfHeight;
+    const calculatedResults = calculateResults();
+
+    try {
+      const response = await fetch('/api/generateReport', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ answers, results: calculatedResults }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`API Error: ${response.statusText}`);
       }
-  
-      const fileName = `Digital-Maturity-Report-${userInfo?.company || 'Assessment'}-${new Date().toISOString().split('T')[0]}.pdf`;
-      pdf.save(fileName);
-    });
-  };
 
-  const bookStrategyCall = () => {
-    window.open('https://cal.com/ailutions/15-minutes-strategy-call', '_blank');
-  };
+      const aiContent = await response.json();
 
-  const contactWhatsApp = () => {
-    const message = encodeURIComponent(
-      `Hi! I just completed the Digital Maturity Assessment and got a score of ${results?.score.toFixed(0)}% (${results?.maturityStage?.name} stage). I'd like to discuss the next steps.`
-    );
-    window.open(`https://wa.me/971585695177?text=${message}`, '_blank');
+      if (aiContent && aiContent.executiveSummary && aiContent.personalizedRecommendations && aiContent.actionPlan) {
+        setAiReport(aiContent);
+        localStorage.setItem('digitalMaturityResults', JSON.stringify({ results: calculatedResults, userInfo: formData, aiReport: aiContent, timestamp: new Date().toISOString() }));
+      } else {
+        throw new Error("Incomplete AI report data received.");
+      }
+
+    } catch (error) {
+      console.error("Error generating or saving AI report:", error);
+      setAiReport(null); 
+      localStorage.setItem('digitalMaturityResults', JSON.stringify({ results: calculatedResults, userInfo: formData, aiReport: null, timestamp: new Date().toISOString() }));
+    } finally {
+      setResults(calculatedResults);
+      setIsComplete(true);
+      setIsGenerating(false);
+    }
   };
 
   const goBack = () => {
     if (currentQuestion > 0) {
       setCurrentQuestion(currentQuestion - 1);
     } else if (currentSection > 0) {
-        const prevSectionLength = digitalMaturitySections[currentSection - 1].questions.length;
-        setCurrentSection(currentSection - 1);
-        setCurrentQuestion(prevSectionLength - 1);
+      const prevSectionLength = digitalMaturitySections[currentSection - 1].questions.length;
+      setCurrentSection(currentSection - 1);
+      setCurrentQuestion(prevSectionLength - 1);
     }
   };
 
@@ -186,22 +126,42 @@ export default function DigitalMaturityTracker() {
     setResults(null);
     setUserInfo(null);
     setShowUserForm(false);
+    setAiReport(null);
     setFormData({ name: '', email: '', company: '', role: '' });
+    localStorage.removeItem('digitalMaturityResults');
   };
 
   const AppHeader = () => (
     <header className="bg-white/80 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
-            <Button variant="ghost" onClick={() => window.location.href = '/'}><ArrowLeft className="w-4 h-4 mr-2" /> Home</Button>
-            <a href="/">
-              <img src="https://customer-assets.emergentagent.com/job_ai-lead-toolkit/artifacts/lr58t0dk_ailutions.%20logo.svg" alt="Ailutions Logo" className="h-8" />
-            </a>
-            <div className="text-sm text-gray-500">{currentQuestionNumber} of {totalQuestions}</div>
-        </div>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
+        <Button variant="ghost" onClick={() => window.location.href = '/'}><ArrowLeft className="w-4 h-4 mr-2" /> Home</Button>
+        <a href="/">
+          <img src="https://customer-assets.emergentagent.com/job_ai-lead-toolkit/artifacts/lr58t0dk_ailutions.%20logo.svg" alt="Ailutions Logo" className="h-8" />
+        </a>
+        <div className="text-sm text-gray-500">{isComplete ? 'Report' : `${currentQuestionNumber} of ${totalQuestions}`}</div>
+      </div>
     </header>
   );
 
-  if (showUserForm && !isComplete) {
+  if (isGenerating) {
+    return (
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+            <div className="w-full max-w-2xl text-center">
+                <Card className="border-0 shadow-2xl bg-white/95 backdrop-blur-sm">
+                    <CardContent className="p-10">
+                        <div className="flex justify-center items-center mb-6">
+                            <RefreshCw className="w-12 h-12 text-blue-600 animate-spin" />
+                        </div>
+                        <h2 className="text-3xl font-bold text-gray-900 mb-4">Generating Your Personalized Report...</h2>
+                        <p className="text-lg text-gray-600">Our AI is analyzing your results to create custom recommendations just for you. This may take up to 30 seconds.</p>
+                    </CardContent>
+                </Card>
+            </div>
+        </div>
+    );
+  }
+  
+  if (showUserForm) {
     return (
         <div className="min-h-screen bg-luxury-bg-primary flex items-center justify-center p-4">
             <div className="w-full max-w-2xl">
@@ -242,7 +202,7 @@ export default function DigitalMaturityTracker() {
             <AppHeader />
             <main className="py-12 px-6">
                 <div className="max-w-7xl mx-auto">
-                    <Report ref={reportRef} {...results} />
+                    <Report ref={reportRef} {...results} aiReport={aiReport} userInfo={userInfo} />
                 </div>
                  <div className="text-center mt-8">
                   <Button
@@ -250,9 +210,10 @@ export default function DigitalMaturityTracker() {
                     variant="ghost"
                     className="text-gray-500 hover:text-gray-700"
                   >
+                    <RefreshCw className="w-4 h-4 mr-2" />
                     Take Assessment Again
                   </Button>
-          </div>
+                </div>
             </main>
         </div>
     );
