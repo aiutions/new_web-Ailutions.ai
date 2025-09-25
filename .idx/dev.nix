@@ -1,16 +1,23 @@
-# To learn more about how to use Nix to configure your environment
-# see: https://firebase.google.com/docs/studio/customize-workspace
 { pkgs, ... }: {
-  # Which nixpkgs channel to use.
-  channel = "stable-24.05"; # or "unstable"
-
-  # Use https://search.nixos.org/packages to find packages
+  # Let Nix manage packages for your workspace.
   packages = [
     pkgs.nodejs_20
   ];
 
+  # You can also install packages from npm.
+  npm.install.enable = true;
+
+  # E.g., install Python and related tools.
+  #
+  # languages.python = {
+  #   enable = true;
+  #   version = "3.11";
+  # };
+  #
   # Sets environment variables in the workspace
-  env = {};
+  env = {
+    GEMINI_API_KEY = "AIzaSyASFSzeHzgSi6mgDXOrRpv0EgCtuMvfNQo";
+  };
   idx = {
     # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
     extensions = [
@@ -23,30 +30,20 @@
       previews = {
         web = {
           # Example: run "npm run dev" with PORT set to IDX's defined port for previews,
-          # and show it in IDX's web preview panel
-          command = ["npm" "start"];
+          # and tell the command to start the web server on host 0.0.0.0.
+          command = [ "npm" "run" "dev" "--" "--port" "$PORT" "--host" "0.0.0.0" ];
           manager = "web";
-          cwd = "frontend";
-          env = {
-            # Environment variables to set for your server
-            PORT = "$PORT";
-          };
         };
       };
     };
 
-    # Workspace lifecycle hooks
-    workspace = {
-      # Runs when a workspace is first created
-      onCreate = {
-        # Example: install JS dependencies from NPM
-        npm-install = "npm install --prefix frontend";
-      };
-      # Runs when the workspace is (re)started
-      onStart = {
-        # Example: start a background task to watch and re-build backend code
-        # watch-backend = "npm run watch-backend";
-      };
-    };
+    # The following hooks are run during workspace startup.
+    # The `onLoad` hook is run whenever a workspace is resumed or created.
+    # The `onCreate` hook is run only when the workspace is created.
+    #
+    # onLoad = {
+    #   # Example: run `npm install` automatically in the background
+    #   npm-install = "npm install";
+    # };
   };
 }
