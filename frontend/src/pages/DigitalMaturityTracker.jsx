@@ -1,10 +1,12 @@
 
 import React, { useState, useEffect, useRef } from 'react';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Progress } from '../components/ui/progress';
 import { Badge } from '../components/ui/badge';
-import { ArrowLeft, RefreshCw, CheckCircle } from 'lucide-react';
+import { ArrowLeft, RefreshCw, CheckCircle, Download } from 'lucide-react';
 import { digitalMaturitySections, maturityLevels } from '../data/mock';
 import Report from '../components/Report';
 
@@ -26,10 +28,33 @@ export default function DigitalMaturityTracker() {
   });
   const reportRef = useRef();
 
-  // Removed the useEffect that loaded previous results to ensure a fresh start every time.
+  const handleDownloadPdf = () => {
+    const input = reportRef.current;
+    if (!input) {
+      console.error("The report element was not found.");
+      return;
+    }
+
+    html2canvas(input, {
+      scale: 2, // Higher scale for better quality
+      useCORS: true,
+      logging: true,
+      allowTaint: true
+    }).then(canvas => {
+      const imgData = canvas.toDataURL('image/jpeg', 0.8); // Use JPEG for compression
+      const pdf = new jsPDF({
+        orientation: 'p',
+        unit: 'px',
+        format: [canvas.width, canvas.height]
+      });
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+      pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+      pdf.save(`Digital-Maturity-Report-${userInfo.name.replace(/ /g, '-')}.pdf`);
+    });
+  };
 
   const totalQuestions = digitalMaturitySections.reduce((sum, section) => sum + section.questions.length, 0);
-  const currentQuestionNumber = digitalMaturitySections.slice(0, currentSection).reduce((sum, section) => sum + section.questions.length, 0) + currentQuestion + 1;
   const progress = (Object.keys(answers).length / totalQuestions) * 100;
 
   const handleAnswer = (score) => {
@@ -138,7 +163,7 @@ export default function DigitalMaturityTracker() {
         <a href="/">
           <img src="https://customer-assets.emergentagent.com/job_ai-lead-toolkit/artifacts/lr58t0dk_ailutions.%20logo.svg" alt="Ailutions Logo" className="h-8" />
         </a>
-        <div className="text-sm text-gray-500">{isComplete ? 'Report' : `${currentQuestionNumber} of ${totalQuestions}`}</div>
+        <div className="text-sm text-gray-500 font-medium tabular-nums">{isComplete ? 'Report' : `${progress.toFixed(0)}% Complete`}</div>
       </div>
     </header>
   );
@@ -201,10 +226,17 @@ export default function DigitalMaturityTracker() {
         <div className="min-h-screen bg-gray-100">
             <AppHeader />
             <main className="py-12 px-6">
-                <div className="max-w-7xl mx-auto">
-                    <Report ref={reportRef} {...results} aiReport={aiReport} userInfo={userInfo} />
+                <div ref={reportRef}>
+                  <Report {...results} aiReport={aiReport} userInfo={userInfo} />
                 </div>
-                 <div className="text-center mt-8">
+                 <div className="text-center mt-8 space-x-4">
+                  <Button
+                    onClick={handleDownloadPdf}
+                    className="bg-blue-600 text-white hover:bg-blue-700"
+                  >
+                    <Download className="w-4 h-4 mr-2" />
+                    Download PDF Report
+                  </Button>
                   <Button
                     onClick={resetAssessment}
                     variant="ghost"
@@ -235,12 +267,12 @@ export default function DigitalMaturityTracker() {
                     </div>
                     <div className="space-y-4 max-w-2xl mx-auto">
                         {[
-                            { score: 3, label: "Excellent - We excel here.", color: "green" },
-                            { score: 2, label: "Good - We're doing well.", color: "blue" },
-                            { score: 1, label: "Basic - We have some capabilities.", color: "yellow" },
-                            { score: 0, label: "Poor - A significant weakness.", color: "red" }
+                            { score: 3, label: "Excellent - We excel here." },
+                            { score: 2, label: "Good - We're doing well." },
+                            { score: 1, label: "Basic - We have some capabilities." },
+                            { score: 0, label: "Poor - A significant weakness." }
                         ].map((option) => (
-                            <Button key={option.score} onClick={() => handleAnswer(option.score)} variant="outline" size="lg" className={`w-full p-6 text-left text-lg justify-start hover:bg-${option.color}-500 hover:text-white`}>
+                            <Button key={option.score} onClick={() => handleAnswer(option.score)} variant="outline" size="lg" className="w-full p-6 text-left text-lg justify-start text-gray-800 border-gray-300 hover:bg-gray-100 hover:text-gray-900 hover:border-gray-400">
                                 {option.label}
                             </Button>
                         ))}
