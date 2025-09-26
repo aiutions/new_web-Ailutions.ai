@@ -1,5 +1,8 @@
 {
+  "builds": [
+    { "src": "frontend/package.json", "use": "@vercel/static-build", "config": { "distDir": "frontend/build" } }
+  ],
   "rewrites": [
-    { "source": "/((?!\\.|\\w{1,5}\\.w{1,5}$)[^/]+)*(/)?", "destination": "/index.html" }
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
