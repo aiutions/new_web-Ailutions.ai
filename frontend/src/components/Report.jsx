@@ -53,17 +53,19 @@ const Report = React.forwardRef(({ score, categoryScores, maturityStage, analysi
         <h2 className="text-3xl font-bold text-gray-800 mb-6 border-b-2 border-blue-600 pb-2">Personalized Recommendations</h2>
         <div className="space-y-6">
           {/* Bug Fix & Conditional Rendering: Check for aiReport and personalizedRecommendations before mapping */}
-          {aiReport?.personalizedRecommendations?.map((item, index) => (
-            <div key={index} className="bg-blue-50 p-6 rounded-lg shadow-sm flex items-start">
-                <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center mr-4">
-                    <Zap size={20} />
-                </div>
-                <div>
-                    <h3 className="text-xl font-bold text-blue-800">{item.title}</h3>
-                    <p className="text-gray-700 mt-1">{item.description}</p>
-                </div>
-            </div>
-          )) || (
+          {aiReport && aiReport.personalizedRecommendations ? (
+            aiReport.personalizedRecommendations.map((item, index) => (
+              <div key={index} className="bg-blue-50 p-6 rounded-lg shadow-sm flex items-start">
+                  <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center mr-4">
+                      <Zap size={20} />
+                  </div>
+                  <div>
+                      <h3 className="text-xl font-bold text-blue-800">{item.title}</h3>
+                      <p className="text-gray-700 mt-1">{item.description}</p>
+                  </div>
+              </div>
+            ))
+          ) : (
             // Fallback to static analysis
             <div className="space-y-4 text-lg text-gray-700 leading-relaxed">
                 {analysis?.recommendations?.map((item, index) => <p key={index}>• {item}</p>)}
@@ -76,7 +78,8 @@ const Report = React.forwardRef(({ score, categoryScores, maturityStage, analysi
         <h2 className="text-3xl font-bold text-gray-800 mb-6 border-b-2 border-blue-600 pb-2">Strategic Action Plan</h2>
         <div className="space-y-6">
             {/* Bug Fix & Conditional Rendering: Check for aiReport and actionPlan before mapping */}
-            {aiReport?.actionPlan?.map((item, index) => (
+            {aiReport && aiReport.actionPlan ? (
+              aiReport.actionPlan.map((item, index) => (
                  <div key={index} className="bg-green-50 p-6 rounded-lg shadow-sm flex items-start">
                     <div className="flex-shrink-0 w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center mr-4">
                         <Target size={20} />
@@ -86,7 +89,8 @@ const Report = React.forwardRef(({ score, categoryScores, maturityStage, analysi
                         <p className="text-gray-700 mt-1">{item.description}</p>
                     </div>
                 </div>
-            )) || (
+              ))
+            ) : (
               <div className="bg-gray-100 p-6 rounded-lg">
                   <p className="text-lg text-gray-700">Your prioritized action plan will be displayed here once your report is generated.</p>
               </div>
