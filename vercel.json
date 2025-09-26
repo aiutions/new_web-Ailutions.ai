@@ -1,6 +1,5 @@
-
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
+    { "source": "/((?!\\.|\\w{1,5}\\.w{1,5}$)[^/]+)*(/)?", "destination": "/index.html" }
   ]
 }
