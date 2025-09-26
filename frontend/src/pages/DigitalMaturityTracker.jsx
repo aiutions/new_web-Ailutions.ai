@@ -6,7 +6,7 @@ import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Progress } from '../components/ui/progress';
 import { Badge } from '../components/ui/badge';
-import { ArrowLeft, RefreshCw, CheckCircle, Download } from 'lucide-react';
+import { ArrowLeft, RefreshCw, CheckCircle, Download, Calendar } from 'lucide-react';
 import { digitalMaturitySections, maturityLevels } from '../data/mock';
 import Report from '../components/Report';
 
@@ -236,6 +236,13 @@ export default function DigitalMaturityTracker() {
                   >
                     <Download className="w-4 h-4 mr-2" />
                     Download PDF Report
+                  </Button>
+                  <Button
+                    onClick={() => window.open('https://calendly.com/ailutions/30min', '_blank')}
+                    className="bg-green-600 text-white hover:bg-green-700"
+                  >
+                    <Calendar className="w-4 h-4 mr-2" />
+                    Book a Meeting
                   </Button>
                   <Button
                     onClick={resetAssessment}
