@@ -1,3 +1,4 @@
+
 // Mock data for Ailutions website
 export const heroData = {
   headline: "Build, Integrate & Automate with AI.",
@@ -45,7 +46,8 @@ export const caseStudiesData = {
       problem: "Manual invoice processing taking 4+ hours daily",
       solution: "AI-powered document extraction and automated approval workflows",
       outcome: "Reduced invoice processing from 4 hours to 45 minutes per day",
-      details: "Complete case study with technical implementation details"
+      details: "Complete case study with technical implementation details",
+      link: "/case-studies/ai-finance-os"
     },
     { 
       title: "WhatsApp Agent", 
@@ -53,7 +55,8 @@ export const caseStudiesData = {
       problem: "High appointment no-show rates affecting revenue",
       solution: "AI WhatsApp agent for automated reminders and rescheduling",
       outcome: "Appointment attendance improved from 40% to 85%",
-      details: "Implementation guide and ROI breakdown"
+      details: "Implementation guide and ROI breakdown",
+      link: "/case-studies/whatsapp-agent"
     },
     { 
       title: "ERP HR & Payroll", 
@@ -61,7 +64,26 @@ export const caseStudiesData = {
       problem: "Manual payroll processing prone to errors and delays",
       solution: "Integrated ERPNext with automated payroll calculations",
       outcome: "99.5% accuracy with same-day payroll processing",
-      details: "Technical architecture and compliance details"
+      details: "Technical architecture and compliance details",
+      link: "/case-studies/erp-hr-payroll"
+    },
+    {
+      title: "WhatsApp Real Estate",
+      metric: "+100% lead volume",
+      problem: "Leads from social media were going cold due to slow response times.",
+      solution: "An automated WhatsApp agent to instantly qualify and nurture leads.",
+      outcome: "Doubled lead volume and cut response time to under 2 minutes.",
+      details: "Full case study on WhatsApp automation for real estate in Dubai.",
+      link: "/case-studies/whatsapp-automation-for-real-estate"
+    },
+    {
+      title: "eCommerce Sales Agent",
+      metric: "+30% sales conversion",
+      problem: "High cart abandonment and missed sales opportunities on WhatsApp.",
+      solution: "An AI-powered WhatsApp agent to recover carts and close sales.",
+      outcome: "Increased sales conversion by 30% and improved customer engagement.",
+      details: "Learn how a WhatsApp sales agent can boost your eCommerce revenue.",
+      link: "/blog/whatsapp-sales-agent-ecommerce-uae"
     }
   ]
 };
@@ -111,6 +133,13 @@ export const processSteps = [
 ];
 
 export const blogPreviews = [
+  {
+    title: "5 Ways a WhatsApp Sales Agent Can Boost eCommerce Sales in UAE (2025)",
+    excerpt: "Learn 5 proven ways a WhatsApp agent can help you sell more in 2025.",
+    readTime: "5 min read",
+    category: "eCommerce",
+    slug: "/blog/whatsapp-sales-agent-ecommerce-uae"
+  },
   {
     title: "5 Signs Your Business Needs AI Automation",
     excerpt: "Discover the key indicators that show your company is ready for AI-powered automation.",

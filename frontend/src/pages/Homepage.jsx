@@ -171,7 +171,7 @@ export default function Homepage() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            {caseStudiesData.cards.map((study, index) => (
+            {caseStudiesData.cards.slice(0, 3).map((study, index) => (
               <InteractiveCaseStudyCard
                 key={index}
                 title={study.title}
@@ -180,13 +180,14 @@ export default function Homepage() {
                 solution={study.solution}
                 outcome={study.outcome}
                 details={study.details}
+                link={study.link}
               />
             ))}
           </div>
           
           <div className="text-center">
             <button
-              onClick={() => alert('Navigate to full case studies page')}
+              onClick={() => window.location.href = '/case-studies'}
               className="btn-secondary btn-large bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600"
             >
               View More Case Studies
@@ -273,7 +274,7 @@ export default function Homepage() {
                 <li><a href="#" className="hover:text-white transition-colors">Custom AI Tools</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">AI Integration</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Process Automation</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">ERPNext Implementation</a></li>
+                <li><a href="#" className-="hover:text-white transition-colors">ERPNext Implementation</a></li>
               </ul>
             </div>
             
@@ -283,7 +284,8 @@ export default function Homepage() {
                 <li><a href="/digital-maturity-tracker" className="hover:text-white transition-colors">Digital Maturity Assessment</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Automation Playbook</a></li>
                 <li><a href="/roi-calculator" className="hover:text-white transition-colors">ROI Calculator</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Case Studies</a></li>
+                <li><a href="/case-studies" className="hover:text-white transition-colors">Case Studies</a></li>
+                <li><a href="/case-studies" className="hover:text-white transition-colors">WhatsApp for eCommerce</a></li>
               </ul>
             </div>
             
