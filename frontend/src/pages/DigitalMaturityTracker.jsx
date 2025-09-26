@@ -238,7 +238,7 @@ export default function DigitalMaturityTracker() {
                     Download PDF Report
                   </Button>
                   <Button
-                    onClick={() => window.open('https://calendly.com/ailutions/30min', '_blank')}
+                    onClick={() => window.open('https://cal.com/ailutions/15-minutes-strategy-call', '_blank')}
                     className="bg-green-600 text-white hover:bg-green-700"
                   >
                     <Calendar className="w-4 h-4 mr-2" />
