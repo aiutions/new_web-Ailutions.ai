@@ -10,6 +10,7 @@ import { InteractiveCaseStudyCard } from '../components/InteractiveCaseStudyCard
 import { AboutSection } from '../components/AboutSection';
 import { CTABanner } from '../components/CTABanner';
 import { ArrowRight, Sparkles, Target, MessageCircle, Menu, Mail, Phone, Linkedin, Instagram, Facebook, Twitter } from 'lucide-react';
+import { Whatsapp } from 'react-bootstrap-icons';
 import { caseStudiesData, contactData } from '../data/mock';
 import Drawer from '../components/ui/drawer';
 
@@ -235,7 +236,7 @@ export default function Homepage() {
                 variant="outline"
                 className="p-6 h-auto flex-col space-y-2 bg-green-50 border-green-200 text-green-700 hover:bg-green-100 hover:scale-105 transition-all duration-300"
               >
-                <i class="bi bi-whatsapp w-8 h-8 text-green-600"></i>
+                <Whatsapp className="w-8 h-8 text-green-600" />
                 <div>
                   <div className="font-semibold">WhatsApp</div>
                   <div className="text-sm text-green-600">Instant response</div>
@@ -303,7 +304,7 @@ export default function Homepage() {
                 </a>
               </li>
               <li className="flex items-center space-x-3">
-                <i class="bi bi-whatsapp w-5 h-5 text-gray-400"></i>
+                <Whatsapp className="w-5 h-5 text-gray-400" />
                 <a href="https://wa.me/971585695177?text=Hi, I'd like to learn more about your AI automation services" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
                   WhatsApp Support
                 </a>
@@ -330,7 +331,7 @@ export default function Homepage() {
                 <Instagram className="w-6 h-6" />
               </a>
               <a href="https://wa.me/971585695177" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                <i class="bi bi-whatsapp w-6 h-6"></i>
+                <Whatsapp className="w-6 h-6" />
               </a>
               <a href="mailto:info@ailutions.ai" className="text-gray-400 hover:text-white transition-colors">
                 <Mail className="w-6 h-6" />
