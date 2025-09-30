@@ -284,7 +284,6 @@ export default function Homepage() {
                 <li><a href="#" className="hover:text-white transition-colors">Automation Playbook</a></li>
                 <li><a href="/roi-calculator" className="hover:text-white transition-colors">ROI Calculator</a></li>
                 <li><a href="/case-studies" className="hover:text-white transition-colors">Case Studies</a></li>
-                <li><a href="/case-studies" className="hover:text-white transition-colors">WhatsApp for eCommerce</a></li>
               </ul>
             </div>
             
