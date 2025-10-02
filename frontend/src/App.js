@@ -15,6 +15,7 @@ import ERPNextHRCaseStudy from "./pages/case-studies/ERPNextHR";
 import CaseStudies from "./pages/CaseStudies";
 import WhatsAppAutomationCaseStudy from "./pages/case-studies/WhatsAppAutomationCaseStudy";
 import WhatsAppSalesAgentEcommerce from "./pages/blog/WhatsAppSalesAgentEcommerce";
+import ShopifyMerchantsUAE from "./pages/blog/ShopifyMerchantsUAE";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/case-studies/whatsapp-automation-for-real-estate" element={<WhatsAppAutomationCaseStudy />} />
           <Route path="/blog/whatsapp-sales-agent-ecommerce-uae" element={<WhatsAppSalesAgentEcommerce />} />
+          <Route path="/blog/shopify-merchants-uae" element={<ShopifyMerchantsUAE />} />
         </Routes>
       </BrowserRouter>
     </div>

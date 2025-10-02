@@ -61,6 +61,14 @@ export default function CaseStudies() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <InteractiveCaseStudyCard
+                title="Shopify in the UAE"
+                metric="+25% Conversions"
+                problem="Losing sales due to multilingual friction and COD questions."
+                solution="AI sales agent provides instant, bilingual answers and support."
+                outcome="Increased conversion rates and automated customer support."
+                link="/blog/shopify-merchants-uae"
+              />
             {caseStudiesData.cards.map((study, index) => (
               <InteractiveCaseStudyCard
                 key={index}
