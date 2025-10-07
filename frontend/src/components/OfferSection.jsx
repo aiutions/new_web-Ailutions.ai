@@ -98,10 +98,10 @@ export const OfferSection = () => {
             <Card className="bg-white/20 backdrop-blur-md border-white/30 shadow-2xl">
               <CardContent className="p-12 text-center">
                 <div className="space-y-6">
-                  <Zap className="w-16 h-16 text-yellow-400 mx-auto animate-pulse" />
+                  <Zap className="w-16 h-16 text-yellow-500 mx-auto animate-pulse" />
                   
                   <h3 className="text-4xl font-bold">
-                    For <span className="text-yellow-400">FREE</span>
+                    For <span className="text-yellow-500">FREE</span>
                   </h3>
                   
                   <p className="text-xl opacity-90 mb-8">
@@ -110,13 +110,13 @@ export const OfferSection = () => {
 
                   <div className="bg-green-500/20 border border-green-400/50 rounded-2xl p-6 mb-8">
                     <div className="flex items-center justify-center space-x-2 mb-3">
-                      <CheckCircle className="w-6 h-6 text-green-400" />
-                      <h4 className="text-xl font-bold text-green-400">Our Guarantee</h4>
+                      <CheckCircle className="w-6 h-6 text-green-600" />
+                      <h4 className="text-xl font-bold text-green-600">Our Guarantee</h4>
                     </div>
-                    <p className="text-lg text-black">
+                    <p className="text-lg text-white">
                       <strong>You don't pay until your first automation is live.</strong>
                     </p>
-                    <p className="text-sm text-black mt-2">
+                    <p className="text-sm text-white mt-2">
                       We're so confident in our results, we'll prove the value first.
                     </p>
                   </div>
@@ -141,7 +141,7 @@ export const OfferSection = () => {
             {/* Urgency */}
             <Card className="bg-red-500/20 border border-red-400/50">
               <CardContent className="p-6 text-center">
-                <h4 className="text-lg font-bold text-red-400 mb-2">⏰ Limited Time</h4>
+                <h4 className="text-lg font-bold text-red-600 mb-2">⏰ Limited Time</h4>
                 <p className="text-sm">
                   This free assessment offer won't last long. Your competitors are already automating.
                 </p>

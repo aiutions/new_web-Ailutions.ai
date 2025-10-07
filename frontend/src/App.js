@@ -1,6 +1,5 @@
 
 import React, { Suspense, lazy } from "react";
-import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Lazily load the page components

@@ -63,6 +63,7 @@ export default function Homepage() {
               <button
                 onClick={() => setIsDrawerOpen(true)}
                 className="p-2 text-luxury-text-body hover:text-luxury-text-heading"
+                aria-label="Open navigation menu"
               >
                 <Menu className="w-6 h-6 sm:w-7 sm:h-7" />
               </button>
@@ -223,11 +224,12 @@ export default function Homepage() {
                 onClick={() => window.open('https://cal.com/ailutions/15-minutes-strategy-call', '_blank')}
                 variant="outline"
                 className="p-6 h-auto flex-col space-y-2 hover:scale-105 transition-all duration-300"
+                aria-label="Book a 15-minute strategy session"
               >
                 <MessageCircle className="w-8 h-8 text-blue-600" />
                 <div>
                   <div className="font-semibold">Book a Call</div>
-                  <div className="text-sm text-gray-500">15-minute strategy session</div>
+                  <div className="text-sm text-gray-700">15-minute strategy session</div>
                 </div>
               </Button>
               
@@ -235,6 +237,7 @@ export default function Homepage() {
                 onClick={() => window.open('https://wa.me/971585695177', '_blank')}
                 variant="outline"
                 className="p-6 h-auto flex-col space-y-2 bg-green-50 border-green-200 text-green-700 hover:bg-green-100 hover:scale-105 transition-all duration-300"
+                aria-label="Contact us on WhatsApp for an instant response"
               >
                 <Whatsapp className="w-8 h-8 text-green-600" />
                 <div>
@@ -323,21 +326,25 @@ export default function Homepage() {
               © 2025 Ailutions. All rights reserved. We help businesses automate and scale.
             </p>
             <div className="flex items-center space-x-6">
-              <a href="https://www.linkedin.com/company/ailutions-ai" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                <Linkedin className="w-6 h-6" />
-              </a>
-              <a href="https://www.instagram.com/ailutions" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                <Instagram className="w-6 h-6" />
-              </a>
-              <a href="https://wa.me/971585695177" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                <Whatsapp className="w-6 h-6" />
-              </a>
-              <a href="mailto:info@ailutions.ai" className="text-gray-400 hover:text-white transition-colors">
-                <Mail className="w-6 h-6" />
-              </a>
-              <a href="/privacy-policy" className="hover:text-white transition-colors">Privacy</a>
-              <a href="/terms-of-service" className="hover:text-white transition-colors">Terms</a>
-              <a href="#" className="hover:text-white transition-colors">Support</a>
+                <a href="https://www.linkedin.com/company/ailutions-ai" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                    <span className="sr-only">LinkedIn</span>
+                    <Linkedin className="w-6 h-6" />
+                </a>
+                <a href="https://www.instagram.com/ailutions" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                    <span className="sr-only">Instagram</span>
+                    <Instagram className="w-6 h-6" />
+                </a>
+                <a href="https://wa.me/971585695177" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                    <span className="sr-only">WhatsApp</span>
+                    <Whatsapp className="w-6 h-6" />
+                </a>
+                <a href="mailto:info@ailutions.ai" className="text-gray-400 hover:text-white transition-colors">
+                    <span className="sr-only">Email</span>
+                    <Mail className="w-6 h-6" />
+                </a>
+                <a href="/privacy-policy" className="hover:text-white transition-colors">Privacy</a>
+                <a href="/terms-of-service" className="hover:text-white transition-colors">Terms</a>
+                <a href="#" className="hover:text-white transition-colors">Support</a>
             </div>
           </div>
         </div>

@@ -77,6 +77,7 @@ export const InteractiveMaturityPreview = () => {
                     <Progress 
                       value={animatedProgress} 
                       className="h-6 bg-gray-100" 
+                      aria-label="Digital Maturity Score"
                     />
                     <div 
                       className={`absolute inset-0 h-6 bg-gradient-to-r ${maturityLevels[currentLevel].color} rounded-full transition-all duration-1000 ease-out`}

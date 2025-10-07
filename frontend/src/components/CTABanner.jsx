@@ -34,7 +34,7 @@ export const CTABanner = () => {
       <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
         <div className="space-y-8">
           {/* Urgency badge */}
-          <div className="inline-flex items-center space-x-2 bg-luxury-critical text-white rounded-full px-6 py-3 font-bold shadow-lg">
+          <div className="inline-flex items-center space-x-2 bg-red-700 text-white rounded-full px-6 py-3 font-bold shadow-lg">
             <Clock className="w-5 h-5" />
             <span>Your Competitors Are Already Automating</span>
           </div>

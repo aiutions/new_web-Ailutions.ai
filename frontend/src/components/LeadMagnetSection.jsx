@@ -110,11 +110,11 @@ export const LeadMagnetSection = () => {
                   <span className="text-sm font-medium text-luxury-text-secondary">
                     {isUserInteracting ? "Manual Selection" : "Preview"}
                   </span>
-                  <span className="text-sm text-gray-500">{currentMagnet + 1} of {leadMagnets.length}</span>
+                  <span className="text-sm text-gray-700">{currentMagnet + 1} of {leadMagnets.length}</span>
                 </div>
                 <Progress value={isUserInteracting ? 100 : Math.min(100, Math.max(0, progress || 0))} className="h-1" />
                 {isUserInteracting && (
-                  <p className="text-xs text-blue-600 mt-1">Auto-rotation paused • Resumes in 15 seconds</p>
+                  <p className="text-xs text-blue-800 mt-1">Auto-rotation paused • Resumes in 15 seconds</p>
                 )}
               </div>
 
@@ -185,7 +185,7 @@ export const LeadMagnetSection = () => {
                       </div>
                       <div className="flex items-center space-x-2">
                         <Download className="w-4 h-4 text-gray-400" />
-                        <span className="text-sm text-gray-500 font-medium">FREE</span>
+                        <span className="text-sm text-gray-700 font-medium">FREE</span>
                       </div>
                     </div>
                   </CardContent>
@@ -197,7 +197,7 @@ export const LeadMagnetSection = () => {
             <Card className="border-0 bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-xl">
               <CardContent className="p-8 text-center">
                 <h4 className="text-2xl font-bold mb-4">Ready to Automate?</h4>
-                <p className="text-lg mb-6 text-black">
+                <p className="text-lg mb-6 text-gray-200">
                   Start with the Digital Maturity Tracker — it takes just 3 minutes.
                 </p>
                 <button

@@ -51,6 +51,7 @@ export const InteractiveCaseStudyCard = ({ title, metric, problem, solution, out
                   size="sm"
                   onClick={handleFlip}
                   className="text-gray-500 hover:text-gray-700"
+                  aria-label="Flip card to see front"
                 >
                   <RotateCcw className="w-4 h-4" />
                 </Button>

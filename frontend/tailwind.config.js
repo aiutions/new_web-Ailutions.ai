@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     darkMode: ["class"],
+    // Configuring paths to source files for CSS purging
     content: [
     "./src/**/*.{js,jsx,ts,tsx}",
     "./public/index.html"
@@ -23,8 +24,6 @@ module.exports = {
   				'text-secondary': '#333333',
   				'gradient-start': '#3B82F6',
   				'gradient-end': '#06B6D4',
-  				// Removed cta-start
-  				// Removed cta-end
   				'success': '#22C55E',
   				'warning': '#FACC15',
   				'critical': '#EF4444',
