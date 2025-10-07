@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "build": "yarn workspace frontend build",
-    "start": "yarn workspace frontend start"
+    "start": "yarn workspace frontend start",
+    "postbuild": "python post_build.py"
   },
   "workspaces": [
     "frontend"
