@@ -35,7 +35,7 @@
         <script type="application/ld+json">
         [
           {
-            "@context": "https://schema.org",
+            "@context": "https.schema.org",
             "@type": "Organization",
             "name": "Ailutions",
             "url": "https://www.ailutions.ai/",
@@ -47,7 +47,7 @@
             ]
           },
           {
-            "@context": "https://schema.org",
+            "@context": "https.schema.org",
             "@type": "WebSite",
             "name": "Ailutions",
             "url": "https://www.ailutions.ai/",
@@ -63,6 +63,7 @@
         <!-- Asynchronously load Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preconnect" href="https://customer-assets.emergentagent.com">
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
     </head>
@@ -86,9 +87,9 @@
                                         [e].concat(
                                             Array.prototype.slice.call(
                                                 arguments,
-                                                0,
-                                            ),
-                                        ),
+                                                0
+                                            )
+                                        )
                                     );
                                 });
                         }
@@ -99,11 +100,11 @@
                             (p.src =
                                 s.api_host.replace(
                                     ".i.posthog.com",
-                                    "-assets.i.posthog.com",
+                                    "-assets.i.posthog.com"
                                 ) + "/static/array.js"),
                             (r =
                                 t.getElementsByTagName(
-                                    "script",
+                                    "script"
                                 )[0]).parentNode.insertBefore(p, r);
                         var u = e;
                         for (
@@ -122,7 +123,7 @@
                                 },
                                 o =
                                     "init me ws ys ps bs capture je Di ks register register_once register_for_session unregister unregister_for_session Ps getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Es $s createPersonProfile Is opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Ss debug xs getPageViewId captureTraceFeedback captureTraceMetric".split(
-                                        " ",
+                                        " "
                                     ),
                                 n = 0;
                             n < o.length;
@@ -135,10 +136,10 @@
             })(document, window.posthog || []);
             posthog.init("phc_yJW1VjHGGwmCbbrtczfqqNxgBDbhlhOWcdzcIJEOTFE", {
                 api_host: "https://us.i.posthog.com",
-                person_profiles: "identified_only", // or 'always' to create profiles for anonymous users as well
-                session_recording: {
-                    enabled: false
-                }
+                person_profiles: "identified_only",
+                disable_session_recording: true,
+                autocapture: false,
+                disable_surveys: true
             });
         </script>
     </body>
